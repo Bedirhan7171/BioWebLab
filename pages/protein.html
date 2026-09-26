@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protein Mühendisliği | BioWebLab</title>
+<link rel="stylesheet" href="protein.css">
+</head>
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+  <div class="brand">
+    <a href="../index.html">← Ana Sayfa</a>
+    <h2>Protein Lab</h2>
+  </div>
+
+  <nav class="menu">
+    <button class="menu-item active unlocked" data-step="1"><span>1</span><div><strong>Protein Nedir?</strong><small>Amino asit zinciri</small></div></button>
+    <button class="menu-item locked" data-step="2"><span>🔒</span><div><strong>Protein Üretimi</strong><small>AUG ve Stop</small></div></button>
+    <button class="menu-item locked" data-step="3"><span>🔒</span><div><strong>64 Kodon Tablosu</strong><small>Kodonları öğren</small></div></button>
+    <button class="menu-item locked" data-step="4"><span>🔒</span><div><strong>Protein Tasarım</strong><small>Amino asitten dizi üret</small></div></button>
+    <button class="menu-item locked" data-step="5"><span>🔒</span><div><strong>DNA/RNA Çevirici</strong><small>Diziyi proteine çevir</small></div></button>
+    
+  </nav>
+
+  <div class="progress-box">
+    <p>İlerleme</p>
+    <div class="progress-bar"><div id="progressFill"></div></div>
+    <span id="progressText">1 / 5</span>
+  </div>
+</aside>
+
+<main class="content">
+
+<section class="panel active-panel" id="panel1">
+  <h1>1. Protein Nedir?</h1>
+  <p>
+    Proteinler, <strong>amino asit</strong> adı verilen yapı taşlarının belirli bir sırayla bağlanmasıyla oluşur.
+    Amino asit sırası proteinin şeklini ve görevini etkiler.
+  </p>
+
+  <div class="protein-hero">
+    <div class="amino-chain">
+      <div class="amino acid-a">Met</div>
+      <div class="bond"></div>
+      <div class="amino acid-b">Ala</div>
+      <div class="bond"></div>
+      <div class="amino acid-c">Phe</div>
+      <div class="bond"></div>
+      <div class="amino acid-d">Gly</div>
+    </div>
+
+    <div class="hero-info">
+      <h3>Ana fikir</h3>
+      <ul>
+        <li>Proteinler amino asitlerden oluşur.</li>
+        <li>Amino asitler mRNA kodonlarına göre eklenir.</li>
+        <li>Sentez çoğunlukla AUG kodonuyla, yani Metiyonin ile başlar.</li>
+        <li>Stop kodonu geldiğinde üretim durur.</li>
+      </ul>
+      <button class="action-btn" onclick="unlockNextStep()">Devam Et →</button>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="panel2">
+  <h1>2. Protein Üretimi</h1>
+
+  <p>
+    DNA’daki bilgi önce mRNA’ya aktarılır. Ribozom mRNA’yı üçlü gruplar hâlinde okur.
+    Bu üçlü gruplara <strong>kodon</strong> denir. Her kodon bir amino asidi ya da durma sinyalini temsil eder.
+  </p>
+
+  <div class="rule-grid">
+    <div class="rule-card start-card">
+      <h3>AUG</h3>
+      <p>Başlangıç kodonudur. Metiyonin amino asidini kodlar.</p>
+    </div>
+
+    <div class="rule-card">
+      <h3>Kodon</h3>
+      <p>mRNA’daki üçlü baz dizisidir. Örnek: GCU → Alanin.</p>
+    </div>
+
+    <div class="rule-card stop-card">
+      <h3>UAA / UAG / UGA</h3>
+      <p>Stop kodonlarıdır. Protein sentezini bitirir.</p>
+    </div>
+  </div>
+
+  <button class="action-btn" onclick="unlockNextStep()">Kuralları Öğrendim →</button>
+</section>
+
+<section class="panel" id="panel3">
+  <h1>3. 64 Kodon Tablosu</h1>
+
+  <p>
+    Aşağıda mRNA’daki 64 kodonun hangi amino aside karşılık geldiğini görebilirsin.
+    Bu tabloyu ezberlemek zorunda değilsin; çevirici araçlar bu tabloyu kullanarak çalışır.
+  </p>
+
+  <div class="codon-tools">
+    <input id="codonSearch" type="text" placeholder="Kodon veya amino asit ara: AUG, Glisin, Stop..." oninput="filterCodonTable()">
+    <button class="action-btn" onclick="unlockNextStep()">Protein Tasarıma Geç →</button>
+  </div>
+
+  <div id="codonTable" class="codon-table"></div>
+</section>
+
+<section class="panel" id="panel5">
+  <h1>5. DNA/RNA → Protein Çevirici</h1>
+  <p>Bilgi: DNA'dan RNA'ya dönüştürürken DNA'daki T,A,G,C amino asitlerine karşılık RNA'da sırasıyla A,U,C,G amino asitler gelir.</p>
+
+  <p>
+    DNA veya RNA dizisi gir. Sistem diziyi kodonlara böler, AUG başlangıcını kontrol eder,
+    Stop kodonunda durur ve oluşan amino asit dizisini gösterir.
+  </p>
+
+  <div class="converter-layout">
+    <div class="converter-card">
+      <h3>Dizi Girişi</h3>
+
+      <label>Dizi türü</label>
+      <select id="sequenceType">
+        <option value="rna">RNA / mRNA</option>
+        <option value="dna">DNA kalıp zinciri</option>
+      </select>
+
+      <label>Dizi</label>
+      <textarea id="sequenceInput" placeholder="Örnek RNA: AUGGCUUUUGGAUAA&#10;Örnek DNA kalıp: TACCGAAAACCTATT"></textarea>
+
+      <button class="action-btn" onclick="convertSequence()">Proteine Çevir</button>
+      <button class="action-btn secondary-btn" onclick="clearConverter()">Temizle</button>
+
+      <div id="converterFeedback" class="feedback-box"></div>
+    </div>
+
+    <div class="converter-results">
+      <h3>Sonuç</h3>
+
+      <div class="result-block">
+        <span>mRNA dizisi</span>
+        <div id="rnaResult" class="sequence-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>DNA kalıp karşılığı</span>
+        <div id="dnaResult" class="sequence-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>Kodonlar</span>
+        <div id="codonResult" class="tag-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>Amino asit dizisi</span>
+        <div id="aminoResult" class="tag-output"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="panel4">
+  <h1>4. Amino Asit → mRNA/DNA Tasarım Aracı</h1>
+
+  <p>
+    Harflerle amino asit dizisi yaz. Sistem olası mRNA kodonlarını ve DNA kalıp karşılıklarını üretir.
+    Protein dizisi <strong>M</strong> ile başlamalıdır. Stop belirtmezsen sistem sona Stop seçeneklerini ekler.
+  </p>
+
+  <div class="designer-layout">
+    <div class="converter-card">
+      <h3>Amino Asit Harfleri</h3>
+
+      <div class="letter-help">
+        <span>M Metiyonin</span>
+        <span>A Alanin</span>
+        <span>F Fenilalanin</span>
+        <span>G Glisin</span>
+        <span>L Lösin</span>
+        <span>S Serin</span>
+        <span>V Valin</span>
+        <span>P Prolin</span>
+        <span>T Treonin</span>
+        <span>Y Tirozin</span>
+        <span>H Histidin</span>
+        <span>Q Glutamin</span>
+        <span>N Asparajin</span>
+        <span>K Lisin</span>
+        <span>D Aspartat</span>
+        <span>E Glutamik asit</span>
+        <span>C Sistein</span>
+        <span>W Triptofan</span>
+        <span>R Arjinin</span>
+        <span>I İzolösin</span>
+        <span>* Stop</span>
+      </div>
+
+      <label>Protein harf dizisi</label>
+      <input id="proteinLetters" type="text" placeholder="Örnek: MAFG* veya M A F G">
+
+      <button class="action-btn" onclick="designFromAminoLetters()">Dizileri Oluştur</button>
+      <button class="action-btn secondary-btn" onclick="clearDesigner()">Temizle</button>
+
+      <div id="designerFeedback" class="feedback-box"></div>
+    </div>
+
+    <div class="converter-results">
+      <h3>Üretilen Olasılıklar</h3>
+
+      <div class="result-block">
+        <span>Seçilen amino asitler</span>
+        <div id="selectedAminoResult" class="tag-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>Olası mRNA kodonları</span>
+        <div id="possibleRnaResult" class="sequence-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>Olası DNA kalıp karşılıkları</span>
+        <div id="possibleDnaResult" class="sequence-output"></div>
+      </div>
+
+      <div class="result-block">
+        <span>Örnek birleşik diziler</span>
+        <div id="combinedResult" class="sequence-output"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script src="protein.js"></script>
+</body>
+</html>

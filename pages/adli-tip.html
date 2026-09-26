@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adli Tıp Laboratuvarı | BioWebLab</title>
+<link rel="stylesheet" href="adli-tip.css">
+</head>
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+<div class="brand">
+<a href="../index.html">← Ana Sayfa</a>
+<h2>Adli Tıp Lab</h2>
+</div>
+
+<nav class="menu">
+<button class="menu-item active unlocked" data-step="1"><span>1</span><div><strong>Giriş</strong><small>Olay yeri senaryosu</small></div></button>
+<button class="menu-item locked" data-step="2"><span>🔒</span><div><strong>Kavramlar</strong><small>Temel terimler</small></div></button>
+<button class="menu-item locked" data-step="3"><span>🔒</span><div><strong>PCR Hazırlık</strong><small>Karışımı hazırla</small></div></button>
+<button class="menu-item locked" data-step="4"><span>🔒</span><div><strong>PCR Mantığı</strong><small>Sıcaklık aşamaları</small></div></button>
+<button class="menu-item locked" data-step="5"><span>🔒</span><div><strong>PCR Simülasyonu</strong><small>Cihazı çalıştır</small></div></button>
+<button class="menu-item locked" data-step="6"><span>🔒</span><div><strong>Jel Elektroforezi</strong><small>DNA ayırımı</small></div></button>
+<button class="menu-item locked" data-step="7"><span>🔒</span><div><strong>Karşılaştırma</strong><small>Bant analizi</small></div></button>
+</nav>
+
+<div class="progress-box">
+<p>İlerleme</p>
+<div class="progress-bar"><div id="progressFill"></div></div>
+<span id="progressText">1 / 7</span>
+</div>
+</aside>
+
+<main class="content">
+
+<section class="panel active-panel" id="panel1">
+<h1>1. Giriş: Olay Yeri</h1>
+<div class="hero-box">
+<div class="crime-image">🧪 🔬 🩸</div>
+<div class="hero-info">
+<h3>Görev</h3>
+<p>Olay yerinden elde edilen biyolojik örnek incelenecek. Şüpheliler ile DNA karşılaştırması yapmalısın.</p>
+<ul>
+<li>PCR öğreneceksin</li>
+<li>DNA çoğaltacaksın</li>
+<li>Bant analizi yapacaksın</li>
+</ul>
+<button class="action-btn" onclick="unlockNextStep()">Devam Et →</button>
+</div>
+</div>
+</section>
+
+<section class="panel" id="panel2">
+<h1>2. Temel Kavramlar</h1>
+<div class="card-grid">
+<div class="info-card"><h3>DNA</h3><p>Kalıtsal bilgiyi taşıyan çift sarmallı moleküldür.</p></div>
+<div class="info-card"><h3>PCR</h3><p>Belirli DNA bölgesini çok sayıda kopyaya dönüştüren laboratuvar tekniğidir.</p></div>
+<div class="info-card"><h3>Primer</h3><p>DNA sentezinin başlayacağı hedef bölgeyi belirleyen kısa dizilerdir.</p></div>
+<div class="info-card"><h3>Taq DNA Polimeraz</h3><p>Yüksek sıcaklığa dayanabilen ve yeni DNA zinciri sentezleyen enzimdir.</p></div>
+<div class="info-card"><h3>dNTP</h3><p>Yeni DNA zincirini oluşturmak için kullanılan nükleotit yapı taşlarıdır.</p></div>
+<div class="info-card"><h3>Buffer</h3><p>PCR tepkimesi için uygun pH ve iyon ortamını sağlar.</p></div>
+</div>
+<button class="action-btn" onclick="unlockNextStep()">Öğrendim →</button>
+</section>
+
+<section class="panel" id="panel3">
+<h1>3. PCR Hazırlık</h1>
+<p>PCR tüpüne yalnızca gerekli bileşenleri ekleyin.</p>
+
+<div class="materials">
+<label class="material-item"><input type="checkbox" value="dna"> DNA Örneği</label>
+<label class="material-item"><input type="checkbox" value="primer"> Primer</label>
+<label class="material-item"><input type="checkbox" value="taq"> Taq DNA Polimeraz</label>
+<label class="material-item"><input type="checkbox" value="dntp"> dNTP</label>
+<label class="material-item"><input type="checkbox" value="buffer"> Buffer</label>
+<label class="material-item"><input type="checkbox" value="soap"> Sabunlu Su</label>
+<label class="material-item"><input type="checkbox" value="protein"> Protein Tozu</label>
+<label class="material-item"><input type="checkbox" value="rna"> RNA</label>
+</div>
+
+<button class="action-btn" onclick="checkPCRMix()">Karışımı Kontrol Et</button>
+<div id="mixResult" class="mix-result"></div>
+
+<div class="tube-area">
+<div class="tube-label">PCR Tüpü</div>
+<div class="tube"><div id="tubeLiquid" class="tube-liquid"></div></div>
+</div>
+</section>
+
+<section class="panel" id="panel4">
+<h1>4. PCR Mantığı</h1>
+<p>PCR cihazı, DNA’yı çoğaltmak için sıcaklığı döngüsel olarak değiştirir. Her sıcaklık basamağı farklı bir moleküler olayı başlatır.</p>
+
+<div class="card-grid">
+<div class="info-card"><h3>95°C — Denatürasyon</h3><p>DNA çift zinciri ısı etkisiyle birbirinden ayrılır.</p></div>
+<div class="info-card"><h3>55°C — Primer Bağlanması</h3><p>Primerler hedef DNA bölgesine tutunur.</p></div>
+<div class="info-card"><h3>72°C — Uzama</h3><p>Taq DNA polimeraz, dNTP’leri kullanarak yeni DNA zincirini sentezler.</p></div>
+</div>
+
+<button class="action-btn" onclick="unlockNextStep()">PCR Cihazına Geç →</button>
+</section>
+
+<section class="panel" id="panel5">
+<h1>5. PCR Simülasyonu</h1>
+<p>
+PCR cihazını çalıştır. Önceki bölümde öğrendiğin sıcaklık sırasını kullanarak DNA’yı çoğalt.
+</p>
+
+<div class="pcr-simulator">
+
+<div class="pcr-left">
+<div class="machine-card">
+<h3>PCR Cihazı</h3>
+
+<div id="temperatureDisplay" class="temperature-display">---</div>
+
+<div class="temperature-buttons">
+<button onclick="selectTemperature(95)">95°C</button>
+<button onclick="selectTemperature(55)">55°C</button>
+<button onclick="selectTemperature(72)">72°C</button>
+</div>
+
+<div class="cycle-info">
+<p>Durum: <strong id="pcrStatus">Başlamadı</strong></p>
+<p>Tamamlanan döngü: <strong id="cycleCount">0</strong></p>
+<p>DNA kopya sayısı: <strong id="copyCount">1</strong></p>
+</div>
+</div>
+
+<div id="pcrFeedback" class="mix-result"></div>
+</div>
+
+<div class="pcr-right">
+
+<div class="dna-stage">
+<div class="dna-label" id="dnaLabel">Başlangıç: çift sarmallı DNA</div>
+
+<div class="dna-visual-area" id="dnaVisualArea"></div>
+
+<div class="dna-note" id="dnaNote">
+DNA çift sarmal halde. Sıcaklık seçerek süreci başlat.
+</div>
+</div>
+
+<div class="pcr-step-cards">
+<div class="pcr-step-card" id="pcrCard1"><h4>1. Denatürasyon</h4><p>DNA zincirleri ayrılır.</p></div>
+<div class="pcr-step-card" id="pcrCard2"><h4>2. Primer Bağlanması</h4><p>Primerler hedef bölgeye tutunur.</p></div>
+<div class="pcr-step-card" id="pcrCard3"><h4>3. Uzama</h4><p>Taq yeni zincirleri üretir.</p></div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="panel" id="panel6">
+<h1>6. Jel Elektroforezi</h1>
+
+<p>
+PCR ile çoğaltılan DNA parçaları artık analiz edilebilecek miktara ulaştı.
+Jel elektroforezi, bu DNA parçalarını <strong>boyutlarına göre ayırmak</strong> için kullanılır.
+Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
+</p>
+
+<div class="gel-intro-grid">
+
+<div class="gel-info-card">
+<h3>PCR ile bağlantısı</h3>
+<p>
+PCR, hedef DNA bölgesini çoğaltır. Jel elektroforezi ise bu çoğaltılmış DNA parçalarının
+uzunluklarını karşılaştırmamızı sağlar.
+</p>
+</div>
+
+<div class="gel-info-card">
+<h3>Adli tıptaki amacı</h3>
+<p>
+Olay yeri örneği ile şüpheli örnekleri aynı jelde yürütülür.
+Benzer bant desenleri, örneklerin genetik profil açısından uyumlu olabileceğini gösterir.
+</p>
+</div>
+
+<div class="gel-info-card">
+<h3>Önemli bilgi</h3>
+<p>
+Bantların jeldeki konumu DNA parçasının büyüklüğü hakkında fikir verir.
+Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil eder.
+</p>
+</div>
+
+</div>
+
+<div class="gel-workspace">
+
+<div class="gel-control-panel">
+<h3>Jel Cihazı Kontrolü</h3>
+
+<div class="gel-task-list">
+<div id="gelTask1" class="gel-task active-task">1. Örnekleri kuyucuklara yükle</div>
+<div id="gelTask2" class="gel-task">2. Elektrik alanını uygula</div>
+<div id="gelTask3" class="gel-task">3. Bant desenlerini gözlemle</div>
+</div>
+
+<button class="action-btn" onclick="loadGelSamples()">Örnekleri Yükle</button>
+<button class="action-btn secondary-btn" onclick="runGelElectrophoresis()">Elektroforezi Başlat</button>
+
+<div id="gelFeedback" class="mix-result"></div>
+</div>
+
+<div class="gel-visual-panel">
+
+<div class="gel-direction">
+<span class="minus-pole">−</span>
+<span>DNA hareket yönü</span>
+<span class="plus-pole">+</span>
+</div>
+
+<div class="gel-board" id="gelBoard">
+
+<div class="gel-lane ladder-lane">
+<div class="lane-title">Ladder</div>
+<div class="well"></div>
+<div class="gel-band ladder-band b1000"></div>
+<div class="gel-band ladder-band b800"></div>
+<div class="gel-band ladder-band b600"></div>
+<div class="gel-band ladder-band b400"></div>
+<div class="gel-band ladder-band b250"></div>
+<div class="gel-band ladder-band b100"></div>
+</div>
+
+<div class="gel-lane">
+<div class="lane-title">Olay Yeri</div>
+<div class="well"></div>
+<div class="gel-band crime-band c1"></div>
+<div class="gel-band crime-band c2"></div>
+<div class="gel-band crime-band c3"></div>
+<div class="gel-band crime-band c4"></div>
+<div class="gel-band crime-band c5"></div>
+</div>
+
+<div class="gel-lane">
+<div class="lane-title">Şüpheli A</div>
+<div class="well"></div>
+<div class="gel-band suspect-a a1"></div>
+<div class="gel-band suspect-a a2"></div>
+<div class="gel-band suspect-a a3"></div>
+<div class="gel-band suspect-a a4"></div>
+</div>
+
+<div class="gel-lane">
+<div class="lane-title">Şüpheli B</div>
+<div class="well"></div>
+<div class="gel-band suspect-b b1"></div>
+<div class="gel-band suspect-b b2"></div>
+<div class="gel-band suspect-b b3"></div>
+<div class="gel-band suspect-b b4"></div>
+<div class="gel-band suspect-b b5"></div>
+</div>
+
+<div class="gel-lane">
+<div class="lane-title">Şüpheli C</div>
+<div class="well"></div>
+<div class="gel-band suspect-c s1"></div>
+<div class="gel-band suspect-c s2"></div>
+<div class="gel-band suspect-c s3"></div>
+<div class="gel-band suspect-c s4"></div>
+</div>
+
+<div class="gel-lane ladder-lane">
+<div class="lane-title">Ladder</div>
+<div class="well"></div>
+<div class="gel-band ladder-band b1000"></div>
+<div class="gel-band ladder-band b800"></div>
+<div class="gel-band ladder-band b600"></div>
+<div class="gel-band ladder-band b400"></div>
+<div class="gel-band ladder-band b250"></div>
+<div class="gel-band ladder-band b100"></div>
+</div>
+
+</div>
+
+<div class="gel-note">
+Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="panel" id="panel7">
+<h1>7. DNA Bant Karşılaştırması</h1>
+
+<p>
+Şimdi oluşan bant desenlerini yorumla. Olay yeri DNA profili ile hangi şüphelinin
+bant deseni en çok benziyor?
+</p>
+
+<div class="comparison-layout">
+
+<div class="comparison-left">
+
+<h3>Karşılaştırma Görevi</h3>
+
+<p>
+Bantların jeldeki konumlarını karşılaştır. Aynı veya çok benzer yükseklikteki bantlar,
+DNA parçalarının benzer uzunlukta olduğunu gösterir.
+</p>
+
+<div class="suspect-choice-grid">
+
+<button class="suspect-choice" onclick="checkFinalSuspect('A')">
+Şüpheli A
+</button>
+
+<button class="suspect-choice" onclick="checkFinalSuspect('B')">
+Şüpheli B
+</button>
+
+<button class="suspect-choice" onclick="checkFinalSuspect('C')">
+Şüpheli C
+</button>
+
+</div>
+
+<div id="finalFeedback" class="final-feedback"></div>
+
+</div>
+
+<div class="comparison-right">
+
+<h3>Bant Profili Özeti</h3>
+
+<div class="profile-table">
+
+<div class="profile-row header-row">
+<span>Örnek</span>
+<span>Gözlenen bant konumları</span>
+<span>Yorum</span>
+</div>
+
+<div class="profile-row">
+<span>Olay Yeri</span>
+<span>132 / 198 / 278 / 348 / 425</span>
+<span>Referans profil</span>
+</div>
+
+<div class="profile-row">
+<span>Şüpheli A</span>
+<span>132 / 198 / 278 / 348</span>
+<span>Çok yüksek benzerlik</span>
+</div>
+
+<div class="profile-row">
+<span>Şüpheli B</span>
+<span>145 / 235 / 320 / 395 / 455</span>
+<span>Belirgin farklılık</span>
+</div>
+
+<div class="profile-row">
+<span>Şüpheli C</span>
+<span>132 / 225 / 278 / 425</span>
+<span>Kısmi benzerlik</span>
+</div>
+
+</div>
+
+<div class="forensic-note">
+<strong>Adli yorum:</strong> DNA bant benzerliği güçlü bir biyolojik delil olabilir;
+ancak olay değerlendirmesi diğer adli bulgularla birlikte yapılmalıdır.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script src="adli-tip.js"></script>
+</body>
+</html>

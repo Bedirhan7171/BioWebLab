@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRISPR-Cas9 Laboratuvarı | BioWebLab</title>
+  <link rel="stylesheet" href="crispr.css" />
+</head>
+
+<body class="crispr-page">
+  <div class="crispr-shell">
+
+    <aside class="crispr-sidebar">
+      <div class="brand">
+        <div class="brand-icon">🧬</div>
+        <div>
+          <h1>BioWebLab</h1>
+          <p>CRISPR-Cas9 Simülasyonu</p>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-top">
+          <span>İlerleme</span>
+          <strong id="progressText">0/10</strong>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <nav class="step-list">
+        <button class="step-btn active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-text">
+            <strong>Görev Senaryosu</strong>
+            <span>Laboratuvara giriş</span>
+          </span>
+          <span class="step-state">•</span>
+        </button>
+
+        <button class="step-btn locked" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-text">
+            <strong>DNA Temeli</strong>
+            <span>A, T, C, G harfleri</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-text">
+            <strong>Mutasyon</strong>
+            <span>Proteindeki Hata</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="4">
+          <span class="step-num">4</span>
+          <span class="step-text">
+            <strong>CRISPR Parçaları</strong>
+            <span>Cas9, gRNA, PAM</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="5">
+          <span class="step-num">5</span>
+          <span class="step-text">
+            <strong>Sistemi Kur</strong>
+            <span>Doğru bileşenleri seç</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="6">
+          <span class="step-num">6</span>
+          <span class="step-text">
+            <strong>PAM Bul</strong>
+            <span>DNA Tarayıcı</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="7">
+          <span class="step-num">7</span>
+          <span class="step-text">
+            <strong>gRNA Tasarla</strong>
+            <span>RNA Terminali</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="8">
+          <span class="step-num">8</span>
+          <span class="step-text">
+            <strong>Cas9 Kesimi</strong>
+            <span>Moleküler makas</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="9">
+          <span class="step-num">9</span>
+          <span class="step-text">
+            <strong>Onarım</strong>
+            <span>NHEJ ve HDR</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-note">
+        Bu modül, CRISPR-Cas9’u hiç bilmeyen bir öğrencinin adım adım öğrenebilmesi için tasarlanmıştır.
+      </div>
+    </aside>
+
+    <main class="crispr-main">
+
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-tag">🧪 Gen Düzenleme Simülasyonu</div>
+            <h2>CRISPR-Cas9 Laboratuvarı</h2>
+            <p>
+              DNA üzerindeki hatalı bir bölgeyi bulacak, CRISPR-Cas9 sisteminin parçalarını öğrenecek,
+              doğru gRNA dizisini tasarlayacak ve hücrenin DNA’yı nasıl onardığını gözlemleyeceksin.
+            </p>
+          </div>
+
+          <div class="dna-orbit">
+            <div class="interactive-dna-container" id="dnaContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage-card">
+
+        <!-- AŞAMA 1 -->
+        <div class="stage active" data-stage="1">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 1</div>
+              <h3>Genetik Düzeltme Laboratuvarına Hoş Geldin</h3>
+              <p class="stage-desc">
+                Bu görevde bir DNA dizisindeki hatalı bölgeyi bulacak, CRISPR-Cas9 sisteminin nasıl hedef seçtiğini
+                öğrenecek ve kesim sonrası hücre onarımını inceleyeceksin.
+              </p>
+            </div>
+            <div class="badge">Başlangıç</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="info-card">
+              <h4>Senin görevin</h4>
+              <p>
+                Bir gen bölgesinde küçük bir hata var. Bu hata, proteinin yanlış çalışmasına neden olabilir.
+                CRISPR-Cas9 sistemiyle hedef bölgeyi tanıyıp kesim ve onarım sürecini modelleyeceksin.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h4>Bu modülde öğreneceklerin</h4>
+              <p>
+                DNA, mutasyon, CRISPR, Cas9, gRNA, PAM, NHEJ ve HDR kavramlarını adım adım öğreneceksin.
+              </p>
+            </div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" disabled>Önceki</button>
+            <button class="primary-btn" data-complete>Göreve Başla</button>
+            <button class="secondary-btn" data-next="2">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 2 -->
+        <div class="stage" data-stage="2">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 2</div>
+              <h3>DNA Temeli: Genetik Bilginin Harfleri</h3>
+              <p class="stage-desc">
+                DNA, canlıların genetik bilgisini taşıyan moleküldür. DNA dizisi dört harften oluşur:
+                A, T, C ve G.
+              </p>
+            </div>
+            <div class="badge">Temel Bilgi</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="lab-panel">
+              <h4>DNA harfleri</h4>
+              <div class="dna-strip">
+                <span class="base a">A</span>
+                <span class="base t">T</span>
+                <span class="base c">C</span>
+                <span class="base g">G</span>
+              </div>
+              <p class="mini-note">
+                Bu harflerin sırası genetik bilgiyi oluşturur. Dizideki küçük bir değişiklik bile bazen önemli sonuçlar doğurabilir.
+              </p>
+            </div>
+
+            <div class="lab-panel">
+              <h4>Baz eşleşmesi</h4>
+              <p>
+                DNA’da A, T ile; C, G ile eşleşir. RNA’da ise T yerine U bulunur.
+                Bu yüzden gRNA tasarlanırken A-U, T-A, C-G ve G-C eşleşmeleri kullanılır.
+              </p>
+            </div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="1">Önceki</button>
+            <button class="primary-btn" data-complete>Anladım</button>
+            <button class="secondary-btn" data-next="3">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 3 -->
+        <div class="stage" data-stage="3">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 3</div>
+              <h3>Mutasyonu Bul: Proteindeki Hata</h3>
+              <p class="stage-desc">
+                DNA'daki üçlü harf grupları (kodonlar) amino asitleri kodlar. Hastanın DNA'sını inceleyerek hangi bazın değiştiğini ve hatalı protein üretimine yol açtığını bul.
+              </p>
+            </div>
+            <div class="badge">Analiz</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="lab-panel">
+              <h4>Kodon Sözlüğü</h4>
+              <div class="gene-map" style="margin-bottom: 12px;">
+                <div class="codon-row">
+                  <span class="codon">ATG = Met</span>
+                  <span class="codon">CCA = Pro</span>
+                  <span class="codon target">TGG = Trp (Sağlıklı)</span>
+                  <span class="codon pam">AGG = Arg (Hatalı)</span>
+                </div>
+              </div>
+              <p class="mini-note">
+                Sağlıklı bir hücrede protein dizilimi <strong>Met - Pro - Trp</strong> olmalıdır. Ancak bu hastanın hücresi <strong>Met - Pro - Arg</strong> üretiyor.
+              </p>
+            </div>
+
+            <div class="lab-panel compare-box">
+              <div class="sequence-row">
+                <div class="sequence-label">Hastanın DNA'sı</div>
+                <div class="dna-strip">
+                  <span class="base clickable-base a" data-index="0">A</span>
+                  <span class="base clickable-base t" data-index="1">T</span>
+                  <span class="base clickable-base g" data-index="2">G</span>
+                  <span class="base clickable-base c" data-index="3">C</span>
+                  <span class="base clickable-base c" data-index="4">C</span>
+                  <span class="base clickable-base a" data-index="5">A</span>
+                  <span class="base clickable-base a" data-index="6">A</span>
+                  <span class="base clickable-base g" data-index="7">G</span>
+                  <span class="base clickable-base g" data-index="8">G</span>
+                </div>
+              </div>
+
+              <button class="primary-btn" id="checkMutationBtn" style="margin-top: 10px;">Hatalı Bazı İşaretle</button>
+              <div class="feedback" id="mutationFeedback">Kodon sözlüğünü kullanarak hatalı bazı bul ve tıkla.</div>
+            </div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="2">Önceki</button>
+            <button class="secondary-btn" data-next="4">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 4 -->
+        <div class="stage" data-stage="4">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 4</div>
+              <h3>CRISPR-Cas9 Parçalarını Tanı</h3>
+              <p class="stage-desc">
+                CRISPR-Cas9, DNA üzerinde hedeflenen bir bölgeyi bulmak ve kesmek için kullanılan bir gen düzenleme sistemidir.
+              </p>
+            </div>
+            <div class="badge">Kavramlar</div>
+          </div>
+
+          <div class="grid-3">
+            <div class="term-card">
+              <div class="icon">🧬</div>
+              <h4>CRISPR</h4>
+              <p>DNA üzerinde belirli bir hedef bölgeye yönlenmeyi sağlayan sistemdir.</p>
+            </div>
+
+            <div class="term-card">
+              <div class="icon">✂️</div>
+              <h4>Cas9</h4>
+              <p>DNA’yı kesebilen enzimdir. Moleküler makas gibi düşünülebilir.</p>
+            </div>
+
+            <div class="term-card">
+              <div class="icon">📍</div>
+              <h4>gRNA</h4>
+              <p>Cas9’a nereye gideceğini söyleyen rehber RNA dizisidir.</p>
+            </div>
+
+            <div class="term-card">
+              <div class="icon">🔎</div>
+              <h4>PAM</h4>
+              <p>Cas9’un hedefe bağlanabilmesi için DNA üzerinde bulunması gereken kısa işaret dizisidir.</p>
+            </div>
+
+            <div class="term-card">
+              <div class="icon">🧩</div>
+              <h4>Hedef DNA</h4>
+              <p>Düzenlenmek veya incelenmek istenen DNA bölgesidir.</p>
+            </div>
+
+            <div class="term-card">
+              <div class="icon">🛠️</div>
+              <h4>Onarım</h4>
+              <p>DNA kesildikten sonra hücre bu kırığı NHEJ veya HDR gibi yollarla onarmaya çalışır.</p>
+            </div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="3">Önceki</button>
+            <button class="primary-btn" data-complete>Kavramları Öğrendim</button>
+            <button class="secondary-btn" data-next="5">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 5 -->
+        <div class="stage" data-stage="5">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 5</div>
+              <h3>CRISPR Sistemini Kur</h3>
+              <p class="stage-desc">
+                Bu görevde hedef DNA’yı düzenlemek için gerekli doğru bileşenleri seçmelisin.
+              </p>
+            </div>
+            <div class="badge">Laboratuvar Seçimi</div>
+          </div>
+
+          <div class="tool-grid">
+            <button class="tool-btn" data-tool="cas9">
+              <strong>Cas9</strong>
+              <span>DNA’yı kesen enzim</span>
+            </button>
+
+            <button class="tool-btn" data-tool="grna">
+              <strong>gRNA</strong>
+              <span>Cas9’un rehberi</span>
+            </button>
+
+            <button class="tool-btn" data-tool="target-dna">
+              <strong>Hedef DNA</strong>
+              <span>Düzenlenecek bölge</span>
+            </button>
+
+            <button class="tool-btn" data-tool="pam-check">
+              <strong>PAM Kontrolü</strong>
+              <span>Cas9 için bağlanma işareti</span>
+            </button>
+
+            <button class="tool-btn" data-tool="repair-template">
+              <strong>Sağlıklı DNA Şablonu</strong>
+              <span>HDR için düzeltme örneği</span>
+            </button>
+
+            <button class="tool-btn" data-tool="ribosome">
+              <strong>Ribozom</strong>
+              <span>Protein üretiminde görev alır</span>
+            </button>
+
+            <button class="tool-btn" data-tool="gel-tank">
+              <strong>Jel Tankı</strong>
+              <span>Elektroforez için kullanılır</span>
+            </button>
+
+            <button class="tool-btn" data-tool="amino-acid">
+              <strong>Amino Asit</strong>
+              <span>Proteinlerin yapı taşı</span>
+            </button>
+          </div>
+
+          <button class="primary-btn" id="checkToolsBtn" style="margin-top:16px;">Sistemi Kontrol Et</button>
+          <div class="feedback" id="toolsFeedback">CRISPR sistemi için gerekli parçaları seç.</div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="4">Önceki</button>
+            <button class="secondary-btn" data-next="6">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 6 -->
+        <div class="stage" data-stage="6">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 6</div>
+              <h3>PAM Bölgesini Tarat</h3>
+              <p class="stage-desc">
+                Cas9'un DNA'yı kesebilmesi için önce "PAM" adı verilen kısa bir şifreyi (bu simülasyonda NGG) bulması gerekir. İlk harf (N) herhangi bir baz olabilir, ancak son iki harf kesinlikle G ve G olmalıdır.
+              </p>
+            </div>
+            <div class="badge">Keşif</div>
+          </div>
+
+          <div class="lab-panel">
+            <h4>DNA Tarayıcı</h4>
+            <p class="mini-note" style="margin-bottom: 16px;">
+              Aşağıdaki DNA zincirine tıklayarak 3 harflik tarama cihazını yerleştir. NGG kuralına uyan bölgeyi bulduğunda sistemi kontrol et.
+            </p>
+
+            <div class="dna-strip" id="pamScannerContainer" style="gap: 4px; padding: 20px; user-select: none;">
+              <span class="base a pam-base">A</span>
+              <span class="base t pam-base">T</span>
+              <span class="base g pam-base">G</span>
+              <span class="base c pam-base">C</span>
+              <span class="base c pam-base">C</span>
+              <span class="base a pam-base">A</span>
+              <span class="base t pam-base">T</span>
+              <span class="base g pam-base">G</span>
+              <span class="base g pam-base">G</span>
+              <span class="base a pam-base">A</span>
+              <span class="base a pam-base">A</span>
+              <span class="base c pam-base">C</span>
+            </div>
+
+            <button class="primary-btn" id="checkPamBtn" style="margin-top:20px;">Tarama Bölgesini Kontrol Et</button>
+            <div class="feedback" id="pamFeedback">Dizideki bir baza tıklayarak 3 harflik çerçeveyi yerleştir.</div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="5">Önceki</button>
+            <button class="secondary-btn" data-next="7">Devam Et</button>
+          </div>
+        </div>
+
+        <!-- AŞAMA 7 -->
+        <div class="stage" data-stage="7">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 7</div>
+              <h3>gRNA Sentezleyici</h3>
+              <p class="stage-desc">
+                gRNA (Rehber RNA), Cas9 enzimini hedef DNA'ya yönlendiren moleküldür. Hedef DNA zincirine tamamlayıcı (komplementer) bir RNA dizisi sentezle.
+              </p>
+            </div>
+            <div class="badge">Sentez</div>
+          </div>
+
+          <div class="lab-panel">
+            <h4>RNA Sentez Terminali</h4>
+            <p class="mini-note">Eşleşme Kuralı: DNA'daki A → RNA'da U, T → A, C → G, G → C</p>
+
+            <div class="synth-container">
+              <div class="match-board" id="matchBoard">
+                <!-- JS ile otomatik dolacak -->
+              </div>
+
+              <!-- Sentez Klavyesi -->
+              <div class="keyboard">
+                <button class="key-btn a" data-base="A">A</button>
+                <button class="key-btn u" data-base="U">U</button>
+                <button class="key-btn c" data-base="C">C</button>
+                <button class="key-btn g" data-base="G">G</button>
+                <button class="key-btn del" id="delBaseBtn">⌫ Sil</button>
+              </div>
+            </div>
+
+            <div class="input-row" style="margin-top: 16px;">
+              <button class="primary-btn" id="checkGrnaBtn">Sentezi Tamamla ve Kontrol Et</button>
+              <button class="ghost-btn" id="hintGrnaBtn">İpucu</button>
+            </div>
+
+            <div class="feedback" id="grnaFeedback">Nükleotid klavyesini kullanarak hedef DNA'ya uygun gRNA'yı sentezle.</div>
+          </div>
+
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="6">Önceki</button>
+            <button class="secondary-btn" data-next="8">Devam Et</button>
+          </div>
+        </div>
+
+<!-- AŞAMA 8 -->
+        <div class="stage" data-stage="8">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 8</div>
+              <h3>Hedefi Kilitle ve Kes</h3>
+              <p class="stage-desc">
+                Cas9 enzimi gRNA sayesinde DNA'ya bağlandı. Ancak rastgele kesmez! Biyolojik olarak kesim noktası, PAM (Sarı kutu) bölgesinin başlangıcından tam 3 nükleotid gerisidir.
+              </p>
+            </div>
+            <div class="badge">Simülasyon</div>
+          </div>
+
+          <div class="s8-scene" id="cutScene">
+            <div id="cutDna" class="crispr-svg-container"></div>
+          </div>
+
+          <div class="input-row" style="margin-top:24px;" id="armContainer">
+            <button class="primary-btn" id="armCas9Btn">Cas9’u Sisteme Gönder</button>
+          </div>
+
+          <!-- YENİ: Lazer Hedefleme Paneli (Başlangıçta Gizli) -->
+          <div class="lab-panel" id="cutControls" style="display:none; margin-top:20px;">
+            <h4>Lazer Hedefleme Sistemi</h4>
+            <p class="mini-note">Kaydırıcıyı kullanarak kesim noktasını (PAM'dan 3 baz gerisi) bul.</p>
+            
+            <input type="range" id="cutSlider" min="0" max="15" value="0" style="width:100%; margin: 15px 0; cursor: pointer;">
+            
+            <button class="primary-btn" id="cutDnaBtn" disabled>Tam Buradan Kes</button>
+          </div>
+
+          <div class="feedback" id="cutFeedback">Önce Cas9-gRNA kompleksini hedefe gönder.</div>
+
+          <div class="stage-actions" style="margin-top: 15px;">
+            <button class="ghost-btn" data-prev="7">Önceki</button>
+            <button class="secondary-btn" data-next="9">Devam Et</button>
+          </div>
+        </div>
+
+<!-- AŞAMA 9 -->
+        <div class="stage" data-stage="9">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 9</div>
+              <h3>Hücre DNA’yı Nasıl Onarır?</h3>
+              <p class="stage-desc">
+                Cas9 kesimi yaptıktan sonra asıl iş hücreye düşer. Hücre bu DNA kırığını onarmaya çalışır. Hastayı iyileştirmek için doğru onarım yolunu seç ve DNA üzerindeki etkisini izle!
+              </p>
+            </div>
+            <div class="badge">Onarım</div>
+          </div>
+
+          <div class="lab-panel repair-lab">
+            <!-- Görsel DNA Kırık Alanı -->
+            <div class="repair-visual-area">
+              <div class="dna-chunk left-chunk">
+                 <span class="b">A</span><span class="b">T</span><span class="b">G</span><span class="b">C</span><span class="b">C</span><span class="b">A</span>
+              </div>
+              
+              <!-- Kırık Bölge (Animasyonlar buraya gelecek) -->
+              <div class="dna-gap" id="dnaGap">
+                 <div class="gap-placeholder">KIRIK BÖLGE</div>
+              </div>
+              
+              <div class="dna-chunk right-chunk">
+                 <span class="b">A</span><span class="b">A</span><span class="b">C</span>
+              </div>
+            </div>
+
+            <!-- Kontrol Paneli -->
+            <div class="repair-grid" style="margin-top: 20px;">
+              <div class="repair-action-card" id="actionNHEJ">
+                <div class="icon">⚠️</div>
+                <h4>NHEJ Yolu</h4>
+                <p>Hücre kırığı aceleyle ve rastgele birleştirir.</p>
+              </div>
+
+              <div class="repair-action-card" id="actionHDR">
+                <div class="icon">💉</div>
+                <h4>HDR Yolu</h4>
+                <p>Dışarıdan "Sağlıklı Şablon" enjekte edilerek onarılır.</p>
+              </div>
+            </div>
+
+            <button class="primary-btn" id="checkRepairBtn" style="margin-top:20px; display:none;">Onarımı Onayla ve Tamamla</button>
+            <div class="feedback" id="repairFeedback">Bir onarım mekanizmasına tıkla ve DNA'nın nasıl birleştiğini izle.</div>
+          </div>
+
+<div class="stage-actions">
+            <button class="ghost-btn" data-prev="8">Önceki</button>
+            <button class="primary-btn" onclick="window.location.href='../index.html'">Simülasyonu Bitir</button>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="crispr.js"></script>
+</body>
+</html>
