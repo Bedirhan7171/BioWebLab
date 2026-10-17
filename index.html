@@ -1,80 +1,123 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BioWebLab | Biyoteknoloji Simülasyonları</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioWebLab | İnteraktif Biyoteknoloji Simülasyonları</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="hero">
+  <!-- Header / Hero Section -->
+  <header class="hero-header">
     <nav class="navbar">
-      <div class="logo">BioWebLab</div>
-
+      <div class="logo">
+        <i class="fa-solid fa-dna"></i> BioWebLab
+      </div>
       <div class="nav-links">
         <a href="#modules">Modüller</a>
         <a href="#about">Hakkında</a>
+        <button id="theme-toggle" aria-label="Tema Değiştir"><i class="fa-solid fa-moon"></i></button>
       </div>
     </nav>
 
-    <section class="hero-content">
+    <div class="hero-content">
       <h1>İnteraktif Biyoteknoloji Simülasyonları</h1>
-
-      <p>
-        Modern biyoteknolojiyi etkileşimli web tabanlı simülasyonlarla keşfedin.
-      </p>
-
-      <a href="#modules" class="main-button">Simülasyonlara Başla</a>
-    </section>
+      <p>Modern biyoteknolojiyi etkileşimli, web tabanlı simülasyonlar ve uygulamalı modüllerle keşfedin.</p>
+      <a href="#modules" class="btn-primary">Simülasyonlara Başla <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
   </header>
 
-  <main>
+  <main class="main-container">
 
-    <section id="modules" class="section">
+    <!-- Modüler Alanı -->
+    <section id="modules" class="modules-section">
       <h2>Öğrenme Modülleri</h2>
+      <p class="section-desc">İlgi duyduğunuz alanı seçin ve simülasyona hemen başlayın.</p>
 
-      <div class="cards">
+      <!-- Arama Çubuğu -->
+      <div class="search-box">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="module-search" placeholder="Modül ara (Örn: CRISPR, Adli Tıp)...">
+      </div>
 
-        <a href="pages/adli-tip.html" class="card">
+      <div class="modules-grid">
+
+        <a href="pages/adli-tip.html" class="module-card" data-title="Adli Tıp Laboratuvarı">
+          <div class="card-icon"><i class="fa-solid fa-fingerprint"></i></div>
           <h3>Adli Tıp Laboratuvarı</h3>
-          <p>
-            PCR çoğaltımı, jel elektroforezi ve DNA eşleştirme.
-          </p>
+          <p>PCR çoğaltımı, jel elektroforezi ve DNA eşleştirme süreçlerini deneyimleyin.</p>
+          <span class="card-link">Simülasyona Git &rarr;</span>
         </a>
 
-        <a href="pages/crispr.html" class="card">
+        <a href="pages/crispr.html" class="module-card" data-title="CRISPR Gen Düzenleme">
+          <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
           <h3>CRISPR Gen Düzenleme</h3>
-          <p>
-            gRNA hedefleme, Cas9 kesimi ve DNA onarım süreci.
-          </p>
+          <p>gRNA hedefleme, Cas9 kesimi ve DNA onarım mekanizmalarını inceleyin.</p>
+          <span class="card-link">Simülasyona Git &rarr;</span>
         </a>
 
-        <a href="pages/protein.html" class="card">
+        <a href="pages/protein.html" class="module-card" data-title="Protein Tasarım Merkezi">
+          <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
           <h3>Protein Tasarım Merkezi</h3>
-          <p>
-            Kodonlar, amino asitler ve protein mühendisliği.
-          </p>
+          <p>Kodonlar, amino asitler ve protein mühendisliği dünyasına adım atın.</p>
+          <span class="card-link">Simülasyona Git &rarr;</span>
         </a>
 
       </div>
     </section>
 
-    <section id="about" class="section about-box">
-      <h2>Neden BioWebLab?</h2>
-
-      <p>
-        BioWebLab; öğrenciler, öğretmenler ve geleceğin bilim insanları için
-        geliştirilmiş web tabanlı bir öğrenme ortamıdır. Karmaşık moleküler
-        sistemleri görsel, etkileşimli ve anlaşılır simülasyonlarla öğrenmeyi sağlar.
-      </p>
+    <!-- Hakkında / Neden BioWebLab? -->
+    <section id="about" class="about-section">
+      <div class="about-content">
+        <h2>Neden BioWebLab?</h2>
+        <p>
+          BioWebLab; öğrenciler, öğretmenler ve geleceğin bilim insanları için
+          geliştirilmiş yenilikçi bir web tabanlı öğrenme ortamıdır. Karmaşık moleküler
+          sistemleri görsel, etkileşimli ve anlaşılır simülasyonlarla somutlaştırır.
+        </p>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <p>BioWebLab © 2026</p>
+    <p>BioWebLab &copy; 2026 — Tüm hakları saklıdır.</p>
   </footer>
 
+  <!-- Basit Arama ve Tema Scripti -->
+  <script>
+    // Arama Fonksiyonalitesi
+    const searchInput = document.getElementById('module-search');
+    const cards = document.querySelectorAll('.module-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(term)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Tema Değiştirici
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      const icon = themeToggle.querySelector('i');
+      if (document.body.classList.contains('dark-theme')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+  </script>
 </body>
 </html>
