@@ -1378,3 +1378,55 @@ color:#cbd5e1 !important;
 line-height:1.8;
 font-weight:500;
 }
+/* =========================
+   ADLI TIP UYGULAMASI KUTUSU (Şık & İnteraktif)
+========================= */
+
+.adli-tip-kutusu {
+    background: #111827 !important;
+    border: 1px solid rgba(103, 232, 249, 0.15) !important;
+    border-left: 5px solid #22d3ee !important;
+    padding: 24px;
+    border-radius: 18px;
+    margin: 24px 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.adli-tip-kutusu:hover {
+    transform: translateY(-3px);
+    border-color: rgba(103, 232, 249, 0.4) !important;
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.15);
+}
+
+.adli-tip-kutusu h4 {
+    color: #67e8f9 !important;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.adli-tip-kutusu p {
+    color: #cbd5e1 !important;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+}
+/* ŞÜPHELİ A BANTLARI (Olay Yeriyle Tam Eşleşme - 5 Bant) */
+.gel-board.running .a1{top:132px;}
+.gel-board.running .a2{top:198px;}
+.gel-board.running .a3{top:278px;}
+.gel-board.running .a4{top:348px;}
+.gel-board.running .a5{top:425px;}
+
+/* ŞÜPHELİ D STİLİ VE BANTLARI */
+.suspect-d{
+background:#34d399;
+}
+.suspect-d::after{
+background:#34d399;
+}
+
+.gel-board.running .d1{top:198px;}
+.gel-board.running .d2{top:278px;}
+.gel-board.running .d3{top:425px;}
