@@ -459,6 +459,13 @@ function checkFinalSuspect(choice){
     "Bazı bantlar benzer görünse de tüm profil uyuşmamaktadır. " +
     "Kısmi benzerlik yeterli değildir.";
   }
+  if(choice === "D"){
+    buttons[3].classList.add("wrong");
+
+    message =
+    "❌ Şüpheli D doğru cevap değildir.<br><br>" +
+    "Hiçbir mantıklı eşleşme görülememektedir.";
+  }
 
   feedback.classList.add("show","error");
   feedback.innerHTML = message;
