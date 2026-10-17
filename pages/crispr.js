@@ -5,8 +5,8 @@ if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
 
 const totalSteps = 9;
 
-document.getElementById("resetProgressBtn")?.addEventListener("click", () => {
-  if (!confirm("Bu modülün ilerlemesi sıfırlansın mı?")) return;
+document.getElementById("resetProgressBtn")?.addEventListener("click", function () {
+  if (!window.confirm("Bu modülün ilerlemesi sıfırlansın mı? Diğer modüller etkilenmez.")) return;
   sessionStorage.removeItem("crisprProgress");
   window.location.reload();
 });
