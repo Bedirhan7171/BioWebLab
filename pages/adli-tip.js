@@ -1,17 +1,29 @@
+// Yenilemede geçici ilerleme kaydını sıfırla; normal sayfa geçişlerinde koru.
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+  ["adliTipProgress", "proteinProgress", "crisprProgress"].forEach(key => sessionStorage.removeItem(key));
+}
+
 const menuItems = document.querySelectorAll(".menu-item");
 const panels = document.querySelectorAll(".panel");
 
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 
-let currentStep = 1;
+const progressKey = "adliTipProgress";
+const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
+let currentStep = savedProgress?.currentStep || 1;
 const totalSteps = 7;
-let unlockedStep = 1;
+let unlockedStep = savedProgress?.unlockedStep || 1;
+
+function saveProgress() {
+  sessionStorage.setItem(progressKey, JSON.stringify({ currentStep, unlockedStep }));
+}
 
 function showStep(stepNumber) {
   if (stepNumber > unlockedStep) return;
 
   currentStep = stepNumber;
+  saveProgress();
 
   menuItems.forEach(item => {
     item.classList.remove("active");
@@ -59,6 +71,7 @@ function unlockNextStep() {
 
   if (unlockedStep < nextStep) {
     unlockedStep = nextStep;
+    saveProgress();
     refreshLocks();
   }
 
@@ -316,7 +329,7 @@ function initAdvancedDNA() {
 // Başlatma Komutları
 initAdvancedDNA();
 refreshLocks();
-showStep(1);
+showStep(currentStep);
 /* =========================
    6. AŞAMA - JEL ELEKTROFOREZİ
    Bu kodu mevcut JS dosyanın SONUNA EKLE
