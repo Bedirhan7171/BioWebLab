@@ -537,3 +537,16 @@ grid-template-columns:1fr;
 /* Her modülün kendi ilerleme sıfırlama düğmesi */
 .reset-progress-btn{position:fixed;top:16px;right:18px;z-index:1000;border:1px solid rgba(103,232,249,.6);background:#081121;color:#67e8f9;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 0 18px rgba(103,232,249,.16)}.reset-progress-btn:hover{background:#12304a}
 @media(max-width:600px){.reset-progress-btn{top:10px;right:10px;padding:8px 10px;font-size:12px}}
+
+
+/* Reset düğmesi stilleri: öncelikli olarak uygulanır */
+.reset-progress-btn {
+ position:fixed !important; top:16px !important; right:18px !important;
+ z-index:99999 !important; display:inline-flex !important; align-items:center !important;
+ gap:8px !important; padding:10px 14px !important; border-radius:12px !important;
+ font:700 14px Arial,sans-serif !important; cursor:pointer !important;
+ opacity:1 !important; visibility:visible !important;
+}
+@media(max-width:600px) {
+ .reset-progress-btn { top:10px !important; right:10px !important; padding:8px 10px !important; font-size:12px !important; }
+}
