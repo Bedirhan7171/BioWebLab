@@ -1,3 +1,8 @@
+// Yenilemede geçici ilerleme kaydını sıfırla; normal sayfa geçişlerinde koru.
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+  ["adliTipProgress", "proteinProgress", "crisprProgress"].forEach(key => sessionStorage.removeItem(key));
+}
+
 
 (() => {
   const themeToggleBtn = document.getElementById("theme-toggle");
