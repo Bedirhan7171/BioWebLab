@@ -128,6 +128,8 @@ function checkPCRMix(){
 
 let pcrOrder = [95, 55, 72];
 let pcrIndex = 0;
+let completedCycles = 0;
+let dnaCopies = 1;
 
 function selectTemperature(temp){
   const display = document.getElementById("temperatureDisplay");
@@ -150,6 +152,17 @@ function selectTemperature(temp){
 
   feedback.style.color = "#166534";
   cards.forEach(card => card.classList.remove("active-step"));
+  // Yeni PCR döngüsünde DNA görselini başlangıç durumuna al
+if (temp === 95) {
+  dnaArea.classList.remove(
+    "dna-denatured",
+    "dna-primed",
+    "dna-extended"
+  );
+
+  // CSS animasyonunun yeniden başlamasını sağlar.
+  void dnaArea.offsetWidth;
+}
 
   if(temp === 95){
     dnaArea.classList.add("dna-denatured");
@@ -175,9 +188,12 @@ function selectTemperature(temp){
     dnaNote.textContent = "Taq DNA polimeraz, dNTP’leri kullanarak yeni zincirleri oluşturdu. Bu olay çok kez tekrarlanarak milyarlarca kez DNA kopyalanabilir";
     feedback.innerHTML = "✅ Bir PCR döngüsü tamamlandı. DNA kopya sayısı ikiye çıktı.";
     status.textContent = "Döngü tamamlandı";
-    cycleCount.textContent = "1";
-    copies.textContent = "2";
+    completedCycles++;
+    dnaCopies *= 2;
+    cycleCount.textContent = String(completedCycles);
+    copies.textContent = String(dnaCopies);
     cards[2].classList.add("active-step");
+    pcrIndex = -1;
 
     if(unlockedStep < 6){
       unlockedStep = 6;
