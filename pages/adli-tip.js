@@ -1,6 +1,6 @@
-// Yenilemede geçici ilerleme kaydını sıfırla; normal sayfa geçişlerinde koru.
+// Yalnızca bu modül yenilendiğinde kendi ilerlemesini sıfırla.
 if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
-  ["adliTipProgress", "proteinProgress", "crisprProgress"].forEach(key => sessionStorage.removeItem(key));
+  sessionStorage.removeItem("adliTipProgress");
 }
 
 const menuItems = document.querySelectorAll(".menu-item");
@@ -8,6 +8,12 @@ const panels = document.querySelectorAll(".panel");
 
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
+
+document.getElementById("resetProgressBtn")?.addEventListener("click", () => {
+  if (!confirm("Bu modülün ilerlemesi sıfırlansın mı?")) return;
+  sessionStorage.removeItem("adliTipProgress");
+  window.location.reload();
+});
 
 const progressKey = "adliTipProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
