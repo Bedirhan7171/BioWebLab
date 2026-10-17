@@ -1,7 +1,18 @@
+// Yenilemede geçici ilerleme kaydını sıfırla; normal sayfa geçişlerinde koru.
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+  ["adliTipProgress", "proteinProgress", "crisprProgress"].forEach(key => sessionStorage.removeItem(key));
+}
+
 const totalSteps = 9;
 
-let currentStep = 1;
-let unlockedStep = 1;
+const progressKey = "crisprProgress";
+const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
+let currentStep = savedProgress?.currentStep || 1;
+let unlockedStep = savedProgress?.unlockedStep || 1;
+
+function saveProgress() {
+  sessionStorage.setItem(progressKey, JSON.stringify({ currentStep, unlockedStep }));
+}
 
 const completed = {
   1: false, 2: false, 3: false, 4: false, 5: false,
@@ -412,6 +423,7 @@ function setupRepairActivity() {
 function goToStep(step) {
   if (step < 1 || step > totalSteps) return;
   currentStep = step;
+  saveProgress();
 
   document.querySelectorAll(".stage").forEach((stage) => {
     stage.classList.remove("active");
