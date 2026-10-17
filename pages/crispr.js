@@ -1,9 +1,15 @@
-// Yenilemede geçici ilerleme kaydını sıfırla; normal sayfa geçişlerinde koru.
+// Yalnızca bu modül yenilendiğinde kendi ilerlemesini sıfırla.
 if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
-  ["adliTipProgress", "proteinProgress", "crisprProgress"].forEach(key => sessionStorage.removeItem(key));
+  sessionStorage.removeItem("crisprProgress");
 }
 
 const totalSteps = 9;
+
+document.getElementById("resetProgressBtn")?.addEventListener("click", () => {
+  if (!confirm("Bu modülün ilerlemesi sıfırlansın mı?")) return;
+  sessionStorage.removeItem("crisprProgress");
+  window.location.reload();
+});
 
 const progressKey = "crisprProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
