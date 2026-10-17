@@ -1,123 +1,108 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioWebLab | İnteraktif Biyoteknoloji Simülasyonları</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioWebLab | İnteraktif Biyoteknoloji Simülasyonları</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Header / Hero Section -->
-  <header class="hero-header">
+  <!-- Arka Plan Dinamik DNA / Ağ Efekti Süslemesi -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Üst Menü / Navbar -->
+  <header>
     <nav class="navbar">
       <div class="logo">
-        <i class="fa-solid fa-dna"></i> BioWebLab
+        <span class="logo-icon">🧬</span> Bio<span class="highlight">Web</span>Lab
       </div>
       <div class="nav-links">
         <a href="#modules">Modüller</a>
         <a href="#about">Hakkında</a>
-        <button id="theme-toggle" aria-label="Tema Değiştir"><i class="fa-solid fa-moon"></i></button>
+        <button id="theme-toggle" class="theme-btn" aria-label="Tema Değiştir">🌙</button>
       </div>
     </nav>
 
-    <div class="hero-content">
+    <!-- Hero Bölümü -->
+    <section class="hero">
+      <div class="badge">✨ Canlı & Etkileşimli Simülasyonlar</div>
       <h1>İnteraktif Biyoteknoloji Simülasyonları</h1>
-      <p>Modern biyoteknolojiyi etkileşimli, web tabanlı simülasyonlar ve uygulamalı modüllerle keşfedin.</p>
-      <a href="#modules" class="btn-primary">Simülasyonlara Başla <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
+      <p>
+        Modern biyoteknolojiyi sanal laboratuvar ortamında keşfedin. Gen düzenleme, adli tıp incelemeleri ve protein tasarımı süreçlerini adım adım deneyimleyin.
+      </p>
+      <div class="hero-actions">
+        <a href="#modules" class="btn primary-btn">Simülasyonlara Başla</a>
+        <a href="#about" class="btn secondary-btn">Detaylı Bilgi</a>
+      </div>
+    </section>
   </header>
 
-  <main class="main-container">
-
-    <!-- Modüler Alanı -->
+  <main>
+    <!-- Modüller Bölümü -->
     <section id="modules" class="modules-section">
-      <h2>Öğrenme Modülleri</h2>
-      <p class="section-desc">İlgi duyduğunuz alanı seçin ve simülasyona hemen başlayın.</p>
-
-      <!-- Arama Çubuğu -->
-      <div class="search-box">
-        <i class="fa-solid fa-search"></i>
-        <input type="text" id="module-search" placeholder="Modül ara (Örn: CRISPR, Adli Tıp)...">
+      <div class="section-title">
+        <h2>Öğrenme Modülleri</h2>
+        <p>Biyoteknolojinin temel alanlarında uygulamalı simülasyonları keşfedin.</p>
       </div>
 
-      <div class="modules-grid">
+      <div class="grid-container">
 
-        <a href="pages/adli-tip.html" class="module-card" data-title="Adli Tıp Laboratuvarı">
-          <div class="card-icon"><i class="fa-solid fa-fingerprint"></i></div>
+        <!-- Modül 1: Adli Tıp -->
+        <a href="pages/adli-tip.html" class="module-card">
+          <div class="card-badge">DNA Analizi</div>
+          <div class="card-icon">🔬</div>
           <h3>Adli Tıp Laboratuvarı</h3>
-          <p>PCR çoğaltımı, jel elektroforezi ve DNA eşleştirme süreçlerini deneyimleyin.</p>
-          <span class="card-link">Simülasyona Git &rarr;</span>
+          <p>
+            PCR çoğaltımı, jel elektroforezi yöntemi ve suç mahalli DNA eşleştirme simülasyonu.
+          </p>
+          <span class="card-link">Modülü İncele &rarr;</span>
         </a>
 
-        <a href="pages/crispr.html" class="module-card" data-title="CRISPR Gen Düzenleme">
-          <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
+        <!-- Modül 2: CRISPR -->
+        <a href="pages/crispr.html" class="module-card">
+          <div class="card-badge">Gen Düzenleme</div>
+          <div class="card-icon">✂️</div>
           <h3>CRISPR Gen Düzenleme</h3>
-          <p>gRNA hedefleme, Cas9 kesimi ve DNA onarım mekanizmalarını inceleyin.</p>
-          <span class="card-link">Simülasyona Git &rarr;</span>
+          <p>
+            gRNA hedefleme, Cas9 enzimi kesim mekanizması ve DNA onarım süreçlerinin interaktif modellenmesi.
+          </p>
+          <span class="card-link">Modülü İncele &rarr;</span>
         </a>
 
-        <a href="pages/protein.html" class="module-card" data-title="Protein Tasarım Merkezi">
-          <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
+        <!-- Modül 3: Protein Tasarımı -->
+        <a href="pages/protein.html" class="module-card">
+          <div class="card-badge">Biyoenformatik</div>
+          <div class="card-icon">🧩</div>
           <h3>Protein Tasarım Merkezi</h3>
-          <p>Kodonlar, amino asitler ve protein mühendisliği dünyasına adım atın.</p>
-          <span class="card-link">Simülasyona Git &rarr;</span>
+          <p>
+            Kodon-amino asit dönüşümleri, protein mühendisliği ve 3D katlanma mantığını keşfedin.
+          </p>
+          <span class="card-link">Modülü İncele &rarr;</span>
         </a>
 
       </div>
     </section>
 
-    <!-- Hakkında / Neden BioWebLab? -->
+    <!-- Bilgi / Hakkında Bölümü -->
     <section id="about" class="about-section">
-      <div class="about-content">
+      <div class="about-card">
         <h2>Neden BioWebLab?</h2>
         <p>
-          BioWebLab; öğrenciler, öğretmenler ve geleceğin bilim insanları için
-          geliştirilmiş yenilikçi bir web tabanlı öğrenme ortamıdır. Karmaşık moleküler
-          sistemleri görsel, etkileşimli ve anlaşılır simülasyonlarla somutlaştırır.
+          BioWebLab; öğrenciler, öğretmenler ve biyoteknolojiye ilgi duyan araştırmacılar için tasarlanmış web tabanlı bir görsel öğrenme platformudur. Karmaşık moleküler biyoloji süreçlerini soyut tanımlardan çıkarıp gözle görülür, deneysel bir yapıya kavuşturur.
         </p>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <p>BioWebLab &copy; 2026 — Tüm hakları saklıdır.</p>
+    <p>BioWebLab &copy; 2026 | Açık Kaynak Biyoteknoloji Simülasyon Platformu</p>
   </footer>
 
-  <!-- Basit Arama ve Tema Scripti -->
-  <script>
-    // Arama Fonksiyonalitesi
-    const searchInput = document.getElementById('module-search');
-    const cards = document.querySelectorAll('.module-card');
-
-    searchInput.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(term)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-
-    // Tema Değiştirici
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
-      const icon = themeToggle.querySelector('i');
-      if (document.body.classList.contains('dark-theme')) {
-        icon.classList.replace('fa-moon', 'fa-sun');
-      } else {
-        icon.classList.replace('fa-sun', 'fa-moon');
-      }
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
