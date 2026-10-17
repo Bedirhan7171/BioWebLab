@@ -1430,3 +1430,7 @@ background:#34d399;
 .gel-board.running .d1{top:198px;}
 .gel-board.running .d2{top:278px;}
 .gel-board.running .d3{top:425px;}
+
+/* Her modülün kendi ilerleme sıfırlama düğmesi */
+.reset-progress-btn{position:fixed;top:16px;right:18px;z-index:1000;border:1px solid #0f766e;background:#fff;color:#0f766e;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(15,23,42,.12)}.reset-progress-btn:hover{background:#ccfbf1}
+@media(max-width:600px){.reset-progress-btn{top:10px;right:10px;padding:8px 10px;font-size:12px}}
