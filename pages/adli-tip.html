@@ -62,6 +62,13 @@
 <div class="info-card"><h3>dNTP</h3><p>Yeni DNA zincirini oluşturmak için kullanılan nükleotit yapı taşlarıdır.</p></div>
 <div class="info-card"><h3>Buffer</h3><p>PCR tepkimesi için uygun pH ve iyon ortamını sağlar.</p></div>
 </div>
+
+<!-- Diğer kartlarla uyumlu, neon vurgulu şık adli tıp kutusu -->
+<div class="adli-tip-kutusu">
+    <h4>🔍 Adli Tıp Uygulaması</h4>
+    <p>Adli tıp laboratuvarında olay yerinden elde edilen biyolojik örnekler incelenir. Şüphelilerden ve olay yerinden toplanan örneklerin DNA analizi yapılabilmesi için örnekler PCR yardımıyla çoğaltılarak birbiriyle karşılaştırılır.</p>
+</div>
+
 <button class="action-btn" onclick="unlockNextStep()">Öğrendim →</button>
 </section>
 
@@ -164,31 +171,18 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </p>
 
 <div class="gel-intro-grid">
-
 <div class="gel-info-card">
 <h3>PCR ile bağlantısı</h3>
-<p>
-PCR, hedef DNA bölgesini çoğaltır. Jel elektroforezi ise bu çoğaltılmış DNA parçalarının
-uzunluklarını karşılaştırmamızı sağlar.
-</p>
+<p>PCR, hedef DNA bölgesini çoğaltır. Jel elektroforezi ise bu parçaların uzunluklarını karşılaştırmamızı sağlar.</p>
 </div>
-
 <div class="gel-info-card">
 <h3>Adli tıptaki amacı</h3>
-<p>
-Olay yeri örneği ile şüpheli örnekleri aynı jelde yürütülür.
-Benzer bant desenleri, örneklerin genetik profil açısından uyumlu olabileceğini gösterir.
-</p>
+<p>Olay yeri örneği ile şüpheli örnekleri aynı jelde yürütülür. Tam eşleşen bantlar faili işaret eder.</p>
 </div>
-
 <div class="gel-info-card">
 <h3>Önemli bilgi</h3>
-<p>
-Bantların jeldeki konumu DNA parçasının büyüklüğü hakkında fikir verir.
-Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil eder.
-</p>
+<p>Bantların jeldeki konumu büyüklük fikri verir. Daha aşağıdaki bantlar daha küçük parçalardır.</p>
 </div>
-
 </div>
 
 <div class="gel-workspace">
@@ -216,7 +210,7 @@ Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil ede
 <span class="plus-pole">+</span>
 </div>
 
-<div class="gel-board" id="gelBoard">
+<div class="gel-board" id="gelBoard" style="grid-template-columns: repeat(7, 1fr);">
 
 <div class="gel-lane ladder-lane">
 <div class="lane-title">Ladder</div>
@@ -246,6 +240,7 @@ Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil ede
 <div class="gel-band suspect-a a2"></div>
 <div class="gel-band suspect-a a3"></div>
 <div class="gel-band suspect-a a4"></div>
+<div class="gel-band suspect-a a5"></div>
 </div>
 
 <div class="gel-lane">
@@ -267,6 +262,14 @@ Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil ede
 <div class="gel-band suspect-c s4"></div>
 </div>
 
+<div class="gel-lane">
+<div class="lane-title">Şüpheli D</div>
+<div class="well"></div>
+<div class="gel-band suspect-d d1"></div>
+<div class="gel-band suspect-d d2"></div>
+<div class="gel-band suspect-d d3"></div>
+</div>
+
 <div class="gel-lane ladder-lane">
 <div class="lane-title">Ladder</div>
 <div class="well"></div>
@@ -281,7 +284,7 @@ Daha aşağıdaki bantlar genellikle daha küçük DNA parçalarını temsil ede
 </div>
 
 <div class="gel-note">
-Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir.
+Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Şüpheli A olay yeriyle birebir uyuşmaktadır.
 </div>
 
 </div>
@@ -295,7 +298,7 @@ Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için ku
 
 <p>
 Şimdi oluşan bant desenlerini yorumla. Olay yeri DNA profili ile hangi şüphelinin
-bant deseni en çok benziyor?
+bant deseni tam olarak uyuşuyor?
 </p>
 
 <div class="comparison-layout">
@@ -305,24 +308,14 @@ bant deseni en çok benziyor?
 <h3>Karşılaştırma Görevi</h3>
 
 <p>
-Bantların jeldeki konumlarını karşılaştır. Aynı veya çok benzer yükseklikteki bantlar,
-DNA parçalarının benzer uzunlukta olduğunu gösterir.
+Bantların jeldeki konumlarını karşılaştır. Aynı yükseklikteki eksiksiz bantlar katili ele verir.
 </p>
 
 <div class="suspect-choice-grid">
-
-<button class="suspect-choice" onclick="checkFinalSuspect('A')">
-Şüpheli A
-</button>
-
-<button class="suspect-choice" onclick="checkFinalSuspect('B')">
-Şüpheli B
-</button>
-
-<button class="suspect-choice" onclick="checkFinalSuspect('C')">
-Şüpheli C
-</button>
-
+<button class="suspect-choice" onclick="checkFinalSuspect('A')">Şüpheli A (Tam Eşleşme)</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('B')">Şüpheli B</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('C')">Şüpheli C</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('D')">Şüpheli D</button>
 </div>
 
 <div id="finalFeedback" class="final-feedback"></div>
@@ -349,14 +342,14 @@ DNA parçalarının benzer uzunlukta olduğunu gösterir.
 
 <div class="profile-row">
 <span>Şüpheli A</span>
-<span>132 / 198 / 278 / 348</span>
-<span>Çok yüksek benzerlik</span>
+<span>132 / 198 / 278 / 348 / 425</span>
+<span>Tam Eşleşme (Fail)</span>
 </div>
 
 <div class="profile-row">
 <span>Şüpheli B</span>
 <span>145 / 235 / 320 / 395 / 455</span>
-<span>Belirgin farklılık</span>
+<span>Farklı profil</span>
 </div>
 
 <div class="profile-row">
@@ -365,11 +358,16 @@ DNA parçalarının benzer uzunlukta olduğunu gösterir.
 <span>Kısmi benzerlik</span>
 </div>
 
+<div class="profile-row">
+<span>Şüpheli D</span>
+<span>198 / 278 / 425</span>
+<span>Yetersiz eşleşme</span>
+</div>
+
 </div>
 
 <div class="forensic-note">
-<strong>Adli yorum:</strong> DNA bant benzerliği güçlü bir biyolojik delil olabilir;
-ancak olay değerlendirmesi diğer adli bulgularla birlikte yapılmalıdır.
+<strong>Adli yorum:</strong> Şüpheli A'nın DNA bantları olay yeri ile %100 örtüşmektedir.
 </div>
 
 </div>
