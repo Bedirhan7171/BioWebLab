@@ -11,10 +11,10 @@ let currentStep = savedProgress?.currentStep || 1;
 let unlockedStep = savedProgress?.unlockedStep || 1;
 
 function saveProgress() {
-  sessionStorage.setItem(progressKey, JSON.stringify({ currentStep, unlockedStep }));
+  sessionStorage.setItem(progressKey, JSON.stringify({ currentStep, unlockedStep, completed }));
 }
 
-const completed = {
+const completed = savedProgress?.completed || {
   1: false, 2: false, 3: false, 4: false, 5: false,
   6: false, 7: false, 8: false, 9: false
 };
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupGrnaActivity();
   setupCutActivity();
   setupRepairActivity();
-  refreshUI();
+  goToStep(currentStep);
   create3DDNA();
   initCrisprAdvancedSVG();
 });
@@ -447,6 +447,7 @@ function completeStep(step) {
   if (step === unlockedStep && unlockedStep < totalSteps) {
     unlockedStep += 1;
   }
+  saveProgress();
   refreshUI();
 }
 
