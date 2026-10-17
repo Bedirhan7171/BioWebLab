@@ -128,6 +128,7 @@ function checkPCRMix(){
 
     if(unlockedStep < 4){
       unlockedStep = 4;
+      saveProgress();
       refreshLocks();
     }
   }else{
@@ -210,6 +211,7 @@ if (temp === 95) {
 
     if(unlockedStep < 6){
       unlockedStep = 6;
+      saveProgress();
       refreshLocks();
     }
   }
@@ -419,6 +421,7 @@ function runGelElectrophoresis(){
     /* 7. aşamayı aç */
     if(unlockedStep < 7){
       unlockedStep = 7;
+      saveProgress();
       refreshLocks();
     }
 
