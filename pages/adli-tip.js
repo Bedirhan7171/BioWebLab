@@ -9,11 +9,6 @@ const panels = document.querySelectorAll(".panel");
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 
-document.getElementById("resetProgressBtn")?.addEventListener("click", function () {
-  if (!window.confirm("Bu modülün ilerlemesi sıfırlansın mı? Diğer modüller etkilenmez.")) return;
-  sessionStorage.removeItem("adliTipProgress");
-  window.location.reload();
-});
 
 const progressKey = "adliTipProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
