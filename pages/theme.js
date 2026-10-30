@@ -1,35 +1,39 @@
 (() => {
-  const toggle = document.getElementById("theme-toggle");
   const root = document.documentElement;
   const storageKey = "theme";
-  const systemTheme = window.matchMedia?.("(prefers-color-scheme: light)");
+  const systemTheme = window.matchMedia ? window.matchMedia("(prefers-color-scheme: light)") : null;
 
   function getInitialTheme() {
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved === "light" || saved === "dark") return saved;
-    } catch {}
-    return systemTheme?.matches ? "light" : "dark";
+    } catch (error) {}
+    return systemTheme && systemTheme.matches ? "light" : "dark";
   }
 
-  function applyTheme(theme, save = true) {
-    const isLight = theme === "light";
-    root.setAttribute("data-theme", isLight ? "light" : "dark");
+  function applyTheme(theme, save) {
+    const selected = theme === "light" ? "light" : "dark";
+    root.setAttribute("data-theme", selected);
+    const toggle = document.getElementById("theme-toggle");
     if (toggle) {
-      toggle.textContent = isLight ? "☀️" : "🌙";
-      toggle.setAttribute("aria-pressed", String(isLight));
-      const label = isLight ? "Koyu temaya geç" : "Açık temaya geç";
+      const light = selected === "light";
+      toggle.textContent = light ? "☀️" : "🌙";
+      toggle.setAttribute("aria-pressed", String(light));
+      const label = light ? "Koyu temaya geç" : "Açık temaya geç";
       toggle.setAttribute("aria-label", label);
       toggle.title = label;
     }
-    if (save) {
-      try { localStorage.setItem(storageKey, theme); } catch {}
+    if (save !== false) {
+      try { localStorage.setItem(storageKey, selected); } catch (error) {}
     }
   }
 
-  applyTheme(getInitialTheme(), false);
-  toggle?.addEventListener("click", () => {
+  window.toggleTheme = function () {
     const current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-    applyTheme(current === "light" ? "dark" : "light");
-  });
+    applyTheme(current === "light" ? "dark" : "light", true);
+  };
+
+  applyTheme(getInitialTheme(), false);
+  const toggle = document.getElementById("theme-toggle");
+  if (toggle) toggle.onclick = window.toggleTheme;
 })();
