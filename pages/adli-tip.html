@@ -238,13 +238,12 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 
 <div class="gel-lane">
-<div class="lane-title">Şüpheli A</div>
+<div class="lane-title">Şüpheli C</div>
 <div class="well"></div>
-<div class="gel-band suspect-a a1"></div>
-<div class="gel-band suspect-a a2"></div>
-<div class="gel-band suspect-a a3"></div>
-<div class="gel-band suspect-a a4"></div>
-<div class="gel-band suspect-a a5"></div>
+<div class="gel-band suspect-c s1"></div>
+<div class="gel-band suspect-c s2"></div>
+<div class="gel-band suspect-c s3"></div>
+<div class="gel-band suspect-c s4"></div>
 </div>
 
 <div class="gel-lane">
@@ -258,12 +257,13 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 
 <div class="gel-lane">
-<div class="lane-title">Şüpheli C</div>
+<div class="lane-title">Şüpheli A</div>
 <div class="well"></div>
-<div class="gel-band suspect-c s1"></div>
-<div class="gel-band suspect-c s2"></div>
-<div class="gel-band suspect-c s3"></div>
-<div class="gel-band suspect-c s4"></div>
+<div class="gel-band suspect-a a1"></div>
+<div class="gel-band suspect-a a2"></div>
+<div class="gel-band suspect-a a3"></div>
+<div class="gel-band suspect-a a4"></div>
+<div class="gel-band suspect-a a5"></div>
 </div>
 
 <div class="gel-lane">
@@ -301,7 +301,7 @@ Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için ku
 <h1>7. DNA Bant Karşılaştırması</h1>
 
 <p>
-Şimdi oluşan bant desenlerini değerlendir. Hangi ifade, örnekler arasındaki profil eşleşmesini adli açıdan en doğru ve dikkatli biçimde yorumlar?
+Şimdi oluşan bant desenlerini yorumla. Olay yeri DNA profili ile hangi şüphelinin bant deseni eşleşiyor?
 </p>
 
 <div class="comparison-layout">
@@ -311,14 +311,14 @@ Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için ku
 <h3>Karşılaştırma Görevi</h3>
 
 <p>
-Bant desenlerini karşılaştır ve DNA profili eşleşmesinin ne anlama geldiğini doğru yorumla. Eşleşme, tek başına suçluluğun kanıtı değildir.
+Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA eşleşmesinin tek başına suçluluğu kanıtlamadığını unutma.
 </p>
 
 <div class="suspect-choice-grid">
-<button class="suspect-choice" onclick="checkFinalSuspect('A')">A) Şüpheli A'nın eşleşmesi suçluluğu kanıtlar.</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('B')">B) DNA eşleşmesi, örneğin olay yerine nasıl ulaştığını önemsiz kılar.</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('C')">C) Şüpheli A'nın incelenen DNA profili olay yeri örneğiyle eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('D')">D) Jel elektroforezi tek başına kişinin fail olduğunu kesinleştirir.</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('A')">Şüpheli A</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('B')">Şüpheli B</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('C')">Şüpheli C</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('D')">Şüpheli D</button>
 </div>
 
 <div id="finalFeedback" class="final-feedback"></div>
