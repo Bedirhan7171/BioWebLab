@@ -1637,3 +1637,28 @@ body.crispr-page::before {
 :root[data-theme="light"] .reset-progress-btn {
   background:#fff !important; color:#0969da !important; border-color:#9cc8eb !important;
 }
+
+
+/* CRISPR açık tema: giriş kartında başlık ve açıklama kontrastı */
+:root[data-theme="light"] .hero {
+  background:linear-gradient(135deg,#eaf4fb 0%,#e7effb 55%,#f0ecfb 100%) !important;
+  border:1px solid #c7d8e8 !important;
+  box-shadow:0 12px 30px rgba(31,65,95,.10) !important;
+}
+:root[data-theme="light"] .hero h2 {
+  color:#173b56 !important;
+  text-shadow:none !important;
+}
+:root[data-theme="light"] .hero p {
+  color:#40566b !important;
+}
+:root[data-theme="light"] .hero-tag {
+  background:#dceef8 !important;
+  border-color:#a9cfe3 !important;
+  color:#155e83 !important;
+}
+:root[data-theme="light"] .hero .dna-orbit {
+  background:rgba(255,255,255,.72);
+  border:1px solid #d2e1ec;
+  border-radius:20px;
+}
