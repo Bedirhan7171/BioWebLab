@@ -1422,3 +1422,83 @@ body.crispr-page::before {
 @media(max-width:600px) {
  .reset-progress-btn { top:10px !important; right:10px !important; padding:8px 10px !important; font-size:12px !important; }
 }
+
+
+/* Ortak tema düğmesi */
+.theme-toggle-btn {
+  position: fixed;
+  top: 16px;
+  right: 190px;
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--theme-button-border, rgba(103,232,249,.45));
+  border-radius: 12px;
+  background: var(--theme-button-bg, rgba(8,17,33,.94));
+  color: var(--theme-button-color, #67e8f9);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(15,23,42,.16);
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.theme-toggle-btn:hover { transform: translateY(-1px); }
+.theme-toggle-btn:focus-visible { outline: 3px solid #38bdf8; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .theme-toggle-btn { top: 10px; right: 142px; min-width: 38px; min-height: 38px; padding: 7px 9px; }
+}
+
+/* Açık tema: aynı neon vurguları daha sakin, okunaklı yüzeylerle koru */
+:root[data-theme="light"] {
+  --bg-main:#f6f8fa;
+  --bg-panel:rgba(255,255,255,.96);
+  --bg-card:rgba(255,255,255,.96);
+  --bg-soft:#eef4f8;
+  --cyan:#0969da;
+  --cyan-soft:rgba(9,105,218,.10);
+  --blue:#0969da;
+  --purple:#8250df;
+  --green:#1a7f37;
+  --yellow:#9a6700;
+  --red:#cf222e;
+  --text:#1f2328;
+  --muted:#57606a;
+  --line:rgba(31,35,40,.16);
+  --shadow-neon:0 8px 28px rgba(31,35,40,.08);
+}
+:root[data-theme="light"] body.crispr-page {
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(9,105,218,.08), transparent 28%),
+    radial-gradient(circle at 78% 18%, rgba(130,80,223,.08), transparent 32%),
+    radial-gradient(circle at 50% 92%, rgba(26,127,55,.06), transparent 35%),
+    var(--bg-main);
+}
+:root[data-theme="light"] body.crispr-page::before {
+  background-image:linear-gradient(rgba(31,35,40,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(31,35,40,.035) 1px,transparent 1px);
+}
+:root[data-theme="light"] .crispr-sidebar,
+:root[data-theme="light"] .stage-card,
+:root[data-theme="light"] .stage-panel,
+:root[data-theme="light"] .progress-card,
+:root[data-theme="light"] .content-card,
+:root[data-theme="light"] .repair-action-card,
+:root[data-theme="light"] .info-card,
+:root[data-theme="light"] .sim-card,
+:root[data-theme="light"] .result-card {
+  background:#fff;
+  color:var(--text);
+  border-color:var(--line);
+  box-shadow:0 8px 24px rgba(31,35,40,.06);
+}
+:root[data-theme="light"] .crispr-sidebar { background:rgba(255,255,255,.94); }
+:root[data-theme="light"] .crispr-sidebar p,
+:root[data-theme="light"] .crispr-sidebar small,
+:root[data-theme="light"] .crispr-sidebar .muted { color:var(--muted); }
+:root[data-theme="light"] .reset-progress-btn { background:rgba(255,255,255,.96) !important; color:#0969da !important; border-color:rgba(9,105,218,.35) !important; box-shadow:0 4px 18px rgba(31,35,40,.10); }
+:root[data-theme="light"] .theme-toggle-btn { --theme-button-bg:#fff; --theme-button-color:#1f2328; --theme-button-border:rgba(31,35,40,.18); }
+:root[data-theme="dark"] .theme-toggle-btn { --theme-button-bg:rgba(5,8,22,.96); --theme-button-color:#38f8ff; --theme-button-border:rgba(56,248,255,.45); }
