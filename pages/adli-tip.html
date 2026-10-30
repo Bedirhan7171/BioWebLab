@@ -181,7 +181,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 <div class="gel-info-card">
 <h3>Adli tıptaki amacı</h3>
-<p>Olay yeri örneği ile şüpheli örnekleri aynı jelde yürütülür. Tam eşleşen bantlar faili işaret eder.</p>
+<p>Olay yeri ve şüpheli örnekleri eğitim amaçlı jel modelinde karşılaştırılır. Benzer bant desenleri, incelenen DNA profillerinin eşleşebileceğini gösterir; tek başına kişinin fail olduğunu kanıtlamaz.</p>
 </div>
 <div class="gel-info-card">
 <h3>Önemli bilgi</h3>
@@ -288,7 +288,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 
 <div class="gel-note">
-Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Şüpheli A olay yeriyle birebir uyuşmaktadır.
+Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Bu eğitim modelinde olay yeri örneği ile Şüpheli A'nın incelenen bant deseni eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.
 </div>
 
 </div>
@@ -301,8 +301,7 @@ Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için ku
 <h1>7. DNA Bant Karşılaştırması</h1>
 
 <p>
-Şimdi oluşan bant desenlerini yorumla. Olay yeri DNA profili ile hangi şüphelinin
-bant deseni tam olarak uyuşuyor?
+Şimdi oluşan bant desenlerini değerlendir. Hangi ifade, örnekler arasındaki profil eşleşmesini adli açıdan en doğru ve dikkatli biçimde yorumlar?
 </p>
 
 <div class="comparison-layout">
@@ -312,14 +311,14 @@ bant deseni tam olarak uyuşuyor?
 <h3>Karşılaştırma Görevi</h3>
 
 <p>
-Bantların jeldeki konumlarını karşılaştır. Aynı yükseklikteki eksiksiz bantlar katili ele verir.
+Bant desenlerini karşılaştır ve DNA profili eşleşmesinin ne anlama geldiğini doğru yorumla. Eşleşme, tek başına suçluluğun kanıtı değildir.
 </p>
 
 <div class="suspect-choice-grid">
-<button class="suspect-choice" onclick="checkFinalSuspect('A')">Şüpheli A (Tam Eşleşme)</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('B')">Şüpheli B</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('C')">Şüpheli C</button>
-<button class="suspect-choice" onclick="checkFinalSuspect('D')">Şüpheli D</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('A')">A) Şüpheli A'nın eşleşmesi suçluluğu kanıtlar.</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('B')">B) DNA eşleşmesi, örneğin olay yerine nasıl ulaştığını önemsiz kılar.</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('C')">C) Şüpheli A'nın incelenen DNA profili olay yeri örneğiyle eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.</button>
+<button class="suspect-choice" onclick="checkFinalSuspect('D')">D) Jel elektroforezi tek başına kişinin fail olduğunu kesinleştirir.</button>
 </div>
 
 <div id="finalFeedback" class="final-feedback"></div>
@@ -347,7 +346,7 @@ Bantların jeldeki konumlarını karşılaştır. Aynı yükseklikteki eksiksiz 
 <div class="profile-row">
 <span>Şüpheli A</span>
 <span>132 / 198 / 278 / 348 / 425</span>
-<span>Tam Eşleşme (Fail)</span>
+<span>İncelenen profiller eşleşiyor</span>
 </div>
 
 <div class="profile-row">
@@ -371,7 +370,7 @@ Bantların jeldeki konumlarını karşılaştır. Aynı yükseklikteki eksiksiz 
 </div>
 
 <div class="forensic-note">
-<strong>Adli yorum:</strong> Şüpheli A'nın DNA bantları olay yeri ile %100 örtüşmektedir.
+<strong>Adli yorum:</strong> Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri birbiriyle eşleşmektedir. Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
 </div>
 
 </div>
