@@ -1662,3 +1662,15 @@ body.crispr-page::before {
   border:1px solid #d2e1ec;
   border-radius:20px;
 }
+
+
+/* CRISPR açık temada sabit animasyonlu giriş alanının başlık kontrastı */
+html[data-theme="light"] .crispr-main .hero h2 {
+  color:#123b57 !important;
+  opacity:1 !important;
+  text-shadow:none !important;
+  -webkit-text-fill-color:#123b57 !important;
+}
+html[data-theme="light"] .crispr-main .hero {
+  background:linear-gradient(135deg,#edf6fc 0%,#e5eff9 58%,#f0edfb 100%) !important;
+}
