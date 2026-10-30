@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adli Tıp Laboratuvarı | BioWebLab</title>
-<link rel="stylesheet" href="adli-tip.css">
+<link rel="stylesheet" href="adli-tip.css?v=4">
 </head>
 <body>
 <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç" onclick="toggleTheme()">🌙</button>
@@ -244,6 +244,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 <div class="gel-band suspect-c s2"></div>
 <div class="gel-band suspect-c s3"></div>
 <div class="gel-band suspect-c s4"></div>
+<div class="gel-band suspect-c s5"></div>
 </div>
 
 <div class="gel-lane">
@@ -263,7 +264,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 <div class="gel-band suspect-a a2"></div>
 <div class="gel-band suspect-a a3"></div>
 <div class="gel-band suspect-a a4"></div>
-<div class="gel-band suspect-a a5"></div>
+
 </div>
 
 <div class="gel-lane">
@@ -288,7 +289,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 
 <div class="gel-note">
-Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Bu eğitim modelinde olay yeri örneği ile Şüpheli A'nın incelenen bant deseni eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.
+Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Bu eğitim modelinde olay yeri örneği ile Şüpheli C'nin incelenen bant deseni eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.
 </div>
 
 </div>
@@ -345,8 +346,8 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 
 <div class="profile-row">
 <span>Şüpheli A</span>
-<span>132 / 198 / 278 / 348 / 425</span>
-<span>İncelenen profiller eşleşiyor</span>
+<span>132 / 225 / 278 / 425</span>
+<span>Farklı profil</span>
 </div>
 
 <div class="profile-row">
@@ -357,8 +358,8 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 
 <div class="profile-row">
 <span>Şüpheli C</span>
-<span>132 / 225 / 278 / 425</span>
-<span>Kısmi benzerlik</span>
+<span>132 / 198 / 278 / 348 / 425</span>
+<span>İncelenen profiller eşleşiyor</span>
 </div>
 
 <div class="profile-row">
@@ -370,7 +371,7 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 </div>
 
 <div class="forensic-note">
-<strong>Adli yorum:</strong> Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri birbiriyle eşleşmektedir. Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
+<strong>Adli yorum:</strong> Olay yeri örneği ile Şüpheli C'nin incelenen DNA profilleri birbiriyle eşleşmektedir. Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
 </div>
 
 </div>
@@ -383,6 +384,6 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 </div>
 
 <script src="theme.js?v=3"></script>
-<script src="adli-tip.js"></script>
+<script src="adli-tip.js?v=4"></script>
 </body>
 </html>
