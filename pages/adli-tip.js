@@ -437,69 +437,36 @@ function runGelElectrophoresis(){
 let finalSolved = false;
 
 function checkFinalSuspect(choice){
-
   if(currentStep < 7) return;
   if(finalSolved) return;
 
   const feedback = document.getElementById("finalFeedback");
   const buttons = document.querySelectorAll(".suspect-choice");
-
   if(!feedback) return;
 
-  buttons.forEach(btn=>{
-    btn.classList.remove("wrong","correct");
-  });
+  buttons.forEach(btn => btn.classList.remove("wrong", "correct"));
+  feedback.classList.remove("success", "error", "show");
 
-  feedback.classList.remove("success","error","show");
-
-  /* DOĞRU CEVAP */
-
-  if(choice === "A"){
-
+  if(choice === "C"){
     finalSolved = true;
-
-    buttons[0].classList.add("correct");
-
-    feedback.classList.add("show","success");
-
+    buttons[2].classList.add("correct");
+    feedback.classList.add("show", "success");
     feedback.innerHTML =
-    "✅ Doğru seçim: Şüpheli A.<br><br>" +
-    "Olay yeri örneğindeki bant konumları ile Şüpheli A profili büyük ölçüde örtüşmektedir. " +
-    "Bu nedenle genetik profil açısından en güçlü eşleşme Şüpheli A'dır.<br><br>" +
-    "🎉 Adli DNA analiz görevini başarıyla tamamladınız.";
-
+      "✅ Doğru cevap: C.<br><br>" +
+      "Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri eşleşmektedir. " +
+      "Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.<br><br>" +
+      "DNA'nın olay yerine nasıl ve ne zaman ulaştığı, örneğin niteliği, olası kontaminasyon ve istatistiksel değerlendirme de dikkate alınmalıdır. " +
+      "Güncel adli DNA analizlerinde STR ürünleri çoğunlukla kapiler elektroforezle incelenir; buradaki jel elektroforezi eğitim amaçlı bir modeldir.<br><br>" +
+      "🎉 Değerlendirmeyi bilimsel ve temkinli biçimde tamamladın.";
     return;
   }
 
-  /* YANLIŞ CEVAPLAR */
-
-  let message = "";
-
-  if(choice === "B"){
-    buttons[1].classList.add("wrong");
-
-    message =
-    "❌ Şüpheli B doğru cevap değildir.<br><br>" +
-    "Bantların yükseklikleri olay yeri örneğinden belirgin şekilde farklıdır. " +
-    "Birçok DNA parçası farklı uzunluktadır.";
-  }
-
-  if(choice === "C"){
-    buttons[2].classList.add("wrong");
-
-    message =
-    "❌ Şüpheli C doğru cevap değildir.<br><br>" +
-    "Bazı bantlar benzer görünse de tüm profil uyuşmamaktadır. " +
-    "Kısmi benzerlik yeterli değildir.";
-  }
-  if(choice === "D"){
-    buttons[3].classList.add("wrong");
-
-    message =
-    "❌ Şüpheli D doğru cevap değildir.<br><br>" +
-    "Hiçbir mantıklı eşleşme görülememektedir.";
-  }
-
-  feedback.classList.add("show","error");
-  feedback.innerHTML = message;
+  buttons[["A","B","C","D"].indexOf(choice)]?.classList.add("wrong");
+  const messages = {
+    A: "Şüpheli A'nın profilinin eşleşmesi, tek başına suçluluğu kanıtlamaz. DNA'nın olay yerine nasıl ve ne zaman ulaştığı ve diğer adli bulgular da değerlendirilmelidir.",
+    B: "Örneğin olay yerine nasıl ve ne zaman ulaştığı önemlidir. Kontaminasyon olasılığı ve örneğin niteliği de incelenmelidir.",
+    D: "Jel elektroforezi bu modülde öğretim amaçlı bir modeldir. Güncel STR incelemelerinde çoğunlukla kapiler elektroforez kullanılır; hiçbir tek bulgu tek başına suçluluğu kesinleştirmez."
+  };
+  feedback.classList.add("show", "error");
+  feedback.textContent = "❌ Bu yorum doğru değil. " + (messages[choice] || "Tekrar değerlendir.");
 }
