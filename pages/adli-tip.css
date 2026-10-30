@@ -1683,3 +1683,35 @@ background:#34d399;
   --theme-button-color:#1e293b;
   --theme-button-border:rgba(30,41,59,.2);
 }
+
+
+/* 7. aşama profil düzeni: eşleşen bant deseni C'de, eski C deseni A'da */
+.gel-board.running .s1 { top:132px; }
+.gel-board.running .s2 { top:198px; }
+.gel-board.running .s3 { top:278px; }
+.gel-board.running .s4 { top:348px; }
+.gel-board.running .s5 { top:425px; }
+.gel-board.running .a1 { top:132px; }
+.gel-board.running .a2 { top:225px; }
+.gel-board.running .a3 { top:278px; }
+.gel-board.running .a4 { top:425px; }
+
+/* 7. aşama: kısa, seçilebilir seçenekler; açıklama yalnızca seçimden sonra görünür */
+.suspect-choice-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.suspect-choice {
+  min-width:0;
+  min-height:58px;
+  padding:14px 12px;
+  font-size:17px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.suspect-choice.selected { outline:3px solid rgba(14,165,233,.35); outline-offset:2px; }
+.final-feedback { min-height:0; }
+@media (max-width:520px) {
+  .comparison-layout { grid-template-columns:minmax(0,1fr); gap:16px; }
+  .comparison-left,.comparison-right { padding:16px; border-radius:18px; }
+  .comparison-left h3,.comparison-right h3 { font-size:21px; }
+  .suspect-choice { font-size:16px; padding:13px 9px; }
+  .profile-row { grid-template-columns:1fr; gap:5px; }
+}
