@@ -437,36 +437,32 @@ function runGelElectrophoresis(){
 let finalSolved = false;
 
 function checkFinalSuspect(choice){
-  if(currentStep < 7) return;
-  if(finalSolved) return;
+  if(currentStep < 7 || finalSolved) return;
 
   const feedback = document.getElementById("finalFeedback");
   const buttons = document.querySelectorAll(".suspect-choice");
   if(!feedback) return;
 
-  buttons.forEach(btn => btn.classList.remove("wrong", "correct"));
+  buttons.forEach(btn => btn.classList.remove("wrong", "correct", "selected"));
   feedback.classList.remove("success", "error", "show");
 
-  if(choice === "A"){
-    finalSolved = true;
-    buttons[0].classList.add("correct");
-    feedback.classList.add("show", "success");
-    feedback.innerHTML =
-      "✅ Doğru cevap: Şüpheli A.<br><br>" +
-      "Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri birbiriyle eşleşmektedir. " +
-      "Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.<br><br>" +
-      "DNA'nın olay yerine nasıl ve ne zaman ulaştığı, örneğin niteliği, olası kontaminasyon ve istatistiksel değerlendirme de dikkate alınmalıdır. " +
-      "Güncel adli DNA analizlerinde STR ürünleri çoğunlukla kapiler elektroforezle incelenir; buradaki jel elektroforezi eğitim amaçlı bir modeldir.<br><br>" +
-      "🎉 Bant desenlerini doğru karşılaştırdın ve sonucu bilimsel açıdan temkinli yorumladın.";
-    return;
-  }
+  const selectedIndex = ["A","B","C","D"].indexOf(choice);
+  if(selectedIndex < 0) return;
+  buttons[selectedIndex].classList.add("selected");
 
-  buttons[["A","B","C","D"].indexOf(choice)]?.classList.add("wrong");
-  const messages = {
-    B: "Şüpheli B'nin bant deseni olay yeri örneğiyle eşleşmiyor. DNA eşleşmesi ayrıca tek başına suçluluğu kanıtlamaz.",
-    C: "Şüpheli C'nin bant deseni olay yeri örneğiyle eşleşmiyor. Örneklerin nasıl ve ne zaman toplandığı da önemlidir.",
-    D: "Şüpheli D'nin bant deseni olay yeri örneğiyle eşleşmiyor. Tek bir laboratuvar bulgusu kişinin fail olduğunu kesinleştirmez."
+  const explanations = {
+    A: "Şüpheli A'nın bant deseni olay yeri örneğiyle eşleşmiyor. DNA profili eşleşse bile bu bulgu tek başına suçluluğu kanıtlamaz.",
+    B: "Şüpheli B'nin bant konumları olay yeri örneğiyle uyuşmuyor. Ayrıca DNA'nın olay yerine nasıl ve ne zaman ulaştığı önemlidir.",
+    C: "Doğru! Olay yeri örneği ile Şüpheli C'nin incelenen DNA profilleri eşleşmektedir. Bu bulgu olayla ilişkiyi değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz. DNA'nın olay yerine nasıl ve ne zaman ulaştığı, örneğin niteliği, kontaminasyon olasılığı ve istatistiksel değerlendirme de dikkate alınmalıdır. Güncel adli STR analizlerinde çoğunlukla kapiler elektroforez kullanılır; buradaki jel elektroforezi eğitim amaçlı bir modeldir.",
+    D: "Şüpheli D'nin bant deseni olay yeri örneğiyle eşleşmiyor. Jel elektroforezi tek başına kişinin fail olduğunu kesinleştirmez."
   };
-  feedback.classList.add("show", "error");
-  feedback.textContent = messages[choice] || "Bant desenlerini yeniden karşılaştır.";
+
+  feedback.textContent = explanations[choice];
+  feedback.classList.add("show", choice === "C" ? "success" : "error");
+  if(choice === "C"){
+    finalSolved = true;
+    buttons[selectedIndex].classList.add("correct");
+  } else {
+    buttons[selectedIndex].classList.add("wrong");
+  }
 }
