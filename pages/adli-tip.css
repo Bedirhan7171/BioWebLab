@@ -1683,3 +1683,46 @@ background:#34d399;
   --theme-button-color:#1e293b;
   --theme-button-border:rgba(30,41,59,.2);
 }
+
+/* Elektroforez bantları: A olay yeri profiliyle aynı konumlarda, C kısmi ve farklı */
+.gel-board.running .a5 { top:425px; }
+.gel-board.running .s1 { top:155px; }
+.gel-board.running .s2 { top:235px; }
+.gel-board.running .s3 { top:320px; }
+.gel-board.running .s4 { top:455px; }
+
+/* Açık tema jel alanı: siyah blok yerine yumuşak laboratuvar yüzeyi */
+:root[data-theme="light"] .gel-visual-panel {
+  background:linear-gradient(145deg,#f4f9ff,#e8f4fb) !important;
+}
+:root[data-theme="light"] .gel-board {
+  background:linear-gradient(145deg,#e6f2fa,#f8fbff 55%,#e9f5f3) !important;
+  border:1px solid #c5d9e8 !important;
+  box-shadow:inset 0 1px 8px rgba(28,75,110,.08) !important;
+}
+:root[data-theme="light"] .gel-lane {
+  background:rgba(255,255,255,.68) !important;
+  border-color:#cbddea !important;
+}
+:root[data-theme="light"] .gel-lane .lane-title { color:#334e68 !important; }
+:root[data-theme="light"] .gel-lane .well { background:#94a3b8 !important; }
+:root[data-theme="light"] .gel-direction { color:#47627b !important; }
+:root[data-theme="light"] .suspect-choice {
+  background:#eaf4fb !important;
+  color:#17324d !important;
+  border-color:#c7dceb !important;
+}
+:root[data-theme="light"] .suspect-choice:hover {
+  background:#d9edf8 !important;
+  border-color:#4aa3c7 !important;
+}
+:root[data-theme="light"] .suspect-choice.correct {
+  background:#dcfce7 !important;
+  color:#166534 !important;
+  border-color:#22c55e !important;
+}
+:root[data-theme="light"] .suspect-choice.wrong {
+  background:#fee2e2 !important;
+  color:#991b1b !important;
+  border-color:#ef4444 !important;
+}
