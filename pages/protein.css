@@ -716,3 +716,41 @@ grid-template-columns:1fr;
 :root[data-theme="light"] .reset-progress-btn {
   background:#fff !important; color:#0f766e !important; border-color:#99d5d0 !important;
 }
+
+
+/* Protein açık tema: modül metinlerinde tutarlı okunabilirlik */
+:root[data-theme="light"] .panel h1 {
+  color:#155e75 !important;
+  text-shadow:none !important;
+}
+:root[data-theme="light"] .panel p,
+:root[data-theme="light"] .panel li,
+:root[data-theme="light"] .panel small,
+:root[data-theme="light"] .hero-info p,
+:root[data-theme="light"] .hero-info li,
+:root[data-theme="light"] .rule-card p,
+:root[data-theme="light"] .converter-card p,
+:root[data-theme="light"] .converter-results p {
+  color:#344b60 !important;
+}
+:root[data-theme="light"] .panel strong,
+:root[data-theme="light"] .hero-info strong,
+:root[data-theme="light"] .rule-card strong,
+:root[data-theme="light"] .converter-card strong {
+  color:#0f766e !important;
+}
+:root[data-theme="light"] .hero-info h3,
+:root[data-theme="light"] .rule-card h3,
+:root[data-theme="light"] .converter-card h3,
+:root[data-theme="light"] .converter-results h3 {
+  color:#155e75 !important;
+}
+:root[data-theme="light"] .panel label,
+:root[data-theme="light"] .converter-card label {
+  color:#28536b !important;
+}
+:root[data-theme="light"] .panel input,
+:root[data-theme="light"] .panel select,
+:root[data-theme="light"] .panel textarea {
+  color:#20364b !important;
+}
