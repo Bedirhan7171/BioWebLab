@@ -447,26 +447,26 @@ function checkFinalSuspect(choice){
   buttons.forEach(btn => btn.classList.remove("wrong", "correct"));
   feedback.classList.remove("success", "error", "show");
 
-  if(choice === "C"){
+  if(choice === "A"){
     finalSolved = true;
-    buttons[2].classList.add("correct");
+    buttons[0].classList.add("correct");
     feedback.classList.add("show", "success");
     feedback.innerHTML =
-      "✅ Doğru cevap: C.<br><br>" +
-      "Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri eşleşmektedir. " +
+      "✅ Doğru cevap: Şüpheli A.<br><br>" +
+      "Olay yeri örneği ile Şüpheli A'nın incelenen DNA profilleri birbiriyle eşleşmektedir. " +
       "Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.<br><br>" +
       "DNA'nın olay yerine nasıl ve ne zaman ulaştığı, örneğin niteliği, olası kontaminasyon ve istatistiksel değerlendirme de dikkate alınmalıdır. " +
       "Güncel adli DNA analizlerinde STR ürünleri çoğunlukla kapiler elektroforezle incelenir; buradaki jel elektroforezi eğitim amaçlı bir modeldir.<br><br>" +
-      "🎉 Değerlendirmeyi bilimsel ve temkinli biçimde tamamladın.";
+      "🎉 Bant desenlerini doğru karşılaştırdın ve sonucu bilimsel açıdan temkinli yorumladın.";
     return;
   }
 
   buttons[["A","B","C","D"].indexOf(choice)]?.classList.add("wrong");
   const messages = {
-    A: "Şüpheli A'nın profilinin eşleşmesi, tek başına suçluluğu kanıtlamaz. DNA'nın olay yerine nasıl ve ne zaman ulaştığı ve diğer adli bulgular da değerlendirilmelidir.",
-    B: "Örneğin olay yerine nasıl ve ne zaman ulaştığı önemlidir. Kontaminasyon olasılığı ve örneğin niteliği de incelenmelidir.",
-    D: "Jel elektroforezi bu modülde öğretim amaçlı bir modeldir. Güncel STR incelemelerinde çoğunlukla kapiler elektroforez kullanılır; hiçbir tek bulgu tek başına suçluluğu kesinleştirmez."
+    B: "Şüpheli B'nin bant deseni olay yeri örneğiyle eşleşmiyor. DNA eşleşmesi ayrıca tek başına suçluluğu kanıtlamaz.",
+    C: "Şüpheli C'nin bant deseni olay yeri örneğiyle eşleşmiyor. Örneklerin nasıl ve ne zaman toplandığı da önemlidir.",
+    D: "Şüpheli D'nin bant deseni olay yeri örneğiyle eşleşmiyor. Tek bir laboratuvar bulgusu kişinin fail olduğunu kesinleştirmez."
   };
   feedback.classList.add("show", "error");
-  feedback.textContent = "❌ Bu yorum doğru değil. " + (messages[choice] || "Tekrar değerlendir.");
+  feedback.textContent = messages[choice] || "Bant desenlerini yeniden karşılaştır.";
 }
