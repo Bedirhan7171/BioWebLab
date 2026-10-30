@@ -608,3 +608,61 @@ grid-template-columns:1fr;
 :root[data-theme="light"] .sequence-output { color:#1f2328; }
 :root[data-theme="light"] .theme-toggle-btn { --theme-button-bg:#fff; --theme-button-color:#1f2328; --theme-button-border:rgba(31,35,40,.18); }
 :root[data-theme="dark"] .theme-toggle-btn { --theme-button-bg:#081121; --theme-button-color:#67e8f9; --theme-button-border:rgba(103,232,249,.45); }
+
+
+/* Ortak tema düğmesi */
+.theme-toggle-btn {
+  position: fixed;
+  top: 70px;
+  right: 18px;
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--theme-button-border, rgba(103,232,249,.45));
+  border-radius: 12px;
+  background: var(--theme-button-bg, rgba(8,17,33,.94));
+  color: var(--theme-button-color, #67e8f9);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(15,23,42,.16);
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.theme-toggle-btn:hover { transform: translateY(-1px); }
+.theme-toggle-btn:focus-visible { outline: 3px solid #38bdf8; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .theme-toggle-btn { top: 62px; right: 10px; min-width: 38px; min-height: 38px; padding: 7px 9px; }
+}
+
+/* Açık tema: protein laboratuvarı */
+:root[data-theme="light"] body { background:#f6f8fa; color:#1f2328; transition:background .25s,color .25s; }
+:root[data-theme="light"] .sidebar { background:#fff; border-color:#d0d7de; }
+:root[data-theme="light"] .brand h2 { color:#1f2328; text-shadow:none; }
+:root[data-theme="light"] .brand a { color:#0969da; }
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .progress-box,
+:root[data-theme="light"] .hero-info,
+:root[data-theme="light"] .rule-card,
+:root[data-theme="light"] .converter-card,
+:root[data-theme="light"] .converter-results,
+:root[data-theme="light"] .codon-cell,
+:root[data-theme="light"] .result-block,
+:root[data-theme="light"] .letter-help span { background:#fff; color:#1f2328; border-color:#d0d7de; }
+:root[data-theme="light"] .menu-item { background:#f6f8fa; color:#1f2328; border-color:#d0d7de; }
+:root[data-theme="light"] .menu-item small,
+:root[data-theme="light"] .hero-info li,
+:root[data-theme="light"] .codon-cell span,
+:root[data-theme="light"] .letter-help span { color:#57606a; }
+:root[data-theme="light"] .menu-item.locked { background:#eaeef2; }
+:root[data-theme="light"] .menu-item.active { background:linear-gradient(135deg,#0969da,#0f766e); color:#fff; }
+:root[data-theme="light"] .codon-tools input,
+:root[data-theme="light"] .converter-card input,
+:root[data-theme="light"] .converter-card select,
+:root[data-theme="light"] .converter-card textarea { background:#fff; color:#1f2328; border-color:#afb8c1; }
+:root[data-theme="light"] .sequence-output { color:#1f2328; }
+:root[data-theme="light"] .theme-toggle-btn { --theme-button-bg:#fff; --theme-button-color:#1f2328; --theme-button-border:rgba(31,35,40,.18); }
+:root[data-theme="dark"] .theme-toggle-btn { --theme-button-bg:#081121; --theme-button-color:#67e8f9; --theme-button-border:rgba(103,232,249,.45); }
