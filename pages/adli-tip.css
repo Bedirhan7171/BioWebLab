@@ -1569,3 +1569,117 @@ background:#34d399;
 :root[data-theme="dark"] .profile-row { border-color:#30363d; }
 :root[data-theme="dark"] .theme-toggle-btn { --theme-button-bg:#161b22; --theme-button-color:#f0f6fc; --theme-button-border:rgba(240,246,252,.18); }
 :root[data-theme="light"] .theme-toggle-btn { --theme-button-bg:#fff; --theme-button-color:#1f2328; --theme-button-border:rgba(31,35,40,.18); }
+
+
+/* Adli Tıp: açık tema için yüksek öncelikli renk düzeltmeleri */
+:root[data-theme="light"] body,
+:root[data-theme="light"] .content {
+  background:#f4f8fc !important;
+  color:#1e293b !important;
+}
+:root[data-theme="light"] .sidebar {
+  background:linear-gradient(180deg,#ffffff,#f3f8ff) !important;
+  border-right:1px solid #dbe7f3 !important;
+  box-shadow:0 8px 28px rgba(15,23,42,.06) !important;
+}
+:root[data-theme="light"] .panel {
+  background:#ffffff !important;
+  color:#1e293b !important;
+  border:1px solid #dbe7f3 !important;
+  box-shadow:0 18px 42px rgba(15,23,42,.08) !important;
+}
+:root[data-theme="light"] .panel h1,
+:root[data-theme="light"] .info-card h3,
+:root[data-theme="light"] .machine-card h3,
+:root[data-theme="light"] .comparison-left h3,
+:root[data-theme="light"] .comparison-right h3,
+:root[data-theme="light"] .gel-control-panel h3 {
+  color:#155e9a !important;
+  text-shadow:none !important;
+}
+:root[data-theme="light"] .panel p,
+:root[data-theme="light"] .panel li,
+:root[data-theme="light"] .panel small,
+:root[data-theme="light"] .panel label,
+:root[data-theme="light"] .hero-info p,
+:root[data-theme="light"] .hero-info li,
+:root[data-theme="light"] .info-card p,
+:root[data-theme="light"] .gel-info-card p {
+  color:#475569 !important;
+}
+:root[data-theme="light"] .hero-info,
+:root[data-theme="light"] .info-card,
+:root[data-theme="light"] .machine-card,
+:root[data-theme="light"] .dna-stage,
+:root[data-theme="light"] .gel-control-panel,
+:root[data-theme="light"] .gel-visual-panel,
+:root[data-theme="light"] .comparison-left,
+:root[data-theme="light"] .comparison-right,
+:root[data-theme="light"] .about-box,
+:root[data-theme="light"] .gel-info-card,
+:root[data-theme="light"] .adli-tip-kutusu {
+  background:#ffffff !important;
+  color:#1e293b !important;
+  border:1px solid #dbe7f3 !important;
+  box-shadow:0 8px 24px rgba(15,23,42,.05) !important;
+}
+:root[data-theme="light"] .menu-item {
+  background:#f1f5f9 !important;
+  color:#1e293b !important;
+  border:1px solid #dbe3ec !important;
+}
+:root[data-theme="light"] .menu-item small { color:#64748b !important; }
+:root[data-theme="light"] .menu-item.active {
+  background:linear-gradient(135deg,#0284c7,#0f766e) !important;
+  color:#ffffff !important;
+}
+:root[data-theme="light"] .menu-item.active small { color:#e0f2fe !important; }
+:root[data-theme="light"] .progress-box,
+:root[data-theme="light"] .material-item,
+:root[data-theme="light"] .profile-row,
+:root[data-theme="light"] .gel-task,
+:root[data-theme="light"] .cycle-info,
+:root[data-theme="light"] .dna-note,
+:root[data-theme="light"] .gel-note {
+  background:#f8fafc !important;
+  color:#334155 !important;
+  border-color:#dbe3ec !important;
+}
+:root[data-theme="light"] .profile-row span { color:#334155 !important; }
+:root[data-theme="light"] .header-row,
+:root[data-theme="light"] .header-row span {
+  background:#0f766e !important;
+  color:#ffffff !important;
+}
+:root[data-theme="light"] .gel-board {
+  background:linear-gradient(180deg,#eaf4fb,#f8fbff,#eaf4fb) !important;
+  border-color:#cbddeb !important;
+}
+:root[data-theme="light"] .gel-lane { background:rgba(255,255,255,.72) !important; }
+:root[data-theme="light"] .lane-title { color:#334155 !important; }
+:root[data-theme="light"] .well { background:#94a3b8 !important; }
+:root[data-theme="light"] .forensic-note,
+:root[data-theme="light"] .adli-tip-kutusu {
+  background:#eff8ff !important;
+  color:#1e3a5f !important;
+  border-left-color:#0284c7 !important;
+}
+:root[data-theme="light"] .forensic-note strong,
+:root[data-theme="light"] .adli-tip-kutusu h4 { color:#075985 !important; }
+:root[data-theme="light"] .pcr-step-card {
+  background:#ffffff !important;
+  color:#1e293b !important;
+  border-color:#dbe7f3 !important;
+}
+:root[data-theme="light"] .pcr-step-card h4 { color:#0369a1 !important; }
+:root[data-theme="light"] .pcr-step-card p { color:#475569 !important; }
+:root[data-theme="light"] .reset-progress-btn {
+  background:#ffffff !important;
+  color:#0f766e !important;
+  border-color:#0f766e !important;
+}
+:root[data-theme="light"] .theme-toggle-btn {
+  --theme-button-bg:#ffffff;
+  --theme-button-color:#1e293b;
+  --theme-button-border:rgba(30,41,59,.2);
+}
