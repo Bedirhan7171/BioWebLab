@@ -1,0 +1,149 @@
+:root {
+  --module-dock-bg: rgba(7, 17, 34, .88);
+  --module-dock-border: rgba(125, 211, 252, .22);
+  --module-dock-text: #dbeafe;
+  --module-dock-muted: #9bb3ca;
+  --module-dock-accent: #38d9d0;
+}
+.module-dock {
+  position: fixed;
+  z-index: 9000;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(920px, calc(100vw - 32px));
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 14px;
+  border: 1px solid var(--module-dock-border);
+  border-radius: 23px;
+  color: var(--module-dock-text);
+  background: var(--module-dock-bg);
+  box-shadow: 0 14px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+  animation: moduleDockIn .42s cubic-bezier(.2,.8,.2,1) both;
+}
+.module-dock-brand, .module-dock-home, .module-dock-link {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.module-dock-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  font: 800 14px/1 Arial, sans-serif;
+  letter-spacing: -.35px;
+  white-space: nowrap;
+}
+.module-dock-brand > span:last-child > span { color: var(--module-dock-accent); }
+.module-dock-brand-icon { font-size: 22px; }
+.module-dock-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+}
+.module-dock-link {
+  position: relative;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: var(--module-dock-muted);
+  font: 700 13px/1.15 Arial, sans-serif;
+  white-space: nowrap;
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.module-dock-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  transform: translateY(-2px);
+}
+.module-dock-link.is-active {
+  color: #f0ffff;
+  background: linear-gradient(135deg, rgba(20,184,166,.24), rgba(59,130,246,.20));
+  border-color: rgba(45,212,191,.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 5px 18px rgba(20,184,166,.12);
+}
+.module-dock-icon { font-size: 18px; line-height: 1; }
+.module-dock-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  bottom: 5px;
+  left: 50%;
+  border-radius: 50%;
+  background: #5eead4;
+  box-shadow: 0 0 9px #5eead4;
+  transform: translateX(-50%);
+}
+.module-dock-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  border-radius: 13px;
+  color: var(--module-dock-muted);
+  font: 700 12px Arial, sans-serif;
+  white-space: nowrap;
+  transition: .2s ease;
+}
+.module-dock-home > span:first-child { font-size: 20px; line-height: 12px; }
+.module-dock-home:hover { color: #fff; background: rgba(255,255,255,.08); }
+.module-dock-spacer { height: 116px; width: 100%; pointer-events: none; }
+body.module-leaving { opacity: .72; transition: opacity .13s ease; }
+@keyframes moduleDockIn {
+  from { opacity: 0; transform: translate(-50%, 18px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+@media (max-width: 680px) {
+  .module-dock {
+    width: calc(100vw - 20px);
+    min-height: 68px;
+    bottom: max(9px, env(safe-area-inset-bottom));
+    padding: 8px;
+    gap: 6px;
+    border-radius: 20px;
+  }
+  .module-dock-brand { display: none; }
+  .module-dock-links { flex: 1; gap: 5px; }
+  .module-dock-link {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 48px;
+    flex-direction: column;
+    gap: 4px;
+    padding: 5px 3px;
+    border-radius: 13px;
+    font-size: 11px;
+  }
+  .module-dock-icon { font-size: 18px; }
+  .module-dock-home {
+    flex-direction: column;
+    gap: 3px;
+    padding: 5px 7px;
+    font-size: 10px;
+  }
+  .module-dock-home > span:first-child { font-size: 19px; }
+  .module-dock-spacer { height: 100px; }
+}
+@media (max-width: 360px) {
+  .module-dock-link { font-size: 10px; }
+  .module-dock-home { padding-inline: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .module-dock { animation: none; }
+  .module-dock-link, body.module-leaving { transition: none; }
+}
