@@ -1582,3 +1582,58 @@ body.crispr-page::before {
 :root[data-theme="light"] .reset-progress-btn { background:rgba(255,255,255,.96) !important; color:#0969da !important; border-color:rgba(9,105,218,.35) !important; box-shadow:0 4px 18px rgba(31,35,40,.10); }
 :root[data-theme="light"] .theme-toggle-btn { --theme-button-bg:#fff; --theme-button-color:#1f2328; --theme-button-border:rgba(31,35,40,.18); }
 :root[data-theme="dark"] .theme-toggle-btn { --theme-button-bg:rgba(5,8,22,.96); --theme-button-color:#38f8ff; --theme-button-border:rgba(56,248,255,.45); }
+
+
+/* CRISPR laboratuvarı: açık temada kalan koyu panelleri dengeli mavi-gri yüzeylere al */
+:root[data-theme="light"] .crispr-main,
+:root[data-theme="light"] .lab-panel,
+:root[data-theme="light"] .result-panel,
+:root[data-theme="light"] .repair-lab,
+:root[data-theme="light"] .repair-visual-area,
+:root[data-theme="light"] .match-board,
+:root[data-theme="light"] .gene-map,
+:root[data-theme="light"] .interactive-dna-container,
+:root[data-theme="light"] .synth-container,
+:root[data-theme="light"] .sequence-row,
+:root[data-theme="light"] .codon-row,
+:root[data-theme="light"] .compare-box,
+:root[data-theme="light"] .mini-note,
+:root[data-theme="light"] .sidebar-note {
+  background:linear-gradient(145deg,#f7fbff,#edf5fb) !important;
+  color:#243b53 !important;
+  border-color:#cbddea !important;
+  box-shadow:0 8px 22px rgba(25,65,95,.06) !important;
+}
+:root[data-theme="light"] .lab-panel p,
+:root[data-theme="light"] .result-panel p,
+:root[data-theme="light"] .stage-desc,
+:root[data-theme="light"] .mini-note,
+:root[data-theme="light"] .sidebar-note { color:#52677c !important; }
+:root[data-theme="light"] .dna-strip,
+:root[data-theme="light"] .dna-chunk,
+:root[data-theme="light"] .left-chunk,
+:root[data-theme="light"] .right-chunk {
+  background:#dcecf6 !important;
+  border-color:#a9c8dc !important;
+  color:#173b56 !important;
+}
+:root[data-theme="light"] .dna-gap,
+:root[data-theme="light"] .gap-placeholder { background:#e5edf4 !important; color:#52677c !important; }
+:root[data-theme="light"] .keyboard,
+:root[data-theme="light"] .tool-grid,
+:root[data-theme="light"] .stage-actions {
+  background:#eaf3f9 !important;
+  border-color:#cbddea !important;
+}
+:root[data-theme="light"] .key-btn.del,
+:root[data-theme="light"] .ghost-btn,
+:root[data-theme="light"] .tool-btn {
+  background:#fff !important;
+  color:#24445d !important;
+  border-color:#bfd3e1 !important;
+}
+:root[data-theme="light"] .feedback,
+:root[data-theme="light"] .toast { color:#24445d !important; }
+:root[data-theme="light"] .reset-progress-btn {
+  background:#fff !important; color:#0969da !important; border-color:#9cc8eb !important;
+}
