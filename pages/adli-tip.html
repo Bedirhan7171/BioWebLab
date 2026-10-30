@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="adli-tip.css">
 </head>
 <body>
-<button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç">🌙</button>
+<button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç" onclick="toggleTheme()">🌙</button>
 
 <button class="reset-progress-btn" id="resetProgressBtn" type="button" title="Bu modülün ilerlemesini sıfırla" style="position:fixed;top:16px;right:18px;z-index:99999;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #0f766e;border-radius:12px;background:#0f766e;color:#fff;font:700 14px Arial,sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(15,118,110,.28);" onclick="if(window.confirm('Adli Tıp ilerlemesi sıfırlansın mı?')){sessionStorage.removeItem('adliTipProgress');window.location.href=window.location.pathname+'?reset='+Date.now();}">↻ İlerlemeyi Sıfırla</button>
 
@@ -357,7 +357,7 @@ Bant desenlerini karşılaştır ve DNA profili eşleşmesinin ne anlama geldiğ
 
 <div class="profile-row">
 <span>Şüpheli C</span>
-<span>132 / 225 / 278 / 425</span>
+<span>155 / 235 / 320 / 455</span>
 <span>Kısmi benzerlik</span>
 </div>
 
@@ -382,7 +382,7 @@ Bant desenlerini karşılaştır ve DNA profili eşleşmesinin ne anlama geldiğ
 </main>
 </div>
 
-<script src="theme.js"></script>
+<script src="theme.js?v=3"></script>
 <script src="adli-tip.js"></script>
 </body>
 </html>
