@@ -382,7 +382,7 @@ function setupRepairActivity() {
          <span class="b bad">G</span><span class="b bad">X</span><span class="b bad">T</span>
       </div>`;
       
-    setFeedback(fb, "HATA: NHEJ (Homolog Olmayan Uç Birleştirme) gerçekleşti. Kırık birleşti ama araya rastgele harfler girdiği için genin anlamı bozuldu (Knock-out). Hastayı iyileştirmek için diğer yöntemi dene.", "error");
+    setFeedback(fb, "NHEJ (Homolog Olmayan Uç Birleştirme), kırık DNA uçlarını birleştiren bir onarım yoludur. Bu süreç bazı durumlarda küçük ekleme veya silmelere yol açabilir; sonuç her zaman rastgele değildir.", "info");
     
     checkBtn.style.display = "none";
     selectedRepair = "nhej";
@@ -412,7 +412,7 @@ function setupRepairActivity() {
         gap.querySelector('.hdr-template-slide').classList.add('applied');
     }, 50);
 
-    setFeedback(fb, "MÜKEMMEL! HDR (Homoloji Yönlendirmeli Onarım) ile hücreye verdiğimiz sağlıklı şablon kullanıldı ve DNA mutasyonsuz şekilde kusursuzca düzeltildi.", "success");
+    setFeedback(fb, "HDR (Homoloji Yönlendirmeli Onarım), uygun bir homolog DNA şablonu bulunduğunda hedeflenen dizinin değiştirilmesini sağlayabilir. Bu simülasyonda şablon kullanılarak onarım gösteriliyor; ancak HDR başarısı her hücrede veya her hedefte garanti değildir.", "success");
     
     checkBtn.style.display = "inline-block";
     selectedRepair = "hdr";
