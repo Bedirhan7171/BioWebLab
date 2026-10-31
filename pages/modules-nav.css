@@ -147,3 +147,43 @@ body.module-leaving { opacity: .72; transition: opacity .13s ease; }
   .module-dock { animation: none; }
   .module-dock-link, body.module-leaving { transition: none; }
 }
+
+/* Tema değişince dock da anında uyum sağlar */
+:root[data-theme="light"] {
+  --module-dock-bg: rgba(250,253,255,.92);
+  --module-dock-border: rgba(100,130,155,.28);
+  --module-dock-text: #18334b;
+  --module-dock-muted: #587087;
+  --module-dock-accent: #0d9488;
+}
+:root[data-theme="light"] .module-dock {
+  box-shadow: 0 14px 38px rgba(33,65,92,.16), inset 0 1px 0 rgba(255,255,255,.95);
+}
+:root[data-theme="light"] .module-dock-link:hover,
+:root[data-theme="light"] .module-dock-home:hover {
+  color:#15324a;
+  background:rgba(15,118,110,.09);
+}
+:root[data-theme="light"] .module-dock-link.is-active {
+  color:#075b61;
+  background:linear-gradient(135deg,rgba(20,184,166,.16),rgba(59,130,246,.10));
+  border-color:rgba(13,148,136,.32);
+}
+.module-dock-theme {
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  display:inline-grid;
+  place-items:center;
+  border:1px solid var(--module-dock-border);
+  border-radius:13px;
+  color:var(--module-dock-text);
+  background:rgba(255,255,255,.07);
+  font-size:19px;
+  cursor:pointer;
+  transition:transform .2s ease, background .2s ease;
+}
+.module-dock-theme:hover { transform:translateY(-2px) rotate(-5deg); background:rgba(45,212,191,.13); }
+@media(max-width:680px) {
+  .module-dock-theme { width:36px; height:36px; border-radius:11px; }
+}
