@@ -4,11 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioWebLab | İnteraktif Biyoteknoloji Simülasyonları</title>
+  <meta name="description" content="Biyoteknolojiyi ezberlemek yerine deneyimle: PCR ve jel elektroforezi, CRISPR-Cas9 gen düzenleme ve protein tasarımı için etkileşimli sanal laboratuvar simülasyonları.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BioWebLab | İnteraktif Biyoteknoloji Simülasyonları">
+  <meta property="og:description" content="Biyoteknolojiyi ezberlemek yerine deneyimle: PCR ve jel elektroforezi, CRISPR-Cas9 gen düzenleme ve protein tasarımı için etkileşimli sanal laboratuvar simülasyonları.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧬%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="pages/modules-nav.css?v=3">
+  <link rel="stylesheet" href="pages/ui-tools.css?v=1">
 </head>
 <body id="top">
 
@@ -24,6 +31,7 @@
       </div>
       <div class="nav-links">
         <a href="#modules">Modüller</a>
+        <a href="#how">Nasıl Çalışır</a>
         <a href="#about">Hakkında</a>
         <button
   id="theme-toggle"
@@ -50,7 +58,7 @@
           <a href="#modules" class="btn primary-btn">Simülasyonlara Başla <span aria-hidden="true">↘</span></a>
           <a href="#about" class="btn secondary-btn">Platformu Keşfet <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-proof"><span><b>03</b> interaktif modül</span><span><b>01</b> sanal laboratuvar evreni</span></div>
+        <div class="hero-proof"><span><b>03</b> interaktif modül</span><span><b>21</b> adım</span><span><b>✓</b> kurulum gerektirmez</span></div>
       </div>
       <div class="hero-visual" aria-label="Soyut DNA sarmalı animasyonu" role="img">
         <div class="visual-ring ring-a"></div><div class="visual-ring ring-b"></div>
@@ -72,39 +80,68 @@
       <div class="grid-container">
 
         <!-- Modül 1: Adli Tıp -->
-        <a href="pages/adli-tip.html" class="module-card">
+        <a href="pages/adli-tip.html" class="module-card" data-module="adli-tip">
           <div class="card-badge">DNA Analizi</div>
           <div class="card-icon">🔬</div>
           <h3>Adli Tıp Laboratuvarı</h3>
           <p>
             PCR çoğaltımı, jel elektroforezi yöntemi ve suç mahalli DNA eşleştirme simülasyonu.
           </p>
+          <div class="card-meta"><span class="meta-chip">7 adım</span><span class="meta-chip">Etkileşimli</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>PCR’ın üç sıcaklık aşamasını ve amacını açıklar</li><li>Jel elektroforezinde DNA bantlarını yorumlar</li><li>Şüpheli DNA profillerini bant analiziyle karşılaştırır</li></ul>
+          <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Laboratuvara gir <b aria-hidden="true">↗</b></span>
         </a>
 
         <!-- Modül 2: CRISPR -->
-        <a href="pages/crispr.html" class="module-card">
+        <a href="pages/crispr.html" class="module-card" data-module="crispr">
           <div class="card-badge">Gen Düzenleme</div>
           <div class="card-icon">✂️</div>
           <h3>CRISPR Gen Düzenleme</h3>
           <p>
             gRNA hedefleme, Cas9 enzimi kesim mekanizması ve DNA onarım süreçlerinin interaktif modellenmesi.
           </p>
+          <div class="card-meta"><span class="meta-chip">9 adım</span><span class="meta-chip">Etkileşimli</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Mutasyonun proteini nasıl etkileyebileceğini kavrar</li><li>gRNA, PAM ve Cas9’un rolünü ilişkilendirir</li><li>NHEJ ve HDR onarım yollarını ayırt eder</li></ul>
+          <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Modülü incele <b aria-hidden="true">↗</b></span>
         </a>
 
         <!-- Modül 3: Protein Tasarımı -->
-        <a href="pages/protein.html" class="module-card">
+        <a href="pages/protein.html" class="module-card" data-module="protein">
           <div class="card-badge">Biyoenformatik</div>
           <div class="card-icon">🧩</div>
           <h3>Protein Tasarım Merkezi</h3>
           <p>
             Kodon-amino asit dönüşümleri, protein mühendisliği ve 3D katlanma mantığını keşfedin.
           </p>
+          <div class="card-meta"><span class="meta-chip">5 adım</span><span class="meta-chip">Etkileşimli</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Amino asit zinciri ile protein ilişkisini açıklar</li><li>Kodon tablosuyla mRNA’yı proteine çevirir</li><li>DNA’dan RNA’ya baz eşleşmesini uygular</li></ul>
+          <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Modülü incele <b aria-hidden="true">↗</b></span>
         </a>
 
       </div>
+    </section>
+
+    <!-- Nasıl Çalışır -->
+    <section id="how" class="how-section">
+      <div class="section-title">
+        <span class="section-kicker">NASIL ÇALIŞIR</span><h2>Üç adımda öğren.</h2>
+        <p>Kurulum yok, hesap yok. Tarayıcını aç ve laboratuvara gir.</p>
+      </div>
+      <ol class="how-grid">
+        <li><span class="how-num">01</span><h3>Modülünü seç</h3><p>Adli tıp, gen düzenleme ya da protein tasarımı. İlgi alanına göre bir laboratuvarla başla.</p></li>
+        <li><span class="how-num">02</span><h3>Adım adım ilerle</h3><p>Her modül sıralı adımlardan oluşur. Görevi tamamladıkça sıradaki adımın kilidi açılır.</p></li>
+        <li><span class="how-num">03</span><h3>Dene ve gözlemle</h3><p>Parametreleri değiştir, sonucu anında gör. Takıldığın terimi Sözlük’ten kolayca bul.</p></li>
+      </ol>
+      <ul class="feature-chips" aria-label="Öne çıkan özellikler">
+        <li><span aria-hidden="true">📖</span> Dahili sözlük</li>
+        <li><span aria-hidden="true">🌗</span> Koyu / açık tema</li>
+        <li><span aria-hidden="true">🔠</span> Yazı boyutu ve okuma modu</li>
+        <li><span aria-hidden="true">📱</span> Telefon ve tablet uyumlu</li>
+        <li><span aria-hidden="true">⌨️</span> Klavye ile kullanım</li>
+      </ul>
     </section>
 
     <!-- Bilgi / Hakkında Bölümü -->
@@ -120,9 +157,14 @@
 
   <footer>
     <p>BioWebLab &copy; 2026 | Açık Kaynak Biyoteknoloji Simülasyon Platformu</p>
+    <nav class="footer-links" aria-label="Alt bağlantılar">
+      <a href="#modules">Modüller</a><a href="#how">Nasıl Çalışır</a><a href="#about">Hakkında</a>
+      <a href="https://github.com/Bedirhan7171/BioWebLab" target="_blank" rel="noopener">GitHub ↗</a><a href="#top">↑ Başa dön</a>
+    </nav>
   </footer>
 
   <script src="main.js"></script>
   <script src="pages/modules-nav.js?v=3"></script>
+  <script src="pages/ui-tools.js?v=1"></script>
 </body>
 </html>
