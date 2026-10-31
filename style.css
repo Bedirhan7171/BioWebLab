@@ -482,3 +482,102 @@ footer p { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px
 @media(prefers-reduced-motion:reduce) {
  .status-pulse,.ring-a,.ring-b,.hero-visual::before,.dna-helix::before,.dna-helix::after,.dna-helix i,.floating-chip { animation:none!important; }
 }
+
+
+/* ══ BioWebLab · ana sayfa cilası (kontrast, gezinme, kart etkileşimi) ══ */
+
+/* Açık temada nane yeşili vurgu beyaz zeminde okunmuyordu: koyu tonlara geç */
+:root[data-theme="light"] {
+  --accent-cyan: #0d9488;
+  --accent-green: #4d7c0f;
+  --text-muted: #51606f;
+}
+:root[data-theme="light"] .primary-btn { color: #fff; }
+
+html { scroll-padding-top: 84px; }
+body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+
+/* Yapışkan, buzlu cam menü: sayfa boyunca erişilebilir */
+header { display: contents; }
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  padding: 14px max(20px, calc((100vw - 1240px) / 2 + 34px));
+  background: color-mix(in srgb, var(--bg-color) 78%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+.nav-links a { position: relative; padding: 6px 2px; }
+.nav-links a:not(.btn)::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--accent-cyan); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+.theme-btn { width: 40px; height: 40px; display: inline-grid; place-items: center; padding: 0; border-radius: 12px; }
+.theme-btn:hover { transform: rotate(-12deg) scale(1.06); }
+
+/* Hero: tam genişlik, daha net hiyerarşi */
+.hero.hero-showcase { max-width: 1240px; width: 100%; margin: 0 auto; padding-inline: 34px; }
+.hero h1 span {
+  background: linear-gradient(100deg, var(--accent-cyan), #60a5fa 70%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.hero-proof { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+.hero-proof span {
+  padding: 8px 14px; font-size: 12px; color: var(--text-muted);
+  border: 1px solid var(--border-color); border-radius: 999px;
+  background: color-mix(in srgb, var(--card-bg) 70%, transparent);
+}
+.hero-proof b { color: var(--accent-cyan); margin-right: 4px; font-variant-numeric: tabular-nums; }
+
+/* Modül kartları: tüm kart tıklanabilir, odak ve hover net */
+.module-card { cursor: pointer; }
+.module-card:hover { border-color: color-mix(in srgb, var(--accent-cyan) 55%, var(--border-color)); }
+.module-card:hover h3 { color: var(--accent-cyan); }
+.module-card h3 { transition: color .2s ease; }
+.module-card:active { transform: translateY(-3px) scale(.995); }
+.module-card:focus-visible { outline-offset: 4px; border-radius: 22px; }
+.card-badge { color: var(--accent-cyan); background: color-mix(in srgb, var(--accent-cyan) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent-cyan) 22%, transparent); }
+.card-icon { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+
+/* Bölümler kaydırdıkça yumuşakça belirir (destekleyen tarayıcılarda) */
+@supports (animation-timeline: view()) {
+  .section-title, .about-card {
+    animation: homeReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  @keyframes homeReveal { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+}
+
+/* Alt bilgi: dock ile çakışmasın, ortalı ve sakin */
+footer p { justify-content: center; text-align: center; }
+
+@media (max-width: 800px) {
+  .navbar { padding: 12px 20px; }
+  .hero.hero-showcase { padding-inline: 20px; }
+  .hero-proof { margin-top: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-title, .about-card { animation: none !important; }
+  .nav-links a::after, .theme-btn { transition: none !important; }
+}
+
+/* Yatay taşmayı engelle (arka plan ışımaları sağa taşıyordu); sticky'yi bozmaz */
+body { overflow-x: clip; }
+
+/* Hakkında kartı: kicker + başlık solda, metin sağda (3 çocuklu ızgara düzeltmesi) */
+.about-card { max-width: none; text-align: left; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); column-gap: 56px; row-gap: 0; align-items: center; }
+.about-card .section-kicker { grid-column: 1; grid-row: 1; align-self: end; margin-bottom: 14px; }
+.about-card h2 { grid-column: 1; grid-row: 2; align-self: start; text-align: left; }
+.about-card p { grid-column: 2; grid-row: 1 / span 2; }
+@media (max-width: 800px) {
+  .about-card .section-kicker, .about-card h2, .about-card p { grid-column: 1; grid-row: auto; }
+  .about-card .section-kicker { margin-bottom: 8px; }
+  .about-card p { margin-top: 14px; }
+}
+
+/* Kartların alt bağlantı satırları aynı hizada */
+.card-link { min-height: 52px; box-sizing: border-box; }
+.module-card p { margin-bottom: 8px; }

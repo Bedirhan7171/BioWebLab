@@ -1,0 +1,253 @@
+/* ==========================================================================
+   BioWebLab · Modül arayüz cilası (Adli Tıp, CRISPR, Protein)
+   Mevcut modül CSS'lerinin ÜZERİNE yüklenir; renk temalarını bozmaz,
+   yalnızca tipografi, boşluk, etkileşim ve mobil kullanım iyileştirmeleri yapar.
+   ========================================================================== */
+
+:root {
+  --ui-radius: 14px;
+  --ui-ease: cubic-bezier(.2, .8, .2, 1);
+  --ui-focus: #2dd4bf;
+  --ui-reading: 76ch;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.65;
+}
+
+::selection { background: rgba(45, 212, 191, .28); }
+
+/* ---------- Tipografi ---------- */
+.panel h1, .stage h3, .hero h2 { letter-spacing: -.02em; line-height: 1.15; }
+.panel h1 { margin-bottom: 18px; }
+.panel p, .panel li, .stage-desc { line-height: 1.8; }
+.panel > p, .stage-desc { max-width: var(--ui-reading); }
+.panel p + p { margin-top: 12px; }
+
+/* ---------- Üst sağ kontrol grubu (tema + sıfırla) ---------- */
+.module-toolbar {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.module-toolbar .theme-toggle-btn,
+.module-toolbar .reset-progress-btn {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  min-height: 40px;
+  border-radius: 12px !important;
+  font: 600 13px/1 'Inter', system-ui, Arial, sans-serif !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: transform .2s var(--ui-ease), box-shadow .2s var(--ui-ease), background .2s var(--ui-ease) !important;
+}
+.module-toolbar .theme-toggle-btn { min-width: 40px; padding: 0 10px !important; }
+.module-toolbar .reset-progress-btn {
+  padding: 0 14px !important;
+  gap: 7px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18) !important;
+}
+.module-toolbar .reset-progress-btn:hover,
+.module-toolbar .theme-toggle-btn:hover { transform: translateY(-2px); }
+.module-toolbar .reset-progress-btn:active,
+.module-toolbar .theme-toggle-btn:active { transform: translateY(0) scale(.97); }
+
+/* ---------- Kenar çubuğu: masaüstünde sabit, kendi içinde kaydırılır ---------- */
+@media (min-width: 1101px) {
+  .app > .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+.sidebar .brand a,
+.crispr-sidebar .brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(45, 212, 191, .10);
+  border: 1px solid rgba(45, 212, 191, .22);
+  transition: transform .2s var(--ui-ease), background .2s var(--ui-ease);
+}
+.sidebar .brand a:hover,
+.crispr-sidebar .brand a:hover { background: rgba(45, 212, 191, .18); transform: translateX(-2px); }
+
+/* ---------- Adım menüsü ---------- */
+.menu-item, .step-btn {
+  position: relative;
+  transition: transform .22s var(--ui-ease), box-shadow .22s var(--ui-ease), border-color .22s var(--ui-ease), background .22s var(--ui-ease), opacity .22s !important;
+}
+.menu-item strong { font-size: 15px !important; letter-spacing: -.01em; }
+.menu-item small { line-height: 1.35; }
+.menu-item:hover:not(.locked),
+.step-btn:hover:not(.locked) { transform: translateX(4px) !important; }
+.menu-item.locked, .step-btn.locked { cursor: not-allowed; filter: saturate(.6); }
+.menu-item.locked:hover, .step-btn.locked:hover { transform: none !important; }
+.menu-item.active::before,
+.step-btn.active::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 22%;
+  bottom: 22%;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--ui-focus);
+  box-shadow: 0 0 12px var(--ui-focus);
+}
+
+/* ---------- İlerleme çubuğu ---------- */
+.progress-bar, .progress-track { border-radius: 999px; overflow: hidden; }
+#progressFill, .progress-fill {
+  border-radius: 999px;
+  transition: width .6s var(--ui-ease) !important;
+  background-image: linear-gradient(90deg, #14b8a6, #38bdf8) !important;
+}
+#progressText { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* ---------- Paneller / kartlar ---------- */
+.panel, .stage-card { border-radius: 24px; }
+.content { max-width: 1280px; width: 100%; }
+.active-panel, .stage.active { animation: uiPanelIn .45s var(--ui-ease) both !important; }
+@keyframes uiPanelIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.rule-card, .info-card, .material-item, .machine-card, .gel-info-card,
+.term-card, .repair-card, .repair-action-card, .pcr-step-card,
+.codon-cell, .suspect-choice, .pam-btn {
+  transition: transform .22s var(--ui-ease), box-shadow .22s var(--ui-ease), border-color .22s var(--ui-ease), background .22s var(--ui-ease) !important;
+}
+.rule-card:hover, .info-card:hover, .material-item:hover, .machine-card:hover,
+.gel-info-card:hover, .term-card:hover, .repair-card:hover, .repair-action-card:hover,
+.codon-cell:hover, .suspect-choice:hover, .pam-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .16);
+}
+
+/* ---------- Butonlar ---------- */
+.action-btn, .primary-btn, .secondary-btn, .ghost-btn, .next-tool-btn,
+.temperature-buttons button, .key-btn, .tool-btn {
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: .005em;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .2s var(--ui-ease), box-shadow .2s var(--ui-ease), filter .2s var(--ui-ease), background .2s var(--ui-ease) !important;
+}
+.action-btn:hover, .primary-btn:hover, .next-tool-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.action-btn:active, .primary-btn:active, .secondary-btn:active, .ghost-btn:active,
+.next-tool-btn:active, .temperature-buttons button:active { transform: translateY(0) scale(.98); }
+button:disabled, .action-btn:disabled, .ghost-btn:disabled { cursor: not-allowed; opacity: .5; transform: none !important; filter: none; }
+
+/* Aynı satırdaki butonlar arasında nefes payı */
+.converter-card .action-btn + .action-btn { margin-left: 8px; }
+
+/* ---------- Form elemanları ---------- */
+input[type="text"], input:not([type]), select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+textarea { line-height: 1.6; resize: vertical; min-height: 120px; }
+input[type="range"] { accent-color: var(--ui-focus); }
+
+/* ---------- Klavye odağı (erişilebilirlik) ---------- */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--ui-focus);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* ---------- Geri bildirim kutuları ---------- */
+.feedback-box.show, .feedback.success, .feedback.error, .feedback.warn,
+.final-feedback.show { animation: uiPop .35s var(--ui-ease) both; }
+@keyframes uiPop { from { opacity: 0; transform: scale(.97) translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Kaydırma çubuğu ---------- */
+* { scrollbar-width: thin; scrollbar-color: rgba(120, 150, 170, .45) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(120, 150, 170, .4); border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(120, 150, 170, .65); background-clip: content-box; }
+
+/* ---------- Okunabilirlik düzeltmeleri (tema duyarlı) ---------- */
+/* Açık tema: koyu temadan kalan beyaz/soluk metinler zeminde kayboluyordu */
+:root[data-theme="light"] .app .brand h2 { color: #0f172a !important; text-shadow: none !important; }
+:root[data-theme="light"] .app .brand a { color: #0f766e !important; }
+:root[data-theme="light"] .app .progress-box { background: #f6f8fa !important; border-color: #d0d7de !important; }
+:root[data-theme="light"] .app .progress-box p,
+:root[data-theme="light"] .app .progress-box span { color: #334155 !important; }
+:root[data-theme="light"] .app .progress-bar { background: #dbe3ec !important; }
+:root[data-theme="light"] .app .progress-box #progressText { color: #334155 !important; }
+:root[data-theme="light"] .app .menu-item.active strong { color: #fff !important; }
+/* Koyu tema: aktif adımın başlığı turkuaz zemin üzerinde net okunsun */
+:root[data-theme="dark"] .app .menu-item.active strong { color: #04111d !important; }
+
+/* Sabit araç çubuğu içeriği örtmesin */
+@media (min-width: 1101px) {
+  /* Alttaki dock, kenar çubuğunun son öğelerini örtmesin */
+  .app > .sidebar, .crispr-sidebar { padding-bottom: 110px !important; }
+  .app > .content, .crispr-main { padding-top: 68px !important; }
+  .panel { min-height: calc(100vh - 100px); }
+}
+
+/* ---------- Tablet / mobil: menü yatay kaydırılan adım şeridine dönüşür ---------- */
+@media (max-width: 1100px) {
+  /* Yatay şerit ızgarayı genişletmesin */
+  .app { grid-template-columns: minmax(0, 1fr) !important; }
+  .crispr-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .sidebar, .crispr-sidebar, .content, .crispr-main, .panel, .stage-card { min-width: 0; max-width: 100%; }
+  .sidebar, .crispr-sidebar { padding: 16px !important; gap: 14px !important; }
+  .menu, .step-list {
+    flex-direction: row !important;
+    overflow-x: auto;
+    gap: 8px !important;
+    padding: 4px 2px 10px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .menu-item, .step-btn {
+    flex: 0 0 auto;
+    min-width: 168px;
+    scroll-snap-align: center;
+    padding: 12px !important;
+  }
+  .menu-item small, .step-text span { display: none; }
+  .menu-item.active::before, .step-btn.active::before { display: none; }
+  .menu-item:hover:not(.locked), .step-btn:hover:not(.locked) { transform: none !important; }
+  .progress-box { margin-top: 0 !important; padding: 14px !important; }
+  .brand h2 { font-size: 24px !important; margin-top: 4px !important; }
+  /* Dar ekranda araç çubuğu sayfayla kayar; başlıkları örtmez */
+  .module-toolbar { position: absolute; top: 10px; right: 10px; gap: 6px; }
+  .app > .content, .crispr-main { padding-top: 14px; }
+}
+
+@media (max-width: 600px) {
+  .module-toolbar .reset-progress-btn { font-size: 12px !important; padding: 0 10px !important; gap: 5px !important; }
+  .panel, .stage { padding: 20px !important; border-radius: 20px !important; }
+  .action-btn, .primary-btn, .secondary-btn { min-height: 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .active-panel, .stage.active, .feedback-box.show, .feedback.success,
+  .feedback.error, .feedback.warn, .final-feedback.show { animation: none !important; }
+  .menu-item, .step-btn, .action-btn, .primary-btn, .rule-card, .info-card { transition: none !important; }
+}
