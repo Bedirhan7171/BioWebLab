@@ -49,25 +49,6 @@
   home.innerHTML = '<span aria-hidden="true">⌂</span><span>Ana Sayfa</span>';
   nav.appendChild(home);
 
-  const theme = document.createElement("button");
-  theme.type = "button";
-  theme.className = "module-dock-theme";
-  theme.setAttribute("aria-label", "Tema değiştir");
-  theme.title = "Açık / koyu temayı değiştir";
-  theme.innerHTML = '<span aria-hidden="true">◐</span>';
-  theme.addEventListener("click", () => {
-    if (typeof window.toggleTheme === "function") {
-      window.toggleTheme();
-    } else {
-      const light = document.documentElement.getAttribute("data-theme") !== "light";
-      document.documentElement.setAttribute("data-theme", light ? "light" : "dark");
-      try { localStorage.setItem("theme", light ? "light" : "dark"); } catch (error) {}
-      theme.innerHTML = light ? '<span aria-hidden="true">☀️</span>' : '<span aria-hidden="true">🌙</span>';
-    }
-  });
-  theme.innerHTML = (document.documentElement.getAttribute("data-theme") === "light") ? '<span aria-hidden="true">☀️</span>' : '<span aria-hidden="true">🌙</span>';
-  nav.appendChild(theme);
-
   const spacer = document.createElement("div");
   spacer.className = "module-dock-spacer";
   spacer.setAttribute("aria-hidden", "true");
