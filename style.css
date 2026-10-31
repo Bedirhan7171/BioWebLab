@@ -357,3 +357,55 @@ footer {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Ana sayfa: biyoteknoloji laboratuvarı görsel dili */
+html { scroll-behavior:smooth; }
+body { overflow-x:hidden; }
+.bg-glow { filter:blur(90px); opacity:.48; animation: glowDrift 12s ease-in-out infinite alternate; }
+.bg-glow-2 { animation-delay:-5s; }
+.navbar { position:relative; z-index:2; backdrop-filter:blur(14px); }
+.logo { letter-spacing:-.7px; }
+.hero { position:relative; isolation:isolate; }
+.hero::before {
+  content:""; position:absolute; z-index:-1; width:min(68vw,720px); aspect-ratio:1;
+  left:50%; top:8%; transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(20,184,166,.16),rgba(59,130,246,.08) 42%,transparent 70%);
+  pointer-events:none; animation: heroPulse 7s ease-in-out infinite;
+}
+.badge { animation: badgeFloat 4s ease-in-out infinite; }
+.hero h1 { text-wrap:balance; letter-spacing:-1.7px; }
+.hero p { max-width:760px; margin-inline:auto; line-height:1.85; }
+.btn { transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.btn:hover { transform:translateY(-3px); }
+.module-card {
+  position:relative; overflow:hidden; isolation:isolate;
+  transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  animation: cardRise .7s both;
+}
+.module-card:nth-child(2) { animation-delay:.12s; }
+.module-card:nth-child(3) { animation-delay:.24s; }
+.module-card::before {
+  content:""; position:absolute; z-index:-1; inset:-1px;
+  background:linear-gradient(120deg,transparent 15%,rgba(45,212,191,.11),transparent 70%);
+  transform:translateX(-110%); transition:transform .65s ease;
+}
+.module-card:hover { transform:translateY(-8px); box-shadow:0 22px 50px rgba(0,0,0,.16); }
+.module-card:hover::before { transform:translateX(110%); }
+.card-icon { transition:transform .35s ease; }
+.module-card:hover .card-icon { transform:translateY(-3px) rotate(-5deg) scale(1.08); }
+.section-title h2, .about-card h2 { letter-spacing:-.7px; }
+.about-card { backdrop-filter:blur(12px); }
+:root[data-theme="light"] .hero h1 { color:#12364e; }
+:root[data-theme="light"] .hero p { color:#425c70; }
+:root[data-theme="light"] .module-card { box-shadow:0 12px 30px rgba(27,66,91,.08); }
+:root[data-theme="light"] .module-card:hover { box-shadow:0 22px 45px rgba(27,66,91,.16); }
+:root[data-theme="light"] .bg-glow { opacity:.24; }
+@keyframes glowDrift { from { transform:translate3d(-2%,0,0) scale(.96); } to { transform:translate3d(3%,4%,0) scale(1.08); } }
+@keyframes heroPulse { 0%,100% { opacity:.55; transform:translateX(-50%) scale(.94); } 50% { opacity:1; transform:translateX(-50%) scale(1.06); } }
+@keyframes badgeFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@keyframes cardRise { from { opacity:0; translate:0 16px; } to { opacity:1; translate:0 0; } }
+@media(prefers-reduced-motion:reduce) {
+  .bg-glow,.hero::before,.badge,.module-card { animation:none !important; }
+  .module-card,.btn { transition:none !important; }
+}
