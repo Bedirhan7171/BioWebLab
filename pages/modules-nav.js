@@ -5,7 +5,12 @@
     { id: "protein", label: "Protein Mühendisliği", short: "Protein", icon: "🧪", href: "protein.html" }
   ];
 
-  const file = location.pathname.split("/").pop().replace(/\.html?$/i, "");
+  const pathFile = location.pathname.split("/").pop();
+  const isHome = !pathFile || /^index\.html?$/i.test(pathFile);
+  const base = isHome ? "pages/" : "";
+  const homeHref = isHome ? "#top" : "../index.html";
+  modules.forEach(item => { item.href = base + item.href; });
+  const file = isHome ? "" : pathFile.replace(/\.html?$/i, "");
   const active = modules.find(item => item.id === file)?.id || file;
   const nav = document.createElement("nav");
   nav.className = "module-dock";
