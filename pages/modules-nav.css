@@ -187,3 +187,21 @@ body.module-leaving { opacity: .72; transition: opacity .13s ease; }
 @media(max-width:680px) {
   .module-dock-theme { width:36px; height:36px; border-radius:11px; }
 }
+
+
+/* Navigation palette follows the shared theme on every page */
+html[data-theme="light"] .module-dock {
+  --module-dock-bg: rgba(249,252,255,.94);
+  --module-dock-border: rgba(71,105,132,.25);
+  --module-dock-text: #19364c;
+  --module-dock-muted: #536f83;
+  --module-dock-accent: #0d9488;
+  background:var(--module-dock-bg) !important;
+  color:var(--module-dock-text) !important;
+  border-color:var(--module-dock-border) !important;
+  box-shadow:0 14px 38px rgba(30,58,78,.16),inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+html[data-theme="light"] .module-dock .module-dock-link { color:var(--module-dock-muted); }
+html[data-theme="light"] .module-dock .module-dock-link.is-active { color:#075b61; }
+html[data-theme="light"] .module-dock .module-dock-brand,
+html[data-theme="light"] .module-dock .module-dock-home { color:var(--module-dock-text); }
