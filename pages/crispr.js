@@ -3,7 +3,7 @@ if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
   sessionStorage.removeItem("crisprProgress");
 }
 
-const totalSteps = 9;
+const totalSteps = 10;
 
 document.getElementById("resetProgressBtn")?.addEventListener("click", function () {
   if (!window.confirm("Bu modülün ilerlemesi sıfırlansın mı? Diğer modüller etkilenmez.")) return;
@@ -22,7 +22,7 @@ function saveProgress() {
 
 const completed = savedProgress?.completed || {
   1: false, 2: false, 3: false, 4: false, 5: false,
-  6: false, 7: false, 8: false, 9: false
+  6: false, 7: false, 8: false, 9: false, 10: false
 };
 
 const correctTools = new Set(["cas9", "grna", "target-dna", "pam-check", "repair-template"]);

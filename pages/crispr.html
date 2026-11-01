@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ui-polish.css?v=1">
   <link rel="stylesheet" href="ui-tools.css?v=1">
+  <link rel="stylesheet" href="mechanics.css?v=1">
+  <link rel="stylesheet" href="assessment.css?v=1">
 </head>
 
 <body class="crispr-page">
@@ -124,6 +126,15 @@
           <span class="step-text">
             <strong>Onarım</strong>
             <span>NHEJ ve HDR</span>
+          </span>
+          <span class="step-state">🔒</span>
+        </button>
+
+        <button class="step-btn locked" data-step="10">
+          <span class="step-num">10</span>
+          <span class="step-text">
+            <strong>Değerlendirme</strong>
+            <span>Bilgi testi ve rapor</span>
           </span>
           <span class="step-state">🔒</span>
         </button>
@@ -592,10 +603,46 @@
             <button class="primary-btn" id="checkRepairBtn" style="margin-top:20px; display:none;">Onarımı Onayla ve Tamamla</button>
             <div class="feedback" id="repairFeedback">Bir onarım mekanizmasına tıkla ve DNA'nın nasıl birleştiğini izle.</div>
           </div>
+          <div class="lab-card sim-panel" id="repairSim" hidden>
+            <h3>🧫 Hücre popülasyonunda ne olur? <small>100 hücre · eğitim modeli</small></h3>
+            <p class="lab-note">Gerçekte Cas9 her hücrede aynı sonucu vermez. Koşulları seç, 100 hücrede sonuçların dağılımını gör.</p>
+            <div class="sim-controls">
+              <fieldset><legend>Şablon DNA</legend>
+                <label><input type="radio" name="simTpl" value="1" checked> Var</label>
+                <label><input type="radio" name="simTpl" value="0"> Yok</label></fieldset>
+              <fieldset><legend>Hücre evresi</legend>
+                <label><input type="radio" name="simCell" value="div" checked> Bölünen (S/G2)</label>
+                <label><input type="radio" name="simCell" value="rest"> Dinlenen (G1/G0)</label></fieldset>
+              <button type="button" class="primary-btn" id="simRun">▶ 100 hücreyi tara</button>
+            </div>
+            <div class="sim-grid" id="simGrid" role="img" aria-label="100 hücrenin sonuç dağılımı"></div>
+            <ul class="sim-legend" id="simLegend"></ul>
+            <div class="lab-verdict" id="simVerdict" aria-live="polite">Hedef: en az 20 hücrede doğru düzeltme (HDR). Koşulları değiştirip dene.</div>
+            <p class="lab-note">Olasılıklar eğitim amaçlı yuvarlatılmış örnek değerlerdir; gerçek verim hücre tipine, kılavuz RNA'ya ve yönteme göre çok değişir.</p>
+          </div>
+
 
 <div class="stage-actions">
             <button class="ghost-btn" data-prev="8">Önceki</button>
-            <button class="primary-btn" onclick="window.location.href='../index.html'">Simülasyonu Bitir</button>
+            <button class="primary-btn" data-next="10">Değerlendirmeye Geç</button>
+          </div>
+        </div>
+
+
+
+        <div class="stage" data-stage="10">
+          <div class="stage-header">
+            <div>
+              <div class="stage-kicker">Aşama 10</div>
+              <h3>Değerlendirme</h3>
+              <p class="stage-desc">Modülde öğrendiklerini ölç. Sonunda kazanım bazlı sonuçlarını ve yazdırılabilir raporunu göreceksin.</p>
+            </div>
+            <div class="badge">Test</div>
+          </div>
+          <div id="bwl-quiz" data-module="crispr"></div>
+          <div class="stage-actions">
+            <button class="ghost-btn" data-prev="9">Önceki</button>
+            <button class="primary-btn" onclick="window.location.href='../index.html'">Ana Sayfaya Dön</button>
           </div>
         </div>
 
@@ -603,12 +650,16 @@
     </main>
   </div>
 
+
   <div class="toast" id="toast"></div>
 
   <script src="theme.js"></script>
 <script src="crispr.js"></script>
+<script src="crispr-extras.js"></script>
   <script src="modules-nav.js?v=3"></script>
   <script src="ui-polish.js?v=1"></script>
   <script src="ui-tools.js?v=1"></script>
+  <script src="questions.js?v=1"></script>
+  <script src="assessment.js?v=1"></script>
 </body>
 </html>

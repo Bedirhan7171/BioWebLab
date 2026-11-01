@@ -72,6 +72,13 @@
     { id: "kodon", term: "Kodon", g: G_PROT, pat: "kodon", def: "mRNA üzerinde bir amino asidi ya da durma sinyalini belirleyen üçlü nükleotit grubudur. Toplam 64 kodon vardır." },
     { id: "aug", term: "AUG (başlangıç kodonu)", g: G_PROT, pat: "AUG", cs: true, suf: false, def: "Metiyonin amino asidini kodlar ve protein sentezinin başlangıç sinyalidir." },
     { id: "stop", term: "Stop kodonu", g: G_PROT, pat: "stop kodon", def: "UAA, UAG ve UGA kodonlarıdır. Bir amino asit kodlamazlar; protein sentezini sonlandırırlar." },
+    { id: "sessiz", term: "Sessiz mutasyon", g: G_PROT, pat: "sessiz mutasyon", def: "Kodonun değiştiği ama aynı amino asidi kodladığı mutasyondur; protein değişmez." },
+    { id: "missense", term: "Yanlış anlamlı mutasyon", g: G_PROT, pat: "yanlış anlamlı", def: "Kodonun farklı bir amino asidi kodlamasına yol açan baz değişimidir (missense). Proteinin işlevi etkilenebilir." },
+    { id: "nonsense", term: "Anlamsız mutasyon", g: G_PROT, pat: "anlamsız mutasyon", def: "Bir amino asit kodonunun Stop kodonuna dönüştüğü mutasyondur (nonsense); protein erken kesilir." },
+    { id: "frameshift", term: "Çerçeve kayması", g: G_PROT, pat: "çerçeve kayması", def: "3'ün katı olmayan sayıda baz eklenmesi ya da silinmesi sonucu okuma çerçevesinin kaymasıdır; değişiklikten sonraki tüm kodonlar farklı okunur." },
+    { id: "utr", term: "5′ UTR", g: G_PROT, pat: "UTR", cs: true, suf: false, def: "mRNA'nın başlangıç kodonundan önceki, çevrilmeyen bölgesidir. Ribozom ilk AUG'yi bulana kadar bu bölgeyi tarar." },
+    { id: "ladder", term: "Ladder (DNA merdiveni)", g: G_PCR, pat: "ladder", def: "Boyutları bilinen DNA parçalarından oluşan referans karışımdır; jelde bilinmeyen bantların boyutunu kestirmek için kullanılır." },
+    { id: "tm", term: "Tm (erime sıcaklığı)", g: G_PCR, pat: "Tm", cs: true, suf: false, def: "Primerlerin yarısının hedefe bağlı, yarısının serbest olduğu sıcaklıktır. Bağlanma sıcaklığı genellikle Tm'nin birkaç derece altında seçilir." },
     { id: "aminoasit", term: "Amino asit", g: G_PROT, pat: "amino asit", def: "Proteinlerin yapı taşıdır. Canlılarda 20 çeşit amino asit bulunur; dizilişleri proteinin şeklini ve görevini belirler." }
   ];
   const BY_ID = Object.fromEntries(GLOSSARY.map(t => [t.id, t]));
@@ -79,7 +86,7 @@
 
   /* ----- Metin içinde tıklanabilir terimler (yalnızca modüller) ----- */
   const SKIP = "button,a,label,select,option,textarea,input,svg,script,style,h1,h2,h3,h4,h5,h6,.gl-term," +
-    ".feedback,.feedback-box,.final-feedback,.toast,.codon-table,.sequence-output,.tag-output,.bwl-stepnav,code,pre,[contenteditable]";
+    ".feedback,.feedback-box,.final-feedback,.toast,.codon-table,.sequence-output,.tag-output,.bwl-stepnav,.mut-check,.mut-verdict,.lab-card,.bwl-pre,#bwl-quiz,code,pre,[contenteditable]";
 
   function highlightTerms() {
     let rx;
@@ -161,6 +168,11 @@
     ["İlerlemen", [
       "İlerleme yalnızca bu oturumda saklanır; sayfayı yenilersen başa dönersin.",
       "Bir modülü baştan başlatmak için sağ üstteki “İlerlemeyi Sıfırla” düğmesini kullan."
+    ]],
+    ["Değerlendirme", [
+      "Her modülün son adımı bir bilgi testidir; her denemede sorular ve seçenek sırası değişir.",
+      "1. adımdaki isteğe bağlı ön testi çözersen, son testle karşılaştırılarak öğrenme kazancın hesaplanır.",
+      "Sonuçların ana sayfadaki Öğrenme Panosu’nda ve yazdırılabilir raporda görünür; veriler yalnızca bu cihazda saklanır."
     ]],
     ["Gezinme", [
       "Ekranın altındaki çubuktan modüller arasında tek dokunuşla geçebilirsin.",
@@ -338,7 +350,7 @@
 
   /* ------------------- Ana sayfa: kart ilerleme durumu ------------------- */
   function homeProgress() {
-    const MAP = { "adli-tip": ["adliTipProgress", 7], crispr: ["crisprProgress", 9], protein: ["proteinProgress", 5] };
+    const MAP = { "adli-tip": ["adliTipProgress", 8], crispr: ["crisprProgress", 10], protein: ["proteinProgress", 7] };
     $$(".module-card[data-module]").forEach(card => {
       const [key, total] = MAP[card.dataset.module] || [];
       if (!key) return;

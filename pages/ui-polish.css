@@ -197,6 +197,8 @@ input[type="range"] { accent-color: var(--ui-focus); }
 :root[data-theme="light"] .app .progress-bar { background: #dbe3ec !important; }
 :root[data-theme="light"] .app .progress-box #progressText { color: #334155 !important; }
 :root[data-theme="light"] .app .menu-item.active strong { color: #fff !important; }
+:root[data-theme="light"] .app .menu-item:not(.active) strong { color: #0f172a !important; }
+:root[data-theme="light"] .app .menu-item:not(.active) small { color: #475569 !important; }
 /* Koyu tema: aktif adımın başlığı turkuaz zemin üzerinde net okunsun */
 :root[data-theme="dark"] .app .menu-item.active strong { color: #04111d !important; }
 

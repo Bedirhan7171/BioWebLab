@@ -1,0 +1,136 @@
+/* ==========================================================================
+   BioWebLab · Yeni mekanikler için ortak stiller
+   (Mutasyon Laboratuvarı, PCR parametre laboratuvarı, onarım simülatörü, değerlendirme)
+   ========================================================================== */
+
+.tag.utr { background: rgba(148, 163, 184, .16); color: var(--bwl-muted); border: 1px dashed var(--bwl-border); }
+
+/* ---------- Ortak kart ---------- */
+.mut-card, .lab-card {
+  margin: 0 0 16px; padding: 18px 20px; border-radius: 18px;
+  border: 1px solid var(--bwl-border); background: var(--bwl-surface); color: var(--bwl-text);
+}
+.mut-card h3, .lab-card h3 { margin: 0 0 10px; font-size: 16px; letter-spacing: -.01em; }
+.mut-card h3 small, .lab-card h3 small { font-weight: 600; color: var(--bwl-muted); margin-left: 6px; font-size: 12px; }
+
+/* ---------- Mutasyon laboratuvarı ---------- */
+.mutlab { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0 4px; }
+.mut-seq { display: flex; flex-wrap: wrap; align-items: center; row-gap: 8px; margin-bottom: 10px; }
+.mut-gap { width: 10px; }
+.mut-base {
+  all: unset; box-sizing: border-box; display: inline-grid; place-items: center; width: 27px; height: 34px;
+  font: 700 15px/1 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; border-radius: 7px;
+  color: var(--bwl-text); background: color-mix(in srgb, var(--bwl-accent) 10%, transparent);
+}
+.mut-g1 { background: color-mix(in srgb, #60a5fa 14%, transparent); }
+button.mut-base { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+button.mut-base:hover { transform: translateY(-2px); }
+button.mut-base:focus-visible { outline: 3px solid var(--bwl-accent); outline-offset: 2px; }
+.mut-base.sel { box-shadow: 0 0 0 2px var(--bwl-accent); background: color-mix(in srgb, var(--bwl-accent) 30%, transparent); }
+.mut-base.changed { color: #fff; background: #ef4444; }
+.mut-prot { margin: 6px 0 0; font-size: 13.5px; color: var(--bwl-muted); max-width: none; }
+.mut-prot strong { color: var(--bwl-text); font-weight: 700; word-break: break-word; }
+.mut-tools { margin-top: 14px; display: grid; gap: 10px; }
+.mut-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.mut-label { min-width: 118px; font-size: 12.5px; font-weight: 700; color: var(--bwl-muted); }
+.mut-btns { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.mut-btns button {
+  min-width: 40px; height: 36px; padding: 0 12px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--bwl-border); background: transparent; color: var(--bwl-text); font: 700 14px/1 ui-monospace, Menlo, Consolas, monospace;
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.mut-btns button:hover { border-color: var(--bwl-accent); background: color-mix(in srgb, var(--bwl-accent) 14%, transparent); transform: translateY(-1px); }
+.mut-btns button:focus-visible { outline: 3px solid var(--bwl-accent); outline-offset: 2px; }
+.mut-btns .mut-wide { font-family: inherit; font-size: 13px; padding: 0 16px; }
+.mut-ghost { color: var(--bwl-muted) !important; }
+
+.mut-verdict {
+  margin: 4px 0 16px; padding: 14px 18px; border-radius: 14px; font-size: 14.5px; line-height: 1.6;
+  border: 1px solid var(--bwl-border); background: var(--bwl-surface); color: var(--bwl-text);
+}
+.mut-verdict.ok { border-color: #22c55e; background: color-mix(in srgb, #22c55e 12%, transparent); }
+.mut-verdict.warn { border-color: #f59e0b; background: color-mix(in srgb, #f59e0b 12%, transparent); }
+.mut-verdict.bad { border-color: #ef4444; background: color-mix(in srgb, #ef4444 11%, transparent); }
+
+.mut-table { display: grid; grid-template-columns: 40px 1fr 1fr; gap: 6px; font: 600 13px ui-monospace, Menlo, Consolas, monospace; max-height: 340px; overflow: auto; }
+.mt-head { font: 700 11px Inter, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--bwl-muted); padding: 4px 8px; position: sticky; top: 0; background: var(--bwl-surface); }
+.mt-n { padding: 8px; color: var(--bwl-muted); }
+.mt-cell { padding: 8px 10px; border-radius: 8px; background: color-mix(in srgb, var(--bwl-text) 5%, transparent); }
+.mt-cell.diff { background: color-mix(in srgb, #ef4444 20%, transparent); color: var(--bwl-text); }
+
+.mut-check { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; }
+.mut-check li { display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: var(--bwl-muted); transition: color .2s; }
+.mut-check li span { width: 20px; text-align: center; font-weight: 800; }
+.mut-check li.done { color: var(--bwl-text); }
+.mut-check li.done span { color: #22c55e; }
+.mut-hint { font-size: 13px; color: var(--bwl-muted); margin: 0 0 12px; max-width: none; }
+
+@media (max-width: 900px) { .mutlab { grid-template-columns: 1fr; } .mut-label { min-width: 100%; } }
+
+/* ---------- Adli Tıp: PCR parametre laboratuvarı ---------- */
+.pcr-lab { margin-top: 28px; padding-top: 22px; border-top: 1px dashed var(--bwl-border); }
+.lab-title { margin: 0 0 6px; font-size: 20px; letter-spacing: -.02em; }
+.lab-title small { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--bwl-accent); margin-left: 8px; }
+.lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
+.lab-note { font-size: 13px; color: var(--bwl-muted); margin: 0 0 12px; max-width: none; }
+.lab-label { display: block; margin: 12px 0 4px; font-size: 13px; font-weight: 600; color: var(--bwl-muted); }
+.lab-label b { color: var(--bwl-text); font-variant-numeric: tabular-nums; }
+.lab-card input[type="range"] { width: 100%; accent-color: var(--bwl-accent); }
+.lab-select { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--bwl-border); background: transparent; color: var(--bwl-text); font: 600 14px Inter, system-ui, sans-serif; }
+.lab-select option { color: #0f172a; }
+.lab-bar { display: grid; grid-template-columns: 130px 1fr 44px; align-items: center; gap: 10px; margin-top: 12px; font-size: 12.5px; color: var(--bwl-muted); }
+.lab-bar > div { height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--bwl-text) 10%, transparent); overflow: hidden; }
+.lab-bar i { display: block; height: 100%; width: 0; border-radius: 999px; transition: width .35s var(--bwl-ease); }
+.bar-spec { background: linear-gradient(90deg, #14b8a6, #22c55e); }
+.bar-non { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+.lab-bar b { color: var(--bwl-text); text-align: right; font-variant-numeric: tabular-nums; }
+.mini-gel { position: relative; height: 118px; margin: 14px 0 4px; border-radius: 12px; background: linear-gradient(#0b1220, #111c33); overflow: hidden; }
+.mg-well { position: absolute; top: 8px; left: 50%; width: 46px; height: 7px; margin-left: -23px; border-radius: 3px; background: rgba(255,255,255,.18); }
+.mini-gel i { position: absolute; left: 50%; width: 46px; height: 7px; margin-left: -23px; border-radius: 4px; transition: opacity .35s; }
+.mg-main { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+.mg-extra { background: #f59e0b; box-shadow: 0 0 10px #f59e0b; opacity: 0; }
+.lab-verdict { margin-top: 12px; padding: 12px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.55; border: 1px solid var(--bwl-border); }
+.lab-verdict.ok { border-color: #22c55e; background: color-mix(in srgb, #22c55e 12%, transparent); }
+.lab-verdict.warn { border-color: #f59e0b; background: color-mix(in srgb, #f59e0b 12%, transparent); }
+.lab-verdict.bad { border-color: #ef4444; background: color-mix(in srgb, #ef4444 11%, transparent); }
+.lab-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 8px; }
+.lab-out div { padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--bwl-text) 6%, transparent); }
+.lab-out small { display: block; font-size: 11.5px; color: var(--bwl-muted); }
+.lab-out b { font-size: 17px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+#cycChart { width: 100%; height: auto; margin-top: 6px; }
+#cycChart .ch-grid { stroke: var(--bwl-border); stroke-width: 1; }
+#cycChart .ch-tick, #cycChart .ch-axis { fill: var(--bwl-muted); font: 10px Inter, system-ui, sans-serif; }
+#cycChart .ch-ideal { fill: none; stroke: var(--bwl-muted); stroke-width: 1.8; stroke-dasharray: 5 4; }
+#cycChart .ch-real { fill: none; stroke: var(--bwl-accent); stroke-width: 2.6; }
+#cycChart .ch-cap { stroke: #ef4444; stroke-width: 1; stroke-dasharray: 2 3; opacity: .7; }
+#cycChart .ch-cap-t { fill: #ef4444; font: 9.5px Inter, system-ui, sans-serif; }
+.lab-legend { display: flex; gap: 16px; font-size: 12px; color: var(--bwl-muted); }
+.lab-legend span::before { content: ""; display: inline-block; width: 18px; height: 0; margin-right: 6px; vertical-align: middle; border-top: 2.6px solid var(--bwl-accent); }
+.lab-legend .lg-ideal::before { border-top: 2px dashed var(--bwl-muted); }
+
+/* ---------- Adli Tıp: dinamik vaka bantları ve cetvel ---------- */
+.gel-band.gb, .gel-band.gb::after { background: var(--bc, #38bdf8); }
+.gel-board.running .gel-band.gb { top: var(--final-top); }
+.gel-board.running { cursor: crosshair; }
+.gel-ruler { position: absolute; left: 0; right: 0; height: 0; z-index: 5; pointer-events: none; }
+.gel-ruler i { position: absolute; left: 0; right: 0; top: 0; border-top: 1.5px dashed #fbbf24; filter: drop-shadow(0 0 4px rgba(251, 191, 36, .8)); }
+.gel-ruler span { position: absolute; right: 10px; top: -30px; padding: 4px 10px; border-radius: 8px; font: 700 12px Inter, system-ui, sans-serif; background: #111827; color: #fbbf24; border: 1px solid #fbbf24; }
+.gel-ruler[hidden] { display: none; }
+
+@media (max-width: 900px) { .lab-grid { grid-template-columns: 1fr; } .lab-bar { grid-template-columns: 100px 1fr 40px; } }
+
+/* ---------- CRISPR: hücre popülasyonu simülasyonu ---------- */
+.model-note { margin: 8px 0 0; padding: 8px 12px; border-left: 3px solid var(--bwl-accent); border-radius: 0 10px 10px 0; font-size: 12.5px; line-height: 1.55; color: var(--bwl-muted); background: color-mix(in srgb, var(--bwl-accent) 8%, transparent); max-width: 70ch; }
+.sim-panel { margin-top: 18px; }
+.sim-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; margin: 6px 0 14px; }
+.sim-controls fieldset { margin: 0; padding: 8px 14px 10px; border: 1px solid var(--bwl-border); border-radius: 12px; }
+.sim-controls legend { padding: 0 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--bwl-muted); }
+.sim-controls label { display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; font-size: 13.5px; cursor: pointer; }
+.sim-controls input[type="radio"] { accent-color: var(--bwl-accent); }
+.sim-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; max-width: 520px; margin: 4px 0 12px; }
+.sim-grid i { aspect-ratio: 1; border-radius: 4px; transition: background .25s; }
+.o-hdr { background: #22c55e; } .o-inf { background: #f59e0b; } .o-fs { background: #ef4444; } .o-none { background: color-mix(in srgb, var(--bwl-text) 22%, transparent); }
+.sim-grid.idle i { opacity: .5; }
+.sim-legend { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; font-size: 13.5px; }
+.sim-legend li { display: flex; align-items: center; gap: 8px; }
+.sim-legend i { width: 14px; height: 14px; border-radius: 4px; flex: none; }

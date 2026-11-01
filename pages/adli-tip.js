@@ -13,7 +13,7 @@ const progressText = document.getElementById("progressText");
 const progressKey = "adliTipProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
 let currentStep = savedProgress?.currentStep || 1;
-const totalSteps = 7;
+const totalSteps = 8;
 let unlockedStep = savedProgress?.unlockedStep || 1;
 
 function saveProgress() {
@@ -101,7 +101,8 @@ const titles = {
   4:"PCR Mantığı",
   5:"PCR Simülasyonu",
   6:"Jel Elektroforezi",
-  7:"Karşılaştırma"
+  7:"Karşılaştırma",
+  8:"Değerlendirme"
 };
 
 function updatePageTitle(){
@@ -412,7 +413,7 @@ function runGelElectrophoresis(){
   setTimeout(() => {
 
     feedback.innerHTML =
-    "✅ Bant desenleri oluştu. Olay yeri örneği ile Şüpheli A profili büyük ölçüde benzer görünüyor. Karşılaştırma aşaması açıldı.";
+    "✅ Bant desenleri oluştu. Cetvelle bant boyutlarını ladder’a göre tahmin et. Karşılaştırma aşaması açıldı.";
 
     feedback.style.color = "#166534";
 

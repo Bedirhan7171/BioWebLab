@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ui-polish.css?v=1">
   <link rel="stylesheet" href="ui-tools.css?v=1">
+  <link rel="stylesheet" href="mechanics.css?v=1">
+  <link rel="stylesheet" href="assessment.css?v=1">
 </head>
 <body>
 <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç" onclick="toggleTheme()">🌙</button>
@@ -40,6 +42,7 @@
 <button class="menu-item locked" data-step="5"><span>🔒</span><div><strong>PCR Simülasyonu</strong><small>Cihazı çalıştır</small></div></button>
 <button class="menu-item locked" data-step="6"><span>🔒</span><div><strong>Jel Elektroforezi</strong><small>DNA ayırımı</small></div></button>
 <button class="menu-item locked" data-step="7"><span>🔒</span><div><strong>Karşılaştırma</strong><small>Bant analizi</small></div></button>
+<button class="menu-item locked" data-step="8"><span>🔒</span><div><strong>Değerlendirme</strong><small>Bilgi testi ve rapor</small></div></button>
 </nav>
 
 <div class="progress-box">
@@ -175,6 +178,39 @@ DNA çift sarmal halde. Sıcaklık seçerek süreci başlat.
 
 </div>
 </div>
+
+<div class="pcr-lab">
+<h2 class="lab-title">🔬 PCR Parametre Laboratuvarı <small>isteğe bağlı keşif</small></h2>
+<p>Gerçek deneylerde sonucu büyük ölçüde sıcaklık ve döngü sayısı belirler. Parametreleri değiştir, ne olacağını önce tahmin et, sonra gör.</p>
+<div class="lab-grid">
+
+<div class="lab-card">
+<h3>Bağlanma (annealing) sıcaklığı</h3>
+<p class="lab-note">Bu primerin erime sıcaklığı (Tm) ≈ 60 °C. Genellikle Tm’nin yaklaşık 5 °C altı seçilir.</p>
+<label for="annealRange" class="lab-label">Sıcaklık: <b id="annealVal">55 °C</b></label>
+<input type="range" id="annealRange" min="40" max="72" value="55" step="1">
+<div class="lab-bar"><span>Özgül ürün</span><div><i id="barSpec" class="bar-spec"></i></div><b id="barSpecV"></b></div>
+<div class="lab-bar"><span>Özgül olmayan ürün</span><div><i id="barNon" class="bar-non"></i></div><b id="barNonV"></b></div>
+<div class="mini-gel" aria-hidden="true"><span class="mg-well"></span><i class="mg-extra" style="top:30px"></i><i class="mg-extra" style="top:62px"></i><i class="mg-main" id="mgMain" style="top:46px"></i><i class="mg-extra" style="top:86px"></i></div>
+<div id="annealVerdict" class="lab-verdict" aria-live="polite"></div>
+</div>
+
+<div class="lab-card">
+<h3>Döngü sayısı ve verim</h3>
+<label for="cycRange" class="lab-label">Döngü sayısı: <b id="cycVal">25</b></label>
+<input type="range" id="cycRange" min="1" max="40" value="25" step="1">
+<label for="effRange" class="lab-label">Döngü başına verim: <b id="effVal">%95</b></label>
+<input type="range" id="effRange" min="70" max="100" value="95" step="1">
+<label for="startSel" class="lab-label">Başlangıç kopya sayısı</label>
+<select id="startSel" class="lab-select"><option value="10">10</option><option value="1000" selected>1.000</option><option value="100000">100.000</option></select>
+<div class="lab-out"><div><small>Bu ayarlarla</small><b id="copyOut"></b></div><div><small>İdeal (%100, sınırsız)</small><b id="idealOut"></b></div></div>
+<svg id="cycChart" viewBox="0 0 360 180" role="img" aria-label="Döngü sayısına göre kopya sayısı grafiği (logaritmik)"></svg>
+<div class="lab-legend"><span class="lg-ideal">İdeal artış</span><span class="lg-real">Seçili ayar</span></div>
+<div id="cycVerdict" class="lab-verdict" aria-live="polite"></div>
+</div>
+
+</div>
+</div>
 </section>
 
 <section class="panel" id="panel6">
@@ -301,7 +337,7 @@ Küçük DNA parçaları jel içinde daha hızlı ve daha uzağa ilerler.
 </div>
 
 <div class="gel-note">
-Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Bu eğitim modelinde olay yeri örneği ile Şüpheli C'nin incelenen bant deseni eşleşmektedir; bu bulgu tek başına suçluluğu kanıtlamaz.
+Ladder, DNA parçalarının yaklaşık boyutlarını karşılaştırmak için kullanılan referans şerididir. Bu eğitim modelinde vaka her seferinde farklıdır. Jel üzerinde gezinerek (veya dokunarak) cetvelle bant boyutunu ladder'a göre tahmin edebilirsin.
 </div>
 
 </div>
@@ -342,49 +378,14 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 
 <h3>Bant Profili Özeti</h3>
 
-<div class="profile-table">
-
-<div class="profile-row header-row">
-<span>Örnek</span>
-<span>Gözlenen bant konumları</span>
-<span>Yorum</span>
-</div>
-
-<div class="profile-row">
-<span>Olay Yeri</span>
-<span>132 / 198 / 278 / 348 / 425</span>
-<span>Referans profil</span>
-</div>
-
-<div class="profile-row">
-<span>Şüpheli A</span>
-<span>132 / 225 / 278 / 425</span>
-<span>Farklı profil</span>
-</div>
-
-<div class="profile-row">
-<span>Şüpheli B</span>
-<span>145 / 235 / 320 / 395 / 455</span>
-<span>Farklı profil</span>
-</div>
-
-<div class="profile-row">
-<span>Şüpheli C</span>
-<span>132 / 198 / 278 / 348 / 425</span>
-<span>İncelenen profiller eşleşiyor</span>
-</div>
-
-<div class="profile-row">
-<span>Şüpheli D</span>
-<span>198 / 278 / 425</span>
-<span>Yetersiz eşleşme</span>
-</div>
-
-</div>
+<div class="profile-table" id="profileTable"></div>
 
 <div class="forensic-note">
-<strong>Adli yorum:</strong> Olay yeri örneği ile Şüpheli C'nin incelenen DNA profilleri birbiriyle eşleşmektedir. Bu bulgu, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
+<strong>Adli yorum:</strong> Eşleşme kararını verdikten sonra “Yorum” sütunu açılır. DNA profili eşleşmesi, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
 </div>
+
+<button type="button" class="action-btn" id="adliToQuiz" hidden>Değerlendirmeye Geç →</button>
+<button type="button" class="action-btn secondary-btn" id="newCaseBtn" hidden>↻ Yeni vaka dene</button>
 
 </div>
 
@@ -392,13 +393,21 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 
 </section>
 
+<section class="panel" id="panel8">
+<h1>8. Değerlendirme</h1>
+<div id="bwl-quiz" data-module="adli-tip"></div>
+</section>
+
 </main>
 </div>
 
 <script src="theme.js?v=3"></script>
 <script src="adli-tip.js?v=4"></script>
+<script src="adli-extras.js?v=1"></script>
   <script src="modules-nav.js?v=3"></script>
   <script src="ui-polish.js?v=1"></script>
   <script src="ui-tools.js?v=1"></script>
+  <script src="questions.js?v=1"></script>
+  <script src="assessment.js?v=1"></script>
 </body>
 </html>

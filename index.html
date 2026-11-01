@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="pages/modules-nav.css?v=3">
   <link rel="stylesheet" href="pages/ui-tools.css?v=1">
+  <link rel="stylesheet" href="pages/assessment.css?v=1">
 </head>
 <body id="top">
 
@@ -32,6 +33,7 @@
       <div class="nav-links">
         <a href="#modules">Modüller</a>
         <a href="#how">Nasıl Çalışır</a>
+        <a href="#progress">Panom</a>
         <a href="#about">Hakkında</a>
         <button
   id="theme-toggle"
@@ -58,7 +60,7 @@
           <a href="#modules" class="btn primary-btn">Simülasyonlara Başla <span aria-hidden="true">↘</span></a>
           <a href="#about" class="btn secondary-btn">Platformu Keşfet <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-proof"><span><b>03</b> interaktif modül</span><span><b>21</b> adım</span><span><b>✓</b> kurulum gerektirmez</span></div>
+        <div class="hero-proof"><span><b>03</b> interaktif modül</span><span><b>25</b> adım</span><span><b>3</b> bilgi testi</span><span><b>✓</b> kurulum gerektirmez</span></div>
       </div>
       <div class="hero-visual" aria-label="Soyut DNA sarmalı animasyonu" role="img">
         <div class="visual-ring ring-a"></div><div class="visual-ring ring-b"></div>
@@ -87,8 +89,8 @@
           <p>
             PCR çoğaltımı, jel elektroforezi yöntemi ve suç mahalli DNA eşleştirme simülasyonu.
           </p>
-          <div class="card-meta"><span class="meta-chip">7 adım</span><span class="meta-chip">Etkileşimli</span></div>
-          <ul class="card-outcomes" aria-label="Kazanımlar"><li>PCR’ın üç sıcaklık aşamasını ve amacını açıklar</li><li>Jel elektroforezinde DNA bantlarını yorumlar</li><li>Şüpheli DNA profillerini bant analiziyle karşılaştırır</li></ul>
+          <div class="card-meta"><span class="meta-chip">8 adım</span><span class="meta-chip">Etkileşimli</span><span class="meta-chip">Bilgi testi</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>PCR’ın üç sıcaklık aşamasını ve amacını açıklar</li><li>Jel elektroforezinde DNA bantlarını yorumlar</li><li>Ladder ile bant boyutu kestirir, şüpheli profilleri karşılaştırır</li></ul>
           <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Laboratuvara gir <b aria-hidden="true">↗</b></span>
         </a>
@@ -101,8 +103,8 @@
           <p>
             gRNA hedefleme, Cas9 enzimi kesim mekanizması ve DNA onarım süreçlerinin interaktif modellenmesi.
           </p>
-          <div class="card-meta"><span class="meta-chip">9 adım</span><span class="meta-chip">Etkileşimli</span></div>
-          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Mutasyonun proteini nasıl etkileyebileceğini kavrar</li><li>gRNA, PAM ve Cas9’un rolünü ilişkilendirir</li><li>NHEJ ve HDR onarım yollarını ayırt eder</li></ul>
+          <div class="card-meta"><span class="meta-chip">10 adım</span><span class="meta-chip">Etkileşimli</span><span class="meta-chip">Bilgi testi</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Mutasyonun proteini nasıl etkileyebileceğini kavrar</li><li>gRNA, PAM ve Cas9’un rolünü ilişkilendirir</li><li>NHEJ ve HDR sonuçlarını hücre popülasyonunda karşılaştırır</li></ul>
           <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Modülü incele <b aria-hidden="true">↗</b></span>
         </a>
@@ -115,8 +117,8 @@
           <p>
             Kodon-amino asit dönüşümleri, protein mühendisliği ve 3D katlanma mantığını keşfedin.
           </p>
-          <div class="card-meta"><span class="meta-chip">5 adım</span><span class="meta-chip">Etkileşimli</span></div>
-          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Amino asit zinciri ile protein ilişkisini açıklar</li><li>Kodon tablosuyla mRNA’yı proteine çevirir</li><li>DNA’dan RNA’ya baz eşleşmesini uygular</li></ul>
+          <div class="card-meta"><span class="meta-chip">7 adım</span><span class="meta-chip">Etkileşimli</span><span class="meta-chip">Bilgi testi</span></div>
+          <ul class="card-outcomes" aria-label="Kazanımlar"><li>Amino asit zinciri ile protein ilişkisini açıklar</li><li>Kodon tablosuyla mRNA’yı proteine çevirir</li><li>Mutasyon türlerini (sessiz, anlamsız, çerçeve kayması…) ayırt eder</li></ul>
           <div class="card-progress" hidden><div class="card-progress-bar"><i></i></div><span></span></div>
           <span class="card-link">Modülü incele <b aria-hidden="true">↗</b></span>
         </a>
@@ -144,6 +146,15 @@
       </ul>
     </section>
 
+    <!-- Öğrenme Panosu -->
+    <section id="progress" class="how-section">
+      <div class="section-title">
+        <span class="section-kicker">ÖĞRENME PANOSU</span><h2>Ne kadar öğrendin?</h2>
+        <p>Modül sonundaki testleri çözdükçe sonuçların, kazanım analizin ve öğrenme kazancın burada görünür.</p>
+      </div>
+      <div id="bwlDash"></div>
+    </section>
+
     <!-- Bilgi / Hakkında Bölümü -->
     <section id="about" class="about-section">
       <div class="about-card">
@@ -166,5 +177,7 @@
   <script src="main.js"></script>
   <script src="pages/modules-nav.js?v=3"></script>
   <script src="pages/ui-tools.js?v=1"></script>
+  <script src="pages/questions.js?v=1"></script>
+  <script src="pages/assessment.js?v=1"></script>
 </body>
 </html>

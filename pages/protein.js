@@ -17,7 +17,7 @@ document.getElementById("resetProgressBtn")?.addEventListener("click", function 
 const progressKey = "proteinProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
 let currentStep = savedProgress?.currentStep || 1;
-const totalSteps = 5;
+const totalSteps = 7;
 let unlockedStep = savedProgress?.unlockedStep || 1;
 
 function saveProgress() {
@@ -119,19 +119,25 @@ const titles = {
   2:"Protein Üretimi",
   3:"64 Kodon Tablosu",
   4:"Protein Tasarım",
-  5:"DNA/RNA Çevirici"
+  5:"DNA/RNA Çevirici",
+  6:"Mutasyon Laboratuvarı",
+  7:"Değerlendirme"
 };
 
 function updatePageTitle(){
   document.title = "Protein Mühendisliği | " + titles[currentStep];
 }
 
+const DNA_TO_RNA = { A: "U", T: "A", G: "C", C: "G" };
+const RNA_TO_DNA = { A: "T", U: "A", G: "C", C: "G" };
+
+// Her harf yalnızca bir kez, tek geçişte çevrilir (zincirleme replace G↔C'yi geri çeviriyordu)
 function dnaToRna(dna){
-  return dna.replace(/A/g,"U").replace(/T/g,"A").replace(/G/g,"C").replace(/C/g,"G");
+  return dna.replace(/[ATGC]/g, b => DNA_TO_RNA[b]);
 }
 
 function rnaToDna(rna){
-  return rna.replace(/A/g,"T").replace(/U/g,"A").replace(/C/g,"G").replace(/G/g,"C");
+  return rna.replace(/[AUGC]/g, b => RNA_TO_DNA[b]);
 }
 
 function splitCodons(seq){
@@ -217,19 +223,28 @@ function convertSequence(){
     return;
   }
 
-  let rna = type === "rna" ? input : dnaToRna(input);
-  let dna = type === "dna" ? input : rnaToDna(input);
+  // dna: kalıp zinciri (3'→5'), coding: kodlayan zincir (5'→3'), rna: mRNA
+  let rna = type === "rna" ? input : type === "coding" ? input.replace(/T/g, "U") : dnaToRna(input);
+  let dna = type === "dna" ? input : type === "coding" ? rnaToDna(rna) : rnaToDna(input);
 
   rnaResult.textContent = rna.match(/.{1,3}/g)?.join(" ") || "";
   dnaResult.textContent = dna.match(/.{1,3}/g)?.join(" ") || "";
 
-  const codons = splitCodons(rna);
+  // Ribozom, mRNA üzerinde ilk AUG'yi bulana kadar tarar; öncesi 5' UTR'dir (çevrilmez)
+  const startIdx = rna.indexOf("AUG");
 
-  if(codons[0] !== "AUG"){
+  if(startIdx === -1){
     feedback.classList.add("error");
-    feedback.innerHTML = "❌ Protein üretimi doğru başlamak için mRNA dizisi AUG ile başlamalıdır.";
+    feedback.innerHTML = "❌ Dizide AUG başlangıç kodonu yok; ribozom çeviriyi başlatamaz.";
     return;
   }
+
+  const utr = rna.slice(0, startIdx);
+  if(utr){
+    codonResult.appendChild(makeTag("5′ UTR: " + utr, "utr"));
+  }
+
+  const codons = splitCodons(rna.slice(startIdx));
 
   let stopped = false;
 
@@ -252,11 +267,12 @@ function convertSequence(){
     feedback.innerHTML = "ℹ️ Dizi AUG ile başladı ancak Stop kodonu içermiyor. Gerçek protein sentezinde üretim Stop kodonuyla bitmelidir.";
   }else{
     feedback.classList.add("success");
-    feedback.innerHTML = "✅ Dizi okundu. AUG ile başladı ve Stop kodonunda durdu.";
+    feedback.innerHTML = "✅ Dizi okundu. AUG ile başladı ve Stop kodonunda durdu." +
+      (utr ? " İlk " + utr.length + " baz 5′ UTR olduğu için çevrilmedi." : "");
   }
 
-  if(unlockedStep < 5){
-    unlockedStep = 5;
+  if(unlockedStep < 6){
+    unlockedStep = 6;
     saveProgress();
     refreshLocks();
   }

@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ui-polish.css?v=1">
   <link rel="stylesheet" href="ui-tools.css?v=1">
+  <link rel="stylesheet" href="mechanics.css?v=1">
+  <link rel="stylesheet" href="assessment.css?v=1">
 </head>
 <body>
 <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç">🌙</button>
@@ -38,6 +40,8 @@
     <button class="menu-item locked" data-step="3"><span>🔒</span><div><strong>64 Kodon Tablosu</strong><small>Kodonları öğren</small></div></button>
     <button class="menu-item locked" data-step="4"><span>🔒</span><div><strong>Protein Tasarım</strong><small>Amino asitten dizi üret</small></div></button>
     <button class="menu-item locked" data-step="5"><span>🔒</span><div><strong>DNA/RNA Çevirici</strong><small>Diziyi proteine çevir</small></div></button>
+    <button class="menu-item locked" data-step="6"><span>🔒</span><div><strong>Mutasyon Laboratuvarı</strong><small>Baz değişimi, sonuç</small></div></button>
+    <button class="menu-item locked" data-step="7"><span>🔒</span><div><strong>Değerlendirme</strong><small>Bilgi testi ve rapor</small></div></button>
     
   </nav>
 
@@ -142,7 +146,8 @@
       <label>Dizi türü</label>
       <select id="sequenceType">
         <option value="rna">RNA / mRNA</option>
-        <option value="dna">DNA kalıp zinciri</option>
+        <option value="dna">DNA kalıp zinciri (3′→5′)</option>
+        <option value="coding">DNA kodlayan zincir (5′→3′)</option>
       </select>
 
       <label>Dizi</label>
@@ -251,13 +256,70 @@
   </div>
 </section>
 
+
+<section class="panel" id="panel6">
+  <h1>6. Mutasyon Laboratuvarı</h1>
+  <p>Bir genin mRNA dizisinde değişiklik yap ve proteinin nasıl etkilendiğini izle. Aşağıdaki <strong>4 mutasyon türünün</strong> her birini en az bir kez oluşturduğunda değerlendirme adımı açılır.</p>
+
+  <div class="mutlab">
+    <div class="mut-card">
+      <h3>Referans mRNA</h3>
+      <div id="mutRef" class="mut-seq" aria-label="Referans mRNA dizisi"></div>
+      <p class="mut-prot">Protein: <strong id="mutRefProt"></strong></p>
+    </div>
+
+    <div class="mut-card">
+      <h3>Mutasyonlu dizi <small>(bir baza tıkla)</small></h3>
+      <div id="mutSeq" class="mut-seq mut-seq-edit" role="group" aria-label="Mutasyonlu mRNA dizisi"></div>
+      <p class="mut-prot">Protein: <strong id="mutNewProt"></strong></p>
+
+      <div class="mut-tools">
+        <div class="mut-row"><span class="mut-label">Seçili konum</span><b id="mutPos">—</b></div>
+        <div class="mut-row"><span class="mut-label">Bazı değiştir</span>
+          <span class="mut-btns" data-op="sub"><button type="button" data-b="A">A</button><button type="button" data-b="U">U</button><button type="button" data-b="G">G</button><button type="button" data-b="C">C</button></span></div>
+        <div class="mut-row"><span class="mut-label">Önüne baz ekle</span>
+          <span class="mut-btns" data-op="ins"><button type="button" data-b="A">A</button><button type="button" data-b="U">U</button><button type="button" data-b="G">G</button><button type="button" data-b="C">C</button></span></div>
+        <div class="mut-row"><span class="mut-label">Seçili bazı</span>
+          <span class="mut-btns"><button type="button" id="mutDel" class="mut-wide">Sil</button><button type="button" id="mutReset" class="mut-wide mut-ghost">↺ Sıfırla</button></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mutVerdict" class="mut-verdict" aria-live="polite">Bir baz seçip değişiklik yap.</div>
+
+  <div class="mut-card">
+    <h3>Kodon karşılaştırması</h3>
+    <div id="mutTable" class="mut-table"></div>
+  </div>
+
+  <div class="mut-card">
+    <h3>Keşif görevi <small id="mutCount">0 / 4</small></h3>
+    <ul id="mutChecklist" class="mut-check">
+      <li data-k="silent"><span>○</span> <strong>Sessiz (silent)</strong> — amino asit değişmez</li>
+      <li data-k="missense"><span>○</span> <strong>Yanlış anlamlı (missense)</strong> — başka bir amino asit gelir</li>
+      <li data-k="nonsense"><span>○</span> <strong>Anlamsız (nonsense)</strong> — erken Stop kodonu oluşur</li>
+      <li data-k="frameshift"><span>○</span> <strong>Çerçeve kayması (frameshift)</strong> — 3'ün katı olmayan ekleme/silme</li>
+    </ul>
+    <p class="mut-hint">İpucu: Kodonların 3. bazı çoğu zaman “sallanır”; UGG kodonunda bir değişiklik Stop üretebilir; ekleme veya silme tüm sonraki kodonları kaydırır.</p>
+    <button type="button" id="mutNext" class="action-btn" hidden>Değerlendirmeye Geç →</button>
+  </div>
+</section>
+
+<section class="panel" id="panel7">
+  <h1>7. Değerlendirme</h1>
+  <div id="bwl-quiz" data-module="protein"></div>
+</section>
+
 </main>
 </div>
 
 <script src="theme.js"></script>
 <script src="protein.js"></script>
+<script src="protein-mutlab.js"></script>
   <script src="modules-nav.js?v=3"></script>
   <script src="ui-polish.js?v=1"></script>
   <script src="ui-tools.js?v=1"></script>
+  <script src="questions.js?v=1"></script>
+  <script src="assessment.js?v=1"></script>
 </body>
 </html>
