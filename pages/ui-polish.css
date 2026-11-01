@@ -255,3 +255,15 @@ input[type="range"] { accent-color: var(--ui-focus); }
   .feedback.error, .feedback.warn, .final-feedback.show { animation: none !important; }
   .menu-item, .step-btn, .action-btn, .primary-btn, .rule-card, .info-card { transition: none !important; }
 }
+
+
+/* ---------- Erişilebilirlik: kontrast düzeltmeleri (axe-core taramasıyla bulundu) ---------- */
+/* Açık tema: koyu temadan kalan açık turkuaz/mavi yazılar beyaz zeminde okunmuyordu */
+:root[data-theme="light"] .gel-info-card h3 { color: #0e7490 !important; }
+:root[data-theme="light"] .result-block > span { color: #0e7490 !important; }
+:root[data-theme="light"] .info-card p { color: #475569 !important; }
+:root[data-theme="light"] .module-dock-brand > span:last-child > span { color: #0f766e !important; }
+/* Koyu tema: koyu turkuaz etiket koyu zeminde kayboluyordu */
+:root:not([data-theme="light"]) .dna-label { color: #67e8f9 !important; }
+:root[data-theme="light"] .secondary-btn { color: #0550ae; }
+:root[data-theme="light"] .stage .secondary-btn { color: #0a3f8f !important; }

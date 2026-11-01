@@ -488,7 +488,7 @@ footer p { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px
 
 /* Açık temada nane yeşili vurgu beyaz zeminde okunmuyordu: koyu tonlara geç */
 :root[data-theme="light"] {
-  --accent-cyan: #0d9488;
+  --accent-cyan: #0f766e;
   --accent-green: #4d7c0f;
   --text-muted: #51606f;
 }

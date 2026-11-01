@@ -61,3 +61,27 @@
   window.addEventListener("scroll", keepTop, { passive: true });
   window.addEventListener("load", () => setTimeout(keepTop, 80));
 })();
+
+/* Erişilebilirlik: kilitli adımları, başlık sırasını ve etiketsiz form alanlarını düzelt */
+(() => {
+  const sync = () => document.querySelectorAll(".menu-item, .step-btn").forEach(b => {
+    b.setAttribute("aria-disabled", b.classList.contains("locked") ? "true" : "false");
+  });
+  const init = () => {
+    sync();
+    const mo = new MutationObserver(sync);
+    document.querySelectorAll(".menu-item, .step-btn").forEach(b => mo.observe(b, { attributes: true, attributeFilter: ["class"] }));
+    // h1 → h3 atlaması: ekran okuyucular için düzey 2 olarak bildir
+    document.querySelectorAll(".hero-info > h3").forEach(h => h.setAttribute("aria-level", "2"));
+    // for özniteliği olmayan <label> + hemen ardından gelen alan → ilişkilendir
+    document.querySelectorAll("label:not([for])").forEach(l => {
+      if (l.querySelector("input,select,textarea")) return;
+      const n = l.nextElementSibling;
+      if (n && /^(INPUT|SELECT|TEXTAREA)$/.test(n.tagName)) {
+        if (!n.id) n.id = "bwl-f-" + Math.random().toString(36).slice(2, 7);
+        l.htmlFor = n.id;
+      }
+    });
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
