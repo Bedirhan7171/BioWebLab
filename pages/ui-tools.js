@@ -47,11 +47,14 @@
   /* ------------------------------- Sözlük -------------------------------- */
   const G_GENEL = "Genel", G_PCR = "PCR ve Adli Tıp", G_CRISPR = "CRISPR", G_PROT = "Protein";
   const GLOSSARY = [
-    { id: "nukleotit", term: "Nükleotit", g: G_GENEL, pat: "nükleotit", def: "DNA ve RNA'nın yapı taşıdır. Bir baz (A, T, G, C; RNA'da T yerine U), bir şeker ve bir fosfattan oluşur." },
     { id: "komplementer", term: "Komplementer (tamamlayıcı) baz", g: G_GENEL, pat: "komplementer", def: "DNA'da A–T ve G–C, RNA'da A–U ve G–C baz çiftleri birbirini tamamlar. Bir zincirin dizisi, karşısındaki zincirin dizisini belirler." },
+    { id: "baz-eslesmesi", term: "Baz eşleşmesi", g: G_GENEL, pat: "baz eşleşmesi", def: "DNA’da adenin (A) timinle (T), sitozin (C) guaninle (G) eşleşir. RNA’da timin yerine urasil (U) bulunur; A-U eşleşmesi görülür." },
     { id: "mutasyon", term: "Mutasyon", g: G_GENEL, pat: "mutasyon", def: "DNA dizisinde meydana gelen kalıcı değişikliktir. Bazı mutasyonlar proteinin yapısını ve işlevini bozabilir." },
     { id: "pcr", term: "PCR (Polimeraz Zincir Reaksiyonu)", g: G_PCR, pat: "PCR", cs: true, suf: false, def: "DNA'nın belirli bir bölgesini, tekrarlayan sıcaklık döngüleriyle kısa sürede milyonlarca kopyaya çoğaltan laboratuvar yöntemidir." },
     { id: "primer", term: "Primer", g: G_PCR, pat: "primer", def: "Çoğaltılacak bölgenin başlangıcına bağlanan kısa DNA parçasıdır. DNA polimeraz yeni zinciri ancak bu başlangıç noktasından itibaren sentezleyebilir." },
+    { id: "buffer", term: "Buffer (tampon çözelti)", g: G_PCR, pat: "buffer|tampon çözelti", def: "PCR karışımının pH ve iyon dengesini uygun aralıkta tutarak DNA polimerazın çalışmasına yardımcı olan çözeltidir." },
+    { id: "dntp", term: "dNTP", g: G_PCR, pat: "dNTP", cs: true, suf: false, def: "PCR sırasında DNA polimerazın yeni DNA zincirini oluştururken kullandığı yapı taşlarıdır. Her biri A, T, G veya C bazlarından birini taşır." },
+    { id: "kalip-dna", term: "Kalıp DNA", g: G_PCR, pat: "kalıp DNA", def: "PCR’da çoğaltılacak bölgeyi içeren DNA örneğidir. Primerler bu DNA üzerindeki hedef bölgeye bağlanır; polimeraz yeni zinciri kalıba göre sentezler." },
     { id: "taq", term: "Taq polimeraz", g: G_PCR, pat: "Taq", cs: true, suf: false, def: "Yüksek sıcaklığa dayanıklı bir bakteriden (Thermus aquaticus) elde edilen, DNA'yı kopyalayan enzimdir. Isıya dayanıklı olduğu için PCR döngülerinde bozulmaz." },
     { id: "polimeraz", term: "DNA polimeraz", g: G_PCR, pat: "polimeraz", def: "Nükleotitleri bir kalıp zincire uygun biçimde ekleyerek yeni DNA zinciri sentezleyen enzimdir." },
     { id: "denaturasyon", term: "Denatürasyon", g: G_PCR, pat: "denatür", def: "Yüksek sıcaklıkta (genellikle 94–98 °C) DNA'nın iki zincirinin birbirinden ayrılmasıdır. PCR döngüsünün ilk aşamasıdır." },
@@ -59,6 +62,7 @@
     { id: "extension", term: "Uzama (extension)", g: G_PCR, pat: "extension", def: "Genellikle 72 °C'de polimerazın primerden başlayarak yeni DNA zincirini sentezlemesidir." },
     { id: "elektroforez", term: "Jel elektroforezi", g: G_PCR, pat: "elektroforez", def: "DNA parçalarını elektrik akımıyla jelin içinde boylarına göre ayıran yöntemdir. DNA negatif yüklüdür, (+) kutba doğru ilerler; küçük parçalar daha hızlı yol alır." },
     { id: "bant", term: "Bant", g: G_PCR, pat: "bant", def: "Jelde aynı uzunluktaki DNA parçalarının oluşturduğu çizgidir. Bantların konumu parçaların boyutunu gösterir; DNA profilleri bu bantlar karşılaştırılarak değerlendirilir." },
+    { id: "dna-profili", term: "DNA profili", g: G_PCR, pat: "DNA profili", def: "İncelenen DNA bölgelerinden elde edilen bant desenidir. Adli karşılaştırmada örneklerin desenleri eşleştirilir; eşleşme tek başına suçluluğu kanıtlamaz." },
     { id: "crispr", term: "CRISPR-Cas9", g: G_CRISPR, pat: "CRISPR(?:-Cas9)?", cs: true, suf: false, def: "Bakterilerin virüslere karşı savunma sisteminden uyarlanmış gen düzenleme aracıdır. Rehber RNA, Cas9 enzimini hedef DNA bölgesine götürür ve orada kesim yapar." },
     { id: "cas9", term: "Cas9", g: G_CRISPR, pat: "Cas9", cs: true, suf: false, def: "DNA'yı belirli bir noktada çift zincirden kesen enzimdir; 'moleküler makas' olarak da anılır." },
     { id: "grna", term: "gRNA (rehber RNA)", g: G_CRISPR, pat: "gRNA|rehber RNA", def: "Cas9'u hedef DNA dizisine yönlendiren, yaklaşık 20 nükleotit uzunluğunda RNA'dır. Hedefle komplementer olduğu için doğru bölgeyi bulur." },
@@ -66,8 +70,6 @@
     { id: "nhej", term: "NHEJ", g: G_CRISPR, pat: "NHEJ", cs: true, suf: false, def: "Homolog olmayan uç birleştirme. Kesilen uçlar şablon kullanılmadan birleştirilir; bu süreç hataya açıktır ve genellikle küçük ekleme veya silmelere yol açar." },
     { id: "hdr", term: "HDR", g: G_CRISPR, pat: "HDR", cs: true, suf: false, def: "Homoloji yönlendirmeli onarım. Bir şablon DNA kullanılarak kesik hassas biçimde onarılır veya istenen yeni dizi eklenir." },
     { id: "mrna", term: "mRNA", g: G_PROT, pat: "mRNA", cs: true, suf: false, def: "DNA'dan kopyalanan, proteinin hangi amino asit sırasıyla yapılacağını taşıyan haberci RNA'dır." },
-    { id: "transkripsiyon", term: "Transkripsiyon", g: G_PROT, pat: "transkripsiyon", def: "DNA'daki bilginin mRNA'ya kopyalanmasıdır." },
-    { id: "translasyon", term: "Translasyon", g: G_PROT, pat: "translasyon", def: "mRNA'daki kodonların ribozomda amino asit zincirine çevrilmesidir (protein sentezi)." },
     { id: "ribozom", term: "Ribozom", g: G_PROT, pat: "ribozom", def: "mRNA'yı kodon kodon okuyup amino asitleri birbirine bağlayarak protein sentezleyen hücre yapısıdır." },
     { id: "kodon", term: "Kodon", g: G_PROT, pat: "kodon", def: "mRNA üzerinde bir amino asidi ya da durma sinyalini belirleyen üçlü nükleotit grubudur. Toplam 64 kodon vardır." },
     { id: "aug", term: "AUG (başlangıç kodonu)", g: G_PROT, pat: "AUG", cs: true, suf: false, def: "Metiyonin amino asidini kodlar ve protein sentezinin başlangıç sinyalidir." },
@@ -76,7 +78,6 @@
     { id: "missense", term: "Yanlış anlamlı mutasyon", g: G_PROT, pat: "yanlış anlamlı", def: "Kodonun farklı bir amino asidi kodlamasına yol açan baz değişimidir (missense). Proteinin işlevi etkilenebilir." },
     { id: "nonsense", term: "Anlamsız mutasyon", g: G_PROT, pat: "anlamsız mutasyon", def: "Bir amino asit kodonunun Stop kodonuna dönüştüğü mutasyondur (nonsense); protein erken kesilir." },
     { id: "frameshift", term: "Çerçeve kayması", g: G_PROT, pat: "çerçeve kayması", def: "3'ün katı olmayan sayıda baz eklenmesi ya da silinmesi sonucu okuma çerçevesinin kaymasıdır; değişiklikten sonraki tüm kodonlar farklı okunur." },
-    { id: "utr", term: "5′ UTR", g: G_PROT, pat: "UTR", cs: true, suf: false, def: "mRNA'nın başlangıç kodonundan önceki, çevrilmeyen bölgesidir. Ribozom ilk AUG'yi bulana kadar bu bölgeyi tarar." },
     { id: "ladder", term: "Ladder (DNA merdiveni)", g: G_PCR, pat: "ladder", def: "Boyutları bilinen DNA parçalarından oluşan referans karışımdır; jelde bilinmeyen bantların boyutunu kestirmek için kullanılır." },
     { id: "tm", term: "Tm (erime sıcaklığı)", g: G_PCR, pat: "Tm", cs: true, suf: false, def: "Primerlerin yarısının hedefe bağlı, yarısının serbest olduğu sıcaklıktır. Bağlanma sıcaklığı genellikle Tm'nin birkaç derece altında seçilir." },
     { id: "aminoasit", term: "Amino asit", g: G_PROT, pat: "amino asit", def: "Proteinlerin yapı taşıdır. Canlılarda 20 çeşit amino asit bulunur; dizilişleri proteinin şeklini ve görevini belirler." }
