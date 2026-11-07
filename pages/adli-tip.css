@@ -8,7 +8,7 @@ color:#1e293b;
 
 .app{
 display:grid;
-grid-template-columns:320px 1fr;
+grid-template-columns:320px minmax(0,1fr);
 min-height:100vh;
 }
 
@@ -562,7 +562,7 @@ margin:0;
 
 .gel-workspace{
 display:grid;
-grid-template-columns:320px 1fr;
+grid-template-columns:320px minmax(0,1fr);
 gap:22px;
 margin-top:28px;
 align-items:start;
@@ -1715,3 +1715,6 @@ background:#34d399;
   .suspect-choice { font-size:16px; padding:13px 9px; }
   .profile-row { grid-template-columns:1fr; gap:5px; }
 }
+
+/* İçerik sütunu taşmasın (Karşılaştırma aşamasında 21px yatay taşma oluyordu) */
+.app > .content { min-width: 0; }
