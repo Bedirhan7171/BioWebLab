@@ -215,9 +215,7 @@
       finalSolved = true;
       btns[idx].classList.add("correct");
       renderTable(true);
-      if (unlockedStep < 8) { unlockedStep = 8; saveProgress(); refreshLocks(); }
       const nb = $("newCaseBtn"); if (nb) nb.hidden = false;
-      const q = $("adliToQuiz"); if (q) q.hidden = false;
     } else {
       btns[idx].classList.add("wrong");
     }
@@ -334,6 +332,4 @@
   setupLab();
   const nb = $("newCaseBtn");
   if (nb) nb.addEventListener("click", newCase);
-  const qb = $("adliToQuiz");
-  if (qb) qb.addEventListener("click", () => unlockNextStep());
 })();

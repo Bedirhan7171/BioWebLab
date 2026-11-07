@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="ui-polish.css?v=1">
   <link rel="stylesheet" href="ui-tools.css?v=1">
   <link rel="stylesheet" href="mechanics.css?v=1">
-  <link rel="stylesheet" href="assessment.css?v=1">
 </head>
 
 <body class="crispr-page">
@@ -41,7 +40,7 @@
       <div class="progress-card">
         <div class="progress-top">
           <span>İlerleme</span>
-          <strong id="progressText">0/10</strong>
+          <strong id="progressText">0/9</strong>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="progressFill"></div>
@@ -130,14 +129,6 @@
           <span class="step-state">🔒</span>
         </button>
 
-        <button class="step-btn locked" data-step="10">
-          <span class="step-num">10</span>
-          <span class="step-text">
-            <strong>Değerlendirme</strong>
-            <span>Bilgi testi ve rapor</span>
-          </span>
-          <span class="step-state">🔒</span>
-        </button>
       </nav>
 
       <div class="sidebar-note">
@@ -167,7 +158,7 @@
       <section class="stage-card">
 
         <!-- AŞAMA 1 -->
-        <div class="stage active" data-stage="1">
+        <div class="stage active" data-stage="1" data-info="1">
           <div class="stage-header">
             <div>
               <div class="stage-kicker">Aşama 1</div>
@@ -197,15 +188,10 @@
             </div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" disabled>Önceki</button>
-            <button class="primary-btn" data-complete>Göreve Başla</button>
-            <button class="secondary-btn" data-next="2">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 2 -->
-        <div class="stage" data-stage="2">
+        <div class="stage" data-stage="2" data-info="1">
           <div class="stage-header">
             <div>
               <div class="stage-kicker">Aşama 2</div>
@@ -241,11 +227,6 @@
             </div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="1">Önceki</button>
-            <button class="primary-btn" data-complete>Anladım</button>
-            <button class="secondary-btn" data-next="3">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 3 -->
@@ -298,14 +279,10 @@
             </div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="2">Önceki</button>
-            <button class="secondary-btn" data-next="4">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 4 -->
-        <div class="stage" data-stage="4">
+        <div class="stage" data-stage="4" data-info="1">
           <div class="stage-header">
             <div>
               <div class="stage-kicker">Aşama 4</div>
@@ -355,11 +332,6 @@
             </div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="3">Önceki</button>
-            <button class="primary-btn" data-complete>Kavramları Öğrendim</button>
-            <button class="secondary-btn" data-next="5">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 5 -->
@@ -420,10 +392,6 @@
           <button class="primary-btn" id="checkToolsBtn" style="margin-top:16px;">Sistemi Kontrol Et</button>
           <div class="feedback" id="toolsFeedback">CRISPR sistemi için gerekli parçaları seç.</div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="4">Önceki</button>
-            <button class="secondary-btn" data-next="6">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 6 -->
@@ -464,10 +432,6 @@
             <div class="feedback" id="pamFeedback">Dizideki bir baza tıklayarak 3 harflik çerçeveyi yerleştir.</div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="5">Önceki</button>
-            <button class="secondary-btn" data-next="7">Devam Et</button>
-          </div>
         </div>
 
         <!-- AŞAMA 7 -->
@@ -510,10 +474,6 @@
             <div class="feedback" id="grnaFeedback">Nükleotid klavyesini kullanarak hedef DNA'ya uygun gRNA'yı sentezle.</div>
           </div>
 
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="6">Önceki</button>
-            <button class="secondary-btn" data-next="8">Devam Et</button>
-          </div>
         </div>
 
 <!-- AŞAMA 8 -->
@@ -549,10 +509,6 @@
 
           <div class="feedback" id="cutFeedback">Önce Cas9-gRNA kompleksini hedefe gönder.</div>
 
-          <div class="stage-actions" style="margin-top: 15px;">
-            <button class="ghost-btn" data-prev="7">Önceki</button>
-            <button class="secondary-btn" data-next="9">Devam Et</button>
-          </div>
         </div>
 
 <!-- AŞAMA 9 -->
@@ -622,29 +578,8 @@
           </div>
 
 
-<div class="stage-actions">
-            <button class="ghost-btn" data-prev="8">Önceki</button>
-            <button class="primary-btn" data-next="10">Değerlendirmeye Geç</button>
-          </div>
         </div>
 
-
-
-        <div class="stage" data-stage="10">
-          <div class="stage-header">
-            <div>
-              <div class="stage-kicker">Aşama 10</div>
-              <h3>Değerlendirme</h3>
-              <p class="stage-desc">Modülde öğrendiklerini ölç. Sonunda kazanım bazlı sonuçlarını ve yazdırılabilir raporunu göreceksin.</p>
-            </div>
-            <div class="badge">Test</div>
-          </div>
-          <div id="bwl-quiz" data-module="crispr"></div>
-          <div class="stage-actions">
-            <button class="ghost-btn" data-prev="9">Önceki</button>
-            <button class="primary-btn" onclick="window.location.href='../index.html'">Ana Sayfaya Dön</button>
-          </div>
-        </div>
 
       </section>
     </main>
@@ -659,7 +594,5 @@
   <script src="modules-nav.js?v=3"></script>
   <script src="ui-polish.js?v=1"></script>
   <script src="ui-tools.js?v=1"></script>
-  <script src="questions.js?v=1"></script>
-  <script src="assessment.js?v=1"></script>
 </body>
 </html>

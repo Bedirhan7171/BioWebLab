@@ -13,7 +13,7 @@ const progressText = document.getElementById("progressText");
 const progressKey = "adliTipProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
 let currentStep = savedProgress?.currentStep || 1;
-const totalSteps = 8;
+const totalSteps = 7;
 let unlockedStep = savedProgress?.unlockedStep || 1;
 
 function saveProgress() {
@@ -101,8 +101,7 @@ const titles = {
   4:"PCR Mantığı",
   5:"PCR Simülasyonu",
   6:"Jel Elektroforezi",
-  7:"Karşılaştırma",
-  8:"Değerlendirme"
+  7:"Karşılaştırma"
 };
 
 function updatePageTitle(){

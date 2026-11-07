@@ -97,8 +97,4 @@
     }, 0));
   }
 
-  // Değerlendirme bitince 10. adım tamamlanır
-  window.addEventListener("bwl:quiz-done", e => {
-    if (e.detail && e.detail.module === "crispr" && typeof completeStep === "function") completeStep(10);
-  });
 })();

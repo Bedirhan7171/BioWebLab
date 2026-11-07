@@ -637,3 +637,30 @@ body { overflow-x: clip; }
   .how-section { padding: 12px 20px 40px; }
   .how-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ==========================================================================
+   Performans: ana sayfa animasyonlarını hafiflet
+   - Büyük blur filtreli ve sürekli animasyonlu ışımalar sabit gradyana çevrildi
+   - drop-shadow / backdrop-filter gibi her karede yeniden boyanan efektler kaldırıldı
+   - Kaydırmaya bağlı animasyon kaldırıldı
+   - Hero animasyonları ekran dışındayken ve sekme gizliyken duraklar (main.js)
+   ========================================================================== */
+.bg-glow { filter: none !important; animation: none !important; width: 560px; height: 560px; opacity: .5; }
+.bg-glow-1 { top: -240px; left: -240px; background: radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 45%, transparent), transparent 68%); }
+.bg-glow-2 { top: 260px; right: -260px; background: radial-gradient(circle, color-mix(in srgb, var(--accent-green) 40%, transparent), transparent 68%); }
+.hero::before { animation: none !important; opacity: .8; }
+.hero-visual::before { filter: none !important; animation: none !important; }
+.dna-helix { filter: none !important; }
+.dna-helix::before, .dna-helix::after, .dna-helix i, .visual-ring, .floating-chip { will-change: transform; }
+.navbar { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: color-mix(in srgb, var(--bg-color) 94%, transparent); }
+.floating-chip, .about-card, .module-card { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+.section-title, .about-card { animation: none !important; animation-timeline: auto !important; }
+html { scroll-behavior: auto; }
+.hero-paused .hero-visual,
+.hero-paused .hero-visual *,
+.hero-paused .hero-visual::before,
+.hero-paused .hero-visual *::before,
+.hero-paused .hero-visual *::after,
+.hero-paused .badge,
+.hero-paused .status-pulse { animation-play-state: paused !important; }

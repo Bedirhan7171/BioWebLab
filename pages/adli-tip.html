@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="ui-polish.css?v=1">
   <link rel="stylesheet" href="ui-tools.css?v=1">
   <link rel="stylesheet" href="mechanics.css?v=1">
-  <link rel="stylesheet" href="assessment.css?v=1">
 </head>
 <body>
 <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç" onclick="toggleTheme()">🌙</button>
@@ -42,7 +41,6 @@
 <button class="menu-item locked" data-step="5"><span>🔒</span><div><strong>PCR Simülasyonu</strong><small>Cihazı çalıştır</small></div></button>
 <button class="menu-item locked" data-step="6"><span>🔒</span><div><strong>Jel Elektroforezi</strong><small>DNA ayırımı</small></div></button>
 <button class="menu-item locked" data-step="7"><span>🔒</span><div><strong>Karşılaştırma</strong><small>Bant analizi</small></div></button>
-<button class="menu-item locked" data-step="8"><span>🔒</span><div><strong>Değerlendirme</strong><small>Bilgi testi ve rapor</small></div></button>
 </nav>
 
 <div class="progress-box">
@@ -54,7 +52,7 @@
 
 <main class="content">
 
-<section class="panel active-panel" id="panel1">
+<section class="panel active-panel" id="panel1" data-info="1">
 <h1>1. Giriş: Olay Yeri</h1>
 <div class="hero-box">
 <div class="crime-image">🧪 🔬 🩸</div>
@@ -66,12 +64,11 @@
 <li>DNA çoğaltacaksın</li>
 <li>Bant analizi yapacaksın</li>
 </ul>
-<button class="action-btn" onclick="unlockNextStep()">Devam Et →</button>
 </div>
 </div>
 </section>
 
-<section class="panel" id="panel2">
+<section class="panel" id="panel2" data-info="1">
 <h1>2. Temel Kavramlar</h1>
 <div class="card-grid">
 <div class="info-card"><h3>DNA</h3><p>Kalıtsal bilgiyi taşıyan çift sarmallı moleküldür.</p></div>
@@ -88,7 +85,6 @@
     <p>Adli tıp laboratuvarında olay yerinden elde edilen biyolojik örnekler incelenir. Şüphelilerden ve olay yerinden toplanan örneklerin DNA analizi yapılabilmesi için örnekler PCR yardımıyla çoğaltılarak birbiriyle karşılaştırılır.</p>
 </div>
 
-<button class="action-btn" onclick="unlockNextStep()">Öğrendim →</button>
 </section>
 
 <section class="panel" id="panel3">
@@ -115,7 +111,7 @@
 </div>
 </section>
 
-<section class="panel" id="panel4">
+<section class="panel" id="panel4" data-info="1">
 <h1>4. PCR Mantığı</h1>
 <p>PCR cihazı, DNA’yı çoğaltmak için sıcaklığı döngüsel olarak değiştirir. Her sıcaklık basamağı farklı bir moleküler olayı başlatır.</p>
 
@@ -125,7 +121,6 @@
 <div class="info-card"><h3>72°C — Uzama</h3><p>Taq DNA polimeraz, dNTP’leri kullanarak yeni DNA zincirini sentezler.</p></div>
 </div>
 
-<button class="action-btn" onclick="unlockNextStep()">PCR Cihazına Geç →</button>
 </section>
 
 <section class="panel" id="panel5">
@@ -384,7 +379,6 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 <strong>Adli yorum:</strong> Eşleşme kararını verdikten sonra “Yorum” sütunu açılır. DNA profili eşleşmesi, şüphelinin olayla ilişkisini değerlendirmede kullanılabilir; tek başına suçluluğu kanıtlamaz.
 </div>
 
-<button type="button" class="action-btn" id="adliToQuiz" hidden>Değerlendirmeye Geç →</button>
 <button type="button" class="action-btn secondary-btn" id="newCaseBtn" hidden>↻ Yeni vaka dene</button>
 
 </div>
@@ -393,10 +387,6 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 
 </section>
 
-<section class="panel" id="panel8">
-<h1>8. Değerlendirme</h1>
-<div id="bwl-quiz" data-module="adli-tip"></div>
-</section>
 
 </main>
 </div>
@@ -407,7 +397,5 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
   <script src="modules-nav.js?v=3"></script>
   <script src="ui-polish.js?v=1"></script>
   <script src="ui-tools.js?v=1"></script>
-  <script src="questions.js?v=1"></script>
-  <script src="assessment.js?v=1"></script>
 </body>
 </html>

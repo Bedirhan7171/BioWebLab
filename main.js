@@ -68,3 +68,17 @@ if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
     applyTheme(currentTheme === "light" ? "dark" : "light");
   });
 })();
+
+
+// Performans: hero animasyonları ekran dışındayken veya sekme gizliyken duraklar.
+(() => {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  const root = document.body;
+  let visible = true;
+  const apply = () => root.classList.toggle("hero-paused", !visible || document.hidden);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; apply(); }, { threshold: 0 }).observe(hero);
+  }
+  document.addEventListener("visibilitychange", apply);
+})();

@@ -2,7 +2,7 @@
    BioWebLab · Kullanım kolaylığı araçları (ana sayfa + 3 modül ortak)
    - Sözlük çekmecesi + metin içinde tıklanabilir terimler
    - Yardım ve okunabilirlik ayarları (yazı boyutu, animasyon azaltma, okuma modu)
-   - "Önceki adım" gezinmesi ve adım göstergesi (modüller)
+   - Standart "Önceki / Sonraki aşama" gezinmesi ve aşama göstergesi (modüller)
    - Ana sayfada kart ilerleme durumu
    - "İçeriğe geç" bağlantısı, klavye kısayolları (? ve Esc)
    Mevcut modül kodlarına dokunmaz; yalnızca DOM'a ekleme yapar.
@@ -74,12 +74,8 @@
     { id: "kodon", term: "Kodon", g: G_PROT, pat: "kodon", def: "mRNA üzerinde bir amino asidi ya da durma sinyalini belirleyen üçlü nükleotit grubudur. Toplam 64 kodon vardır." },
     { id: "aug", term: "AUG (başlangıç kodonu)", g: G_PROT, pat: "AUG", cs: true, suf: false, def: "Metiyonin amino asidini kodlar ve protein sentezinin başlangıç sinyalidir." },
     { id: "stop", term: "Stop kodonu", g: G_PROT, pat: "stop kodon", def: "UAA, UAG ve UGA kodonlarıdır. Bir amino asit kodlamazlar; protein sentezini sonlandırırlar." },
-    { id: "sessiz", term: "Sessiz mutasyon", g: G_PROT, pat: "sessiz mutasyon", def: "Kodonun değiştiği ama aynı amino asidi kodladığı mutasyondur; protein değişmez." },
-    { id: "missense", term: "Yanlış anlamlı mutasyon", g: G_PROT, pat: "yanlış anlamlı", def: "Kodonun farklı bir amino asidi kodlamasına yol açan baz değişimidir (missense). Proteinin işlevi etkilenebilir." },
-    { id: "nonsense", term: "Anlamsız mutasyon", g: G_PROT, pat: "anlamsız mutasyon", def: "Bir amino asit kodonunun Stop kodonuna dönüştüğü mutasyondur (nonsense); protein erken kesilir." },
     { id: "frameshift", term: "Çerçeve kayması", g: G_PROT, pat: "çerçeve kayması", def: "3'ün katı olmayan sayıda baz eklenmesi ya da silinmesi sonucu okuma çerçevesinin kaymasıdır; değişiklikten sonraki tüm kodonlar farklı okunur." },
     { id: "ladder", term: "Ladder (DNA merdiveni)", g: G_PCR, pat: "ladder", def: "Boyutları bilinen DNA parçalarından oluşan referans karışımdır; jelde bilinmeyen bantların boyutunu kestirmek için kullanılır." },
-    { id: "tm", term: "Tm (erime sıcaklığı)", g: G_PCR, pat: "Tm", cs: true, suf: false, def: "Primerlerin yarısının hedefe bağlı, yarısının serbest olduğu sıcaklıktır. Bağlanma sıcaklığı genellikle Tm'nin birkaç derece altında seçilir." },
     { id: "aminoasit", term: "Amino asit", g: G_PROT, pat: "amino asit", def: "Proteinlerin yapı taşıdır. Canlılarda 20 çeşit amino asit bulunur; dizilişleri proteinin şeklini ve görevini belirler." }
   ];
   const BY_ID = Object.fromEntries(GLOSSARY.map(t => [t.id, t]));
@@ -87,7 +83,7 @@
 
   /* ----- Metin içinde tıklanabilir terimler (yalnızca modüller) ----- */
   const SKIP = "button,a,label,select,option,textarea,input,svg,script,style,h1,h2,h3,h4,h5,h6,.gl-term," +
-    ".feedback,.feedback-box,.final-feedback,.toast,.codon-table,.sequence-output,.tag-output,.bwl-stepnav,.mut-check,.mut-verdict,.lab-card,.bwl-pre,#bwl-quiz,code,pre,[contenteditable]";
+    ".feedback,.feedback-box,.final-feedback,.toast,.codon-table,.sequence-output,.tag-output,.bwl-stepnav,.bwl-stagenav,.lab-card,code,pre,[contenteditable]";
 
   function highlightTerms() {
     let rx;
@@ -163,17 +159,12 @@
 
   const HELP = [
     ["Adımlar nasıl ilerler?", [
-      "Her modül sıralı adımlardan oluşur. Bir adımın görevini tamamlayınca sıradaki adım açılır.",
-      "Kilitli adımlar 🔒 simgesiyle gösterilir. Açık adımlara sol menüden ya da “← Önceki adım” düğmesiyle dönebilirsin."
+      "Her modül sıralı aşamalardan oluşur. Bir aşamanın görevini tamamlayınca “Sonraki aşama →” düğmesi açılır.",
+      "Kilitli adımlar 🔒 simgesiyle gösterilir. Açık adımlara sol menüden ya da “← Önceki aşama” düğmesiyle dönebilirsin."
     ]],
     ["İlerlemen", [
       "İlerleme yalnızca bu oturumda saklanır; sayfayı yenilersen başa dönersin.",
       "Bir modülü baştan başlatmak için sağ üstteki “İlerlemeyi Sıfırla” düğmesini kullan."
-    ]],
-    ["Değerlendirme", [
-      "Her modülün son adımı bir bilgi testidir; her denemede sorular ve seçenek sırası değişir.",
-      "1. adımdaki isteğe bağlı ön testi çözersen, son testle karşılaştırılarak öğrenme kazancın hesaplanır.",
-      "Sonuçların ana sayfadaki Öğrenme Panosu’nda ve yazdırılabilir raporda görünür; veriler yalnızca bu cihazda saklanır."
     ]],
     ["Gezinme", [
       "Ekranın altındaki çubuktan modüller arasında tek dokunuşla geçebilirsin.",
@@ -328,30 +319,62 @@
     doc.body.prepend(h("a", { class: "bwl-skip", href: "#" + main.id, text: "İçeriğe geç" }));
   }
 
-  /* ------------------ Modül: önceki adım + adım göstergesi ------------------ */
+  /* ------------- Modül: standart aşama gezinmesi (önceki / sonraki) ------------- */
   function addStepNav() {
     const items = $$(".menu-item[data-step], .step-btn[data-step]");
     const total = items.length;
     if (!total) return;
+    const byStep = n => items.find(i => Number(i.dataset.step) === n);
+    const isCrispr = typeof completeStep === "function" && typeof goToStep === "function";
+    const unlocked = () => (typeof unlockedStep === "number" ? unlockedStep : 1);
+    const toTop = () => requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+    const navs = [];
+
     $$(".panel[id^='panel'], .stage[data-stage]").forEach(panel => {
       const n = Number(panel.dataset.stage || panel.id.replace("panel", ""));
       if (!n) return;
-      const prev = h("button", { type: "button", class: "bwl-prev", text: "← Önceki adım" });
-      prev.addEventListener("click", () => {
-        const target = items.find(i => Number(i.dataset.step) === n - 1);
-        if (target) target.click();
-      });
-      const bar = h("div", { class: "bwl-stepnav" },
-        n > 1 ? prev : h("span", { class: "bwl-stepnav-spacer" }),
-        h("span", { class: "bwl-stepinfo", text: `Adım ${n} / ${total}` })
-      );
-      panel.prepend(bar);
+
+      // üstte yalnızca aşama göstergesi
+      panel.prepend(h("div", { class: "bwl-stepnav" }, h("span", { class: "bwl-stepinfo", text: `Aşama ${n} / ${total}` })));
+
+      // altta her aşamada aynı iki düğme
+      const prev = h("button", { type: "button", class: "bwl-stagenav-btn is-prev", text: "← Önceki aşama" });
+      if (n === 1) prev.disabled = true;
+      prev.addEventListener("click", () => { const t = byStep(n - 1); if (t) { t.click(); toTop(); } });
+
+      let next;
+      if (n >= total) {
+        next = h("a", { class: "bwl-stagenav-btn is-next", href: "../index.html", text: "Ana sayfaya dön ⌂" });
+      } else {
+        next = h("button", { type: "button", class: "bwl-stagenav-btn is-next", text: "Sonraki aşama →" });
+        next.addEventListener("click", () => {
+          if (unlocked() <= n) {
+            if (!panel.dataset.info) return;          // görev aşaması: önce görev tamamlanmalı
+            if (!isCrispr) { unlockNextStep(); toTop(); return; }
+            completeStep(n);
+          }
+          const t = byStep(n + 1); if (t) { t.click(); toTop(); }
+        });
+      }
+      const hint = h("span", { class: "bwl-stagenav-hint", "aria-live": "polite" });
+      panel.append(h("div", { class: "bwl-stagenav" }, prev, hint, next));
+      navs.push({ n, panel, next, hint });
     });
+
+    const refresh = () => navs.forEach(({ n, panel, next, hint }) => {
+      if (n >= total) return;
+      const open = unlocked() > n || !!panel.dataset.info;
+      next.disabled = !open;
+      hint.textContent = open ? "" : "Bu aşamadaki görevi tamamlayınca açılır";
+    });
+    refresh();
+    const host = items[0].parentElement;
+    if (host) new MutationObserver(refresh).observe(host, { subtree: true, attributes: true, attributeFilter: ["class"] });
   }
 
   /* ------------------- Ana sayfa: kart ilerleme durumu ------------------- */
   function homeProgress() {
-    const MAP = { "adli-tip": ["adliTipProgress", 8], crispr: ["crisprProgress", 10], protein: ["proteinProgress", 7] };
+    const MAP = { "adli-tip": ["adliTipProgress", 7], crispr: ["crisprProgress", 9], protein: ["proteinProgress", 5] };
     $$(".module-card[data-module]").forEach(card => {
       const [key, total] = MAP[card.dataset.module] || [];
       if (!key) return;

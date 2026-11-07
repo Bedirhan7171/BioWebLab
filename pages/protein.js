@@ -17,7 +17,7 @@ document.getElementById("resetProgressBtn")?.addEventListener("click", function 
 const progressKey = "proteinProgress";
 const savedProgress = JSON.parse(sessionStorage.getItem(progressKey) || "null");
 let currentStep = savedProgress?.currentStep || 1;
-const totalSteps = 7;
+const totalSteps = 5;
 let unlockedStep = savedProgress?.unlockedStep || 1;
 
 function saveProgress() {
@@ -119,9 +119,7 @@ const titles = {
   2:"Protein Üretimi",
   3:"64 Kodon Tablosu",
   4:"Protein Tasarım",
-  5:"DNA/RNA Çevirici",
-  6:"Mutasyon Laboratuvarı",
-  7:"Değerlendirme"
+  5:"DNA/RNA Çevirici"
 };
 
 function updatePageTitle(){
@@ -271,11 +269,6 @@ function convertSequence(){
       (utr ? " İlk " + utr.length + " baz 5′ UTR olduğu için çevrilmedi." : "");
   }
 
-  if(unlockedStep < 6){
-    unlockedStep = 6;
-    saveProgress();
-    refreshLocks();
-  }
 }
 
 function clearConverter(){
