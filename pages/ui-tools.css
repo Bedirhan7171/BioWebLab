@@ -144,24 +144,17 @@ body.bwl-lock { overflow: hidden; }
 .bwl-reset:hover { border-color: var(--bwl-accent); color: var(--bwl-accent); }
 .bwl-drawer :where(button, input, a):focus-visible { outline: 3px solid var(--bwl-accent); outline-offset: 2px; }
 
-/* ---------- Modüller: aşama göstergesi ve standart gezinme ---------- */
-.bwl-stepnav { display: flex; align-items: center; margin: 0 0 18px; min-height: 20px; }
+/* ---------- Modüller: adım çubuğu ---------- */
+.bwl-stepnav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 18px; min-height: 34px; }
 .bwl-stepinfo { font: 700 11.5px/1 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--bwl-muted); font-variant-numeric: tabular-nums; }
-.bwl-stagenav { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 34px 0 0; padding-top: 20px; border-top: 1px solid var(--bwl-border); }
-.bwl-stagenav-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 170px;
-  padding: 12px 20px; border-radius: 12px; cursor: pointer; text-decoration: none;
-  font: 700 14px Inter, system-ui, sans-serif; line-height: 1.2;
-  border: 1px solid var(--bwl-border); background: transparent; color: var(--bwl-text);
-  transition: transform .2s var(--bwl-ease), border-color .2s, box-shadow .2s, opacity .2s;
+.bwl-prev {
+  padding: 8px 14px; border-radius: 999px; cursor: pointer; font: 700 13px Inter, system-ui, sans-serif;
+  border: 1px solid var(--bwl-border); background: transparent; color: var(--bwl-muted);
+  transition: color .2s, border-color .2s, transform .2s var(--bwl-ease);
 }
-.bwl-stagenav-btn.is-prev:hover:not(:disabled) { border-color: var(--bwl-accent); color: var(--bwl-accent); transform: translateX(-3px); }
-.bwl-stagenav-btn.is-next { color: #fff; border-color: transparent; background: linear-gradient(120deg, #14b8a6, #3b82f6); box-shadow: 0 8px 22px rgba(20, 184, 166, .22); }
-.bwl-stagenav-btn.is-next:hover:not(:disabled) { transform: translateX(3px); box-shadow: 0 10px 26px rgba(20, 184, 166, .32); }
-.bwl-stagenav-btn:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
-.bwl-stagenav-btn:focus-visible { outline: 3px solid var(--bwl-accent); outline-offset: 3px; }
-.bwl-stagenav-hint { flex: 1 1 160px; text-align: center; font-size: 12.5px; color: var(--bwl-muted); }
-@media (max-width: 560px) { .bwl-stagenav-btn { flex: 1 1 100%; } .bwl-stagenav-hint { order: 3; flex-basis: 100%; } }
+.bwl-prev:hover { color: var(--bwl-accent); border-color: var(--bwl-accent); transform: translateX(-3px); }
+.bwl-prev:focus-visible { outline: 3px solid var(--bwl-accent); outline-offset: 3px; }
+.bwl-stepnav-spacer { display: block; }
 
 /* ---------- Erişilebilirlik tercihleri ---------- */
 .bwl-calm *, .bwl-calm *::before, .bwl-calm *::after {

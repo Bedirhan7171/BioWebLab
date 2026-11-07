@@ -656,7 +656,7 @@ body { overflow-x: clip; }
 .navbar { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: color-mix(in srgb, var(--bg-color) 94%, transparent); }
 .floating-chip, .about-card, .module-card { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 .section-title, .about-card { animation: none !important; animation-timeline: auto !important; }
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; }
 .hero-paused .hero-visual,
 .hero-paused .hero-visual *,
 .hero-paused .hero-visual::before,
