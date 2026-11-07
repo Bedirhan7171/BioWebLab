@@ -40,7 +40,7 @@
     const z = SIZES[prefs.size] || 1;
     // Yalnızca içerik alanı büyür; kenar çubuğu ve dock sabit kalır
     const zv = z === 1 ? "" : String(z);
-    $$(".app > .content, .crispr-main, main, .sidebar .brand, .sidebar .menu, .sidebar .step-list, .sidebar .progress-box, .sidebar .sidebar-note, .crispr-sidebar .step-list, .crispr-sidebar .sidebar-note, header .hero, footer").forEach(el => { el.style.zoom = zv; });
+    $$(".app > .content, .crispr-main, main, .sidebar .brand, .sidebar .menu, .sidebar .step-list, .sidebar .progress-box, .sidebar .sidebar-note, .crispr-sidebar .step-list, .crispr-sidebar .sidebar-note, .hero-copy p, .hero-copy .hero-actions, .hero-copy .hero-proof, footer").forEach(el => { el.style.zoom = zv; });
     root.style.setProperty("--bwl-fs", String(z));
     root.classList.toggle("bwl-calm", !!prefs.calm);
     root.classList.toggle("bwl-read", !!prefs.read);
