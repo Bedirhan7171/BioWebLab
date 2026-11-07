@@ -31,7 +31,7 @@
 
   /* ------------------------------ Tercihler ------------------------------ */
   const PREF_KEY = "bwl-prefs";
-  const SIZES = [1, 1.12, 1.25];
+  const SIZES = [1, 1.15, 1.3];
   const prefs = { size: 0, calm: false, read: false };
   try { Object.assign(prefs, JSON.parse(localStorage.getItem(PREF_KEY) || "{}")); } catch (e) { /* varsayılan */ }
   const savePrefs = () => { try { localStorage.setItem(PREF_KEY, JSON.stringify(prefs)); } catch (e) { /* sessiz */ } };
@@ -39,7 +39,9 @@
   function applyPrefs() {
     const z = SIZES[prefs.size] || 1;
     // Yalnızca içerik alanı büyür; kenar çubuğu ve dock sabit kalır
-    $$(".app > .content, .crispr-main, main").forEach(el => { el.style.zoom = z === 1 ? "" : String(z); });
+    const zv = z === 1 ? "" : String(z);
+    $$(".app > .content, .crispr-main, main, .sidebar .brand, .sidebar .menu, .sidebar .step-list, .sidebar .progress-box, .sidebar .sidebar-note, .crispr-sidebar .step-list, .crispr-sidebar .sidebar-note, header .hero, footer").forEach(el => { el.style.zoom = zv; });
+    root.style.setProperty("--bwl-fs", String(z));
     root.classList.toggle("bwl-calm", !!prefs.calm);
     root.classList.toggle("bwl-read", !!prefs.read);
   }
@@ -172,7 +174,7 @@
     ]],
     ["Terimler", [
       "Metindeki noktalı çizgili sözcüklere tıklarsan kısa açıklamasını görürsün.",
-      "Tüm terimleri “Sözlük” sekmesinde arayabilirsin."
+      "Tüm terimleri üstteki “Sözlük” düğmesinden arayabilirsin."
     ]],
     ["Klavye", [
       "?  → Yardım ve sözlük    Esc → Kapat",
@@ -180,6 +182,7 @@
     ]]
   ];
 
+  let titleEl = null;
   function buildDrawer() {
     if (drawer) return;
     overlay = h("div", { class: "bwl-overlay", hidden: true, onclick: closeDrawer });
@@ -213,24 +216,17 @@
     reset.addEventListener("click", () => { prefs.size = 0; prefs.calm = false; prefs.read = false; savePrefs(); applyPrefs(); syncView(); });
     panes.view = h("div", { class: "bwl-pane", role: "tabpanel", id: "bwl-pane-view", hidden: true },
       h("section", { class: "bwl-help-sec" }, h("h3", { text: "Yazı boyutu" }), h("div", { class: "bwl-sizes" }, sizeBtns),
-        h("p", { class: "bwl-note", text: "İçerik alanındaki yazılar büyür. Tarayıcı yakınlaştırması (Ctrl +) de desteklenir." })),
+        h("p", { class: "bwl-note", text: "Sayfadaki yazılar ve sol menü büyür. Tarayıcı yakınlaştırması (Ctrl +) de desteklenir." })),
       h("section", { class: "bwl-help-sec" }, h("h3", { text: "Okunabilirlik" }),
         toggle("calm", "Animasyonları azalt", "Hareketli arka plan ve geçişleri kapatır."),
         toggle("read", "Okuma modu", "Satır ve harf aralığını artırır, satırları kısaltır.")),
       reset
     );
 
-    const mkTab = (id, label) => {
-      const b = h("button", { type: "button", role: "tab", class: "bwl-tab", "aria-controls": "bwl-pane-" + id, text: label });
-      b.addEventListener("click", () => setTab(id));
-      tabs[id] = b;
-      return b;
-    };
     const closeBtn = h("button", { type: "button", class: "bwl-close", "aria-label": "Kapat", text: "✕", onclick: closeDrawer });
 
     drawer = h("aside", { class: "bwl-drawer", role: "dialog", "aria-modal": "true", "aria-label": "Sözlük, yardım ve görünüm", hidden: true },
-      h("header", { class: "bwl-drawer-head" }, h("strong", { text: "BioWebLab Yardım" }), closeBtn),
-      h("div", { class: "bwl-tabs", role: "tablist" }, mkTab("glossary", "📖 Sözlük"), mkTab("help", "❓ Yardım"), mkTab("view", "Aa Görünüm")),
+      h("header", { class: "bwl-drawer-head" }, titleEl = h("strong", { text: "Sözlük" }), closeBtn),
       h("div", { class: "bwl-drawer-body" }, panes.glossary, panes.help, panes.view)
     );
     doc.body.append(overlay, drawer);
@@ -256,13 +252,10 @@
     if (read) read.checked = !!prefs.read;
   }
 
+  const PANE_TITLES = { glossary: "📖 Sözlük", help: "❓ Yardım", view: "Aa Görünüm" };
   function setTab(id) {
-    Object.keys(tabs).forEach(k => {
-      const on = k === id;
-      tabs[k].setAttribute("aria-selected", String(on));
-      tabs[k].tabIndex = on ? 0 : -1;
-      panes[k].hidden = !on;
-    });
+    Object.keys(panes).forEach(k => { panes[k].hidden = k !== id; });
+    if (titleEl) titleEl.textContent = PANE_TITLES[id] || "";
   }
 
   const openers = [];
@@ -281,7 +274,7 @@
       if (li) { li.classList.add("flash"); li.scrollIntoView({ block: "center" }); setTimeout(() => li.classList.remove("flash"), 1800); }
       $(".bwl-close", drawer).focus();
     } else if ((tab || "glossary") === "glossary") searchEl.focus();
-    else tabs[tab].focus();
+    else $(".bwl-close", drawer).focus();
   }
 
   function closeDrawer() {
@@ -295,19 +288,22 @@
 
   /* --------------------- Araç düğmeleri (üst çubuk) ---------------------- */
   function addToolButtons() {
-    const glossBtn = h("button", { type: "button", class: "bwl-tools-btn", "aria-haspopup": "dialog", "aria-expanded": "false", title: "Sözlük ve yardım ( ? )" },
+    const glossBtn = h("button", { type: "button", class: "bwl-tools-btn", "aria-haspopup": "dialog", "aria-expanded": "false", title: "Sözlük" },
       h("span", { "aria-hidden": "true", text: "📖" }), h("span", { class: "bwl-tools-label", text: "Sözlük" }));
     glossBtn.addEventListener("click", () => openDrawer("glossary"));
+    const helpBtn = h("button", { type: "button", class: "bwl-tools-btn", "aria-haspopup": "dialog", "aria-expanded": "false", title: "Yardım ( ? )" },
+      h("span", { "aria-hidden": "true", text: "❓" }), h("span", { class: "bwl-tools-label", text: "Yardım" }));
+    helpBtn.addEventListener("click", () => openDrawer("help"));
     const viewBtn = h("button", { type: "button", class: "bwl-tools-btn bwl-tools-icon", "aria-haspopup": "dialog", "aria-expanded": "false", title: "Okunabilirlik ve erişilebilirlik ayarları", "aria-label": "Okunabilirlik ve erişilebilirlik ayarları" },
       h("span", { "aria-hidden": "true", text: "Aa" }));
     viewBtn.addEventListener("click", () => openDrawer("view"));
-    openers.push(glossBtn, viewBtn);
+    openers.push(glossBtn, helpBtn, viewBtn);
 
     const bar = $(".module-toolbar");
     const nav = $(".nav-links");
-    if (bar) bar.prepend(glossBtn, viewBtn);
-    else if (nav) { const t = $("#theme-toggle", nav); nav.insertBefore(glossBtn, t); nav.insertBefore(viewBtn, t); }
-    else { const f = h("div", { class: "bwl-fab" }, glossBtn, viewBtn); doc.body.append(f); }
+    if (bar) bar.prepend(glossBtn, helpBtn, viewBtn);
+    else if (nav) { const t = $("#theme-toggle", nav); nav.insertBefore(glossBtn, t); nav.insertBefore(helpBtn, t); nav.insertBefore(viewBtn, t); }
+    else { const f = h("div", { class: "bwl-fab" }, glossBtn, helpBtn, viewBtn); doc.body.append(f); }
   }
 
   /* ------------------ "İçeriğe geç" bağlantısı (erişilebilirlik) ------------------ */
