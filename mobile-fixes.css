@@ -138,3 +138,73 @@
     text-align: right;
   }
 }
+
+
+/* Lightweight first-stage animated illustrations for CRISPR and Forensic modules. */
+.crispr-intro-scene, .forensic-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 560px;
+  min-height: 190px;
+  margin: 22px auto 26px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(103, 232, 249, .16);
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(34,211,238,.11), transparent 68%), rgba(8,17,33,.34);
+}
+.crispr-scene-orbit, .forensic-orbit {
+  position: absolute; width: 154px; height: 154px; border: 1px solid rgba(56,248,255,.24);
+  border-radius: 50%; animation: sceneOrbit 16s linear infinite;
+}
+.crispr-scene-orbit.orbit-two { width: 205px; height: 205px; border-style: dashed; opacity: .5; animation-direction: reverse; }
+.crispr-scene-dna { position: relative; width: 88px; height: 138px; }
+.dna-strand { position:absolute; top:0; bottom:0; width:3px; border-radius:50%; background:linear-gradient(transparent,#38f8ff,#9b5cff,transparent); }
+.strand-left { left:17px; transform:rotate(-19deg); }
+.strand-right { right:17px; transform:rotate(19deg); }
+.crispr-scene-dna i { position:absolute; left:19px; top:calc(var(--r) * 22px + 8px); width:50px; height:3px; border-radius:5px; background:linear-gradient(90deg,#38f8ff,#9b5cff); opacity:.8; animation: dnaGlow 2.4s ease-in-out infinite; animation-delay:calc(var(--r) * .16s); }
+.crispr-scene-label { position:absolute; padding:7px 11px; border:1px solid rgba(56,248,255,.28); border-radius:999px; background:rgba(8,17,33,.82); color:#dffaff; font-size:12px; letter-spacing:.04em; box-shadow:0 0 16px rgba(56,248,255,.08); }
+.crispr-scene-label b { color:#38f8ff; margin-left:4px; }
+.label-guide { left:calc(50% - 130px); top:34px; animation: labelFloat 3.6s ease-in-out infinite; }
+.label-cas { right:calc(50% - 132px); bottom:34px; animation: labelFloat 3.6s ease-in-out -1.8s infinite; }
+.crispr-scene-pulse { position:absolute; width:12px; height:12px; border-radius:50%; background:#57f287; box-shadow:0 0 0 0 rgba(87,242,135,.42); animation: scenePulse 2.8s ease-out infinite; }
+.forensic-scene { min-height:240px; background:radial-gradient(ellipse at 50% 50%,rgba(15,118,110,.14),transparent 70%),#f8fafc; border-color:rgba(15,118,110,.18); }
+.forensic-orbit { width:176px; height:176px; border-color:rgba(15,118,110,.22); border-style:dashed; }
+.forensic-magnifier { position:relative; width:84px; height:84px; border:7px solid #0f766e; border-radius:50%; background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(45,212,191,.2)); box-shadow:0 0 0 8px rgba(15,118,110,.08),0 8px 22px rgba(15,23,42,.12); animation: magnifierFloat 4s ease-in-out infinite; }
+.forensic-magnifier:after { content:""; position:absolute; width:42px; height:8px; border-radius:8px; background:#0f766e; right:-31px; bottom:-17px; transform:rotate(48deg); transform-origin:left center; }
+.forensic-magnifier span { position:absolute; inset:18px; border:2px solid rgba(15,118,110,.55); border-radius:50%; }
+.forensic-sample { position:absolute; left:calc(50% - 116px); bottom:40px; display:flex; gap:4px; align-items:end; height:35px; transform:rotate(-13deg); }
+.forensic-sample i { width:5px; height:var(--h,22px); border-radius:4px; background:#0f766e; opacity:.7; }
+.forensic-sample i:nth-child(2n) { height:15px; }
+.forensic-sample i:nth-child(3n) { height:29px; }
+.forensic-dna { position:absolute; right:calc(50% - 116px); top:42px; display:flex; gap:5px; align-items:center; transform:rotate(18deg); }
+.forensic-dna b { width:5px; height:var(--h,22px); border-radius:5px; background:#14b8a6; animation: dnaGlow 2.5s ease-in-out infinite; }
+.forensic-dna b:nth-child(2n) { height:13px; }
+.forensic-dna b:nth-child(3n) { height:29px; }
+.forensic-spark { position:absolute; width:6px; height:6px; border-radius:50%; background:#f59e0b; box-shadow:0 0 12px rgba(245,158,11,.55); animation: scenePulse 3s ease-out infinite; }
+.spark-a { left:28%; top:30%; }.spark-b { right:27%; bottom:25%; animation-delay:1.4s; }
+@keyframes sceneOrbit { to { transform:rotate(360deg); } }
+@keyframes dnaGlow { 0%,100% { opacity:.45; filter:brightness(.9); } 50% { opacity:1; filter:brightness(1.35); } }
+@keyframes labelFloat { 0%,100% { translate:0 0; } 50% { translate:0 -5px; } }
+@keyframes scenePulse { 0% { box-shadow:0 0 0 0 rgba(87,242,135,.38); opacity:1; } 100% { box-shadow:0 0 0 22px rgba(87,242,135,0); opacity:.25; } }
+@keyframes magnifierFloat { 0%,100% { transform:translateY(0) rotate(-5deg); } 50% { transform:translateY(-6px) rotate(4deg); } }
+
+@media (max-width: 800px), (max-width: 1100px) and (hover:none) and (pointer:coarse) {
+  .crispr-intro-scene, .forensic-scene { width:100%; max-width:100%; min-height:170px; margin:16px auto 20px; }
+  .forensic-scene { min-height:200px; }
+  .crispr-scene-orbit.orbit-two { width:174px; height:174px; }
+  .label-guide { left:calc(50% - 112px); top:22px; }
+  .label-cas { right:calc(50% - 112px); bottom:22px; }
+  .forensic-sample { left:calc(50% - 104px); }
+  .forensic-dna { right:calc(50% - 104px); }
+}
+@media (max-width: 380px) {
+  .crispr-scene-label { font-size:10px; padding:6px 8px; }
+  .forensic-sample { left:calc(50% - 94px); }
+  .forensic-dna { right:calc(50% - 94px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crispr-intro-scene *, .forensic-scene * { animation:none !important; }
+}
