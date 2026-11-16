@@ -15,11 +15,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ui-polish.css?v=3">
-  <link rel="stylesheet" href="ui-tools.css?v=5">
+  <link rel="stylesheet" href="ui-polish.css?v=4">
+  <link rel="stylesheet" href="ui-tools.css?v=6">
   <link rel="stylesheet" href="mechanics.css?v=1">
-  <link rel="stylesheet" href="../mobile-fixes.css?v=4">
-  <link rel="stylesheet" href="intro-scenes.css?v=3">
+  <link rel="stylesheet" href="../mobile-fixes.css?v=5">
 </head>
 <body>
 <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Açık temaya geç" aria-pressed="false" title="Açık temaya geç" onclick="toggleTheme()">🌙</button>
@@ -58,9 +57,12 @@
 <h1>1. Giriş: Olay Yeri</h1>
 <div class="hero-box">
 <div class="crime-image">
-  <div class="intro-scene scene-forensic" aria-hidden="true">
-    <div class="sc-gel"><div class="sc-lane"><i style="--y:18px;--c:#67e8f9"></i><i style="--y:52px;--c:#5eead4"></i><i style="--y:82px;--c:#a78bfa"></i></div><div class="sc-lane"><i style="--y:18px;--c:#67e8f9"></i><i style="--y:40px;--c:#facc15"></i><i style="--y:82px;--c:#a78bfa"></i></div><div class="sc-lane"><i style="--y:30px;--c:#5eead4"></i><i style="--y:52px;--c:#5eead4"></i><i style="--y:70px;--c:#facc15"></i></div><div class="sc-lane"><i style="--y:18px;--c:#67e8f9"></i><i style="--y:52px;--c:#5eead4"></i><i style="--y:82px;--c:#a78bfa"></i></div></div>
-    <div class="scene-lens"><svg viewBox="0 0 76 76" fill="none"><circle cx="31" cy="31" r="22" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="5"/><path d="M18 24a16 16 0 0 1 10-9" stroke="rgba(255,255,255,.7)" stroke-width="3" stroke-linecap="round"/><line x1="47" y1="47" x2="68" y2="68" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div>
+  <div class="forensic-scene" aria-hidden="true">
+    <div class="forensic-orbit"></div>
+    <div class="forensic-magnifier"><span></span></div>
+    <div class="forensic-sample"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="forensic-dna"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+    <div class="forensic-spark spark-a"></div><div class="forensic-spark spark-b"></div>
   </div>
 </div>
 <div class="hero-info">
@@ -402,7 +404,7 @@ Bantların jeldeki konumlarını karşılaştır. Eşleşen profili belirle; DNA
 <script src="adli-tip.js?v=4"></script>
 <script src="adli-extras.js?v=1"></script>
   <script src="modules-nav.js?v=3"></script>
-  <script src="ui-polish.js?v=3"></script>
+  <script src="ui-polish.js?v=4"></script>
   <script src="ui-tools.js?v=3"></script>
 </body>
 </html>
