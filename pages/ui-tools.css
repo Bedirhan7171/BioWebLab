@@ -174,22 +174,3 @@ body.bwl-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .bwl-drawer, .bwl-overlay, .bwl-pop, .bwl-skip { transition: none !important; animation: none !important; }
 }
-
-/* ---------- Çekmece: mobilde tüm içerik kaydırılabilsin ----------
-   Flex sütunda kaydırılan çocuğa min-height:0 verilmezse içerik taşar ve kesilir. */
-.bwl-drawer { height: 100vh; height: 100dvh; max-height: 100dvh; }
-.bwl-drawer-head, .bwl-tabs { flex: none; }
-.bwl-drawer-body {
-  flex: 1 1 auto; min-height: 0;
-  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
-}
-@media (max-width: 700px) {
-  .bwl-drawer { width: 100vw; }
-  .bwl-tabs { overflow-x: auto; scrollbar-width: none; }
-  .bwl-tabs::-webkit-scrollbar { display: none; }
-}
-
-/* Mobilde genel "header { padding:0 !important }" kuralı çekmece başlığının dolgusunu siliyordu */
-.bwl-drawer > header.bwl-drawer-head { padding: 18px 20px 10px !important; }
