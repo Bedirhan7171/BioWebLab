@@ -208,3 +208,36 @@
 @media (prefers-reduced-motion: reduce) {
   .crispr-intro-scene *, .forensic-scene * { animation:none !important; }
 }
+
+
+/* Compact intro scenes: remove oversized empty canvases on desktop and mobile. */
+.crispr-intro-scene, .forensic-scene {
+  width: min(100%, 420px) !important;
+  min-height: 148px !important;
+  height: 148px !important;
+  margin: 12px auto 16px !important;
+  box-sizing: border-box;
+}
+.forensic-scene { height: 160px !important; min-height:160px !important; }
+.crispr-scene-orbit { width:112px; height:112px; }
+.crispr-scene-orbit.orbit-two { width:138px; height:138px; }
+.crispr-scene-dna { transform:scale(.78); }
+.label-guide { left:calc(50% - 112px); top:22px; }
+.label-cas { right:calc(50% - 112px); bottom:22px; }
+.forensic-orbit { width:128px; height:128px; }
+.forensic-magnifier { transform:scale(.82); }
+.forensic-sample { left:calc(50% - 104px); bottom:24px; }
+.forensic-dna { right:calc(50% - 104px); top:25px; }
+
+@media (max-width:800px), (max-width:1100px) and (hover:none) and (pointer:coarse) {
+  .crispr-intro-scene { width:100% !important; max-width:420px !important; height:140px !important; min-height:140px !important; margin:10px auto 14px !important; }
+  .forensic-scene { width:100% !important; max-width:420px !important; height:148px !important; min-height:148px !important; margin:10px auto 14px !important; }
+  .crispr-scene-orbit { width:104px; height:104px; }
+  .crispr-scene-orbit.orbit-two { width:128px; height:128px; }
+  .crispr-scene-dna { transform:scale(.72); }
+  .label-guide { left:calc(50% - 105px); top:18px; }
+  .label-cas { right:calc(50% - 105px); bottom:18px; }
+  .forensic-orbit { width:116px; height:116px; }
+  .forensic-sample { left:calc(50% - 94px); bottom:20px; }
+  .forensic-dna { right:calc(50% - 94px); top:20px; }
+}
