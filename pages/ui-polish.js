@@ -10,15 +10,6 @@
     toolbarButtons[0].parentNode.insertBefore(bar, toolbarButtons[0]);
     toolbarButtons.forEach(btn => bar.appendChild(btn));
   }
-  if (document.querySelector(".module-toolbar")) document.body.classList.add("has-module-toolbar");
-  {
-    const bar = document.querySelector(".module-toolbar");
-    if (bar) {
-      let on = false;
-      const upd = () => { const v = window.scrollY > 6; if (v !== on) { on = v; bar.classList.toggle("is-scrolled", v); } };
-      window.addEventListener("scroll", upd, { passive: true }); upd();
-    }
-  }
 
   const items = () => document.querySelectorAll(".menu-item, .step-btn");
   const isStacked = () => window.matchMedia("(max-width: 1100px)").matches;
