@@ -276,11 +276,14 @@ body.has-module-toolbar { padding-top: var(--bar-h); }
   box-sizing: border-box; width: 100%; height: var(--bar-h);
   justify-content: flex-end; gap: 8px;
   padding: 0 16px; padding-top: env(safe-area-inset-top, 0px);
-  background: color-mix(in srgb, var(--bwl-bg, #0f172a) 58%, transparent);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  backdrop-filter: blur(18px) saturate(160%);
+  background: color-mix(in srgb, var(--bwl-bg, #0f172a) 90%, transparent);
   border-bottom: 1px solid var(--bwl-border, rgba(148,163,184,.28));
-  box-shadow: 0 6px 24px rgba(0, 0, 0, .12);
+}
+/* Bulanıklık pahalıdır: yalnızca sayfa kaydırılıp içerik çubuğun altına girince açılır */
+.module-toolbar.is-scrolled {
+  background: color-mix(in srgb, var(--bwl-bg, #0f172a) 62%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 body.has-module-toolbar { padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); }
 .module-toolbar { height: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); align-items: center; }
