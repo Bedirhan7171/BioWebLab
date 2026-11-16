@@ -10,6 +10,7 @@
     toolbarButtons[0].parentNode.insertBefore(bar, toolbarButtons[0]);
     toolbarButtons.forEach(btn => bar.appendChild(btn));
   }
+  if (document.querySelector(".module-toolbar")) document.body.classList.add("has-module-toolbar");
 
   const items = () => document.querySelectorAll(".menu-item, .step-btn");
   const isStacked = () => window.matchMedia("(max-width: 1100px)").matches;

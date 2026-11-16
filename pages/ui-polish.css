@@ -206,7 +206,7 @@ input[type="range"] { accent-color: var(--ui-focus); }
 @media (min-width: 1101px) {
   /* Alttaki dock, kenar çubuğunun son öğelerini örtmesin */
   .app > .sidebar, .crispr-sidebar { padding-bottom: 110px !important; }
-  .app > .content, .crispr-main { padding-top: 68px !important; }
+  .app > .content, .crispr-main { padding-top: 24px !important; }
   .panel { min-height: calc(100vh - 100px); }
 }
 
@@ -216,7 +216,7 @@ input[type="range"] { accent-color: var(--ui-focus); }
   .app { grid-template-columns: minmax(0, 1fr) !important; }
   .crispr-shell { grid-template-columns: minmax(0, 1fr) !important; }
   .sidebar, .crispr-sidebar, .content, .crispr-main, .panel, .stage-card { min-width: 0; max-width: 100%; }
-  .sidebar, .crispr-sidebar { padding: 62px 16px 16px !important; gap: 14px !important; }
+  .sidebar, .crispr-sidebar { padding: 16px 16px 16px !important; gap: 14px !important; }
   .menu, .step-list {
     display: flex !important;
     flex-direction: row !important;
@@ -238,8 +238,7 @@ input[type="range"] { accent-color: var(--ui-focus); }
   .menu-item:hover:not(.locked), .step-btn:hover:not(.locked) { transform: none !important; }
   .progress-box { margin-top: 0 !important; padding: 14px !important; }
   .brand h2 { font-size: 24px !important; margin-top: 4px !important; }
-  /* Dar ekranda araç çubuğu sayfayla kayar; başlıkları örtmez */
-  .module-toolbar { position: absolute; top: 10px; right: 10px; gap: 6px; }
+  .module-toolbar { gap: 6px; }
   .app > .content, .crispr-main { padding-top: 14px; }
 }
 
@@ -267,3 +266,32 @@ input[type="range"] { accent-color: var(--ui-focus); }
 :root:not([data-theme="light"]) .dna-label { color: #67e8f9 !important; }
 :root[data-theme="light"] .secondary-btn { color: #0550ae; }
 :root[data-theme="light"] .stage .secondary-btn { color: #0a3f8f !important; }
+
+/* ---------- Sabit, buzlu cam üst çubuk (Sözlük · Yardım · Aa · Tema · Sıfırla) ----------
+   Sayfa kaydırılsa da yukarıda kalır; arkasından geçen içerik bulanık görünür. */
+:root { --bar-h: 62px; }
+body.has-module-toolbar { padding-top: var(--bar-h); }
+.module-toolbar {
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  box-sizing: border-box; width: 100%; height: var(--bar-h);
+  justify-content: flex-end; gap: 8px;
+  padding: 0 16px; padding-top: env(safe-area-inset-top, 0px);
+  background: color-mix(in srgb, var(--bwl-bg, #0f172a) 58%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid var(--bwl-border, rgba(148,163,184,.28));
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .12);
+}
+body.has-module-toolbar { padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); }
+.module-toolbar { height: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); align-items: center; }
+@media (min-width: 1101px) {
+  .app > .sidebar { top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); height: calc(100vh - var(--bar-h) - env(safe-area-inset-top, 0px)); }
+}
+@media (max-width: 1100px) {
+  html { scroll-padding-top: calc(var(--bar-h) + 10px); }
+}
+@media (max-width: 430px) {
+  .module-toolbar { padding-left: 10px; padding-right: 10px; gap: 5px; }
+  .module-toolbar .reset-progress-btn { font-size: 0 !important; width: 40px; padding: 0 !important; gap: 0 !important; justify-content: center; }
+  .module-toolbar .reset-progress-btn::before { content: "↻"; font-size: 18px; line-height: 1; }
+}
