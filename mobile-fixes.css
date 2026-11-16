@@ -1,0 +1,182 @@
+/* BioWebLab — strictly mobile-only layout corrections.
+   Desktop styles and all module copy/experiences remain untouched. */
+@media (max-width: 800px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  *, *::before, *::after { min-width: 0; }
+
+  /* Homepage hero: prevent the desktop two-column canvas from clipping on phones. */
+  header { width: 100%; max-width: 100%; }
+  .navbar {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .nav-links {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+  .hero.hero-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    padding: 46px 20px 36px;
+    gap: 18px;
+  }
+  .hero-copy { width: 100%; max-width: 100%; }
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(34px, 9vw, 54px);
+    overflow-wrap: anywhere;
+  }
+  .hero .badge { max-width: 100%; white-space: normal; }
+  .hero p { max-width: 100%; }
+  .hero-actions { flex-wrap: wrap; gap: 10px; }
+  .hero-actions .btn { max-width: 100%; }
+  .hero-proof { gap: 8px; }
+  .hero-proof span { max-width: 100%; }
+  .hero-visual {
+    width: min(100%, 340px);
+    max-width: 100%;
+    justify-self: center;
+    margin: 8px auto 0;
+  }
+  .modules-section, .about-section, .how-section {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .grid-container { grid-template-columns: minmax(0, 1fr); }
+  .about-card { min-width: 0; }
+  .how-grid { grid-template-columns: minmax(0, 1fr); }
+  footer { width: 100%; max-width: 100%; padding-left: 18px; padding-right: 18px; }
+  .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; }
+
+  /* Shared module shell and step navigation. */
+  .app, .crispr-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  .sidebar, .crispr-sidebar {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 62px 14px 14px !important;
+    gap: 12px !important;
+  }
+  .menu, .step-list {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px !important;
+    padding: 4px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .menu-item, .step-btn {
+    flex: 0 0 158px;
+    width: 158px !important;
+    min-width: 158px;
+    max-width: 158px;
+    scroll-snap-align: start;
+  }
+  .menu-item small, .step-text span { display: none; }
+  .progress-box, .progress-card { width: 100%; margin-top: 0 !important; }
+  .content, .crispr-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 14px !important;
+  }
+  .panel, .stage-card, .stage, .stage-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: clamp(14px, 4vw, 22px) !important;
+    border-radius: 18px !important;
+  }
+  .panel h1 { font-size: clamp(25px, 7vw, 34px); line-height: 1.18; overflow-wrap: anywhere; }
+  .stage-header { flex-wrap: wrap; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .dna-orbit { min-width: 0; max-width: 100%; }
+  .reset-progress-btn { top: 10px !important; right: 10px !important; max-width: calc(100vw - 70px); }
+  .theme-toggle-btn { top: 10px !important; right: auto !important; left: 10px !important; }
+
+  /* Keep experiment panels and data layouts inside the phone viewport. */
+  .card-grid, .grid-2, .grid-3,
+  .pcr-simulator, .gel-intro-grid, .gel-workspace,
+  .comparison-layout, .lab-grid, .lab-out,
+  .protein-hero, .rule-grid, .converter-layout,
+  .designer-layout, .repair-lab, .sim-controls,
+  .sequence-row, .tool-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .pcr-left, .pcr-right, .machine-card, .dna-stage,
+  .gel-control-panel, .gel-visual-panel,
+  .comparison-left, .comparison-right,
+  .hero-info, .rule-card, .converter-card, .converter-results,
+  .lab-panel, .result-panel, .info-card, .term-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .sim-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .codon-table { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .amino-chain { padding: 22px 12px; gap: 6px; }
+  .amino { max-width: 22vw; max-height: 22vw; }
+  .bond { max-width: 8vw; }
+  .sequence-row { display: grid; }
+  .sequence-row > * { min-width: 0; max-width: 100%; }
+  .dna-strip { max-width: 100%; flex-wrap: wrap; }
+  .base { min-width: 34px; padding: 0 8px; }
+  .lab-bar { grid-template-columns: minmax(76px, auto) minmax(0, 1fr) 38px; gap: 7px; }
+  .lab-bar > div { min-width: 0; }
+  .panel img, .panel svg, .panel canvas,
+  .stage img, .stage svg, .stage canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  .panel pre, .panel table, .stage pre, .stage table {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .action-btn, .tool-btn, .option-btn, .pam-btn {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  input, select, textarea { max-width: 100%; }
+}
+
+@media (max-width: 430px) {
+  .navbar { align-items: flex-start; }
+  .logo { font-size: 18px; }
+  .nav-links { width: 100%; }
+  .hero.hero-showcase { padding-left: 16px; padding-right: 16px; }
+  .hero-actions { align-items: stretch; }
+  .hero-actions .btn { text-align: center; }
+  .modules-section, .about-section, .how-section { padding-left: 16px; padding-right: 16px; }
+  .module-card { padding: 20px; }
+  .codon-table { grid-template-columns: minmax(0, 1fr); }
+  .sim-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .lab-bar { grid-template-columns: 1fr; }
+  .amino { width: 64px; height: 64px; max-width: none; max-height: none; }
+  .bond { width: 20px; max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual, .floating-chip, .module-card { animation: none !important; }
+}
