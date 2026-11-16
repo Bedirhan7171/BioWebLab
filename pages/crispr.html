@@ -15,10 +15,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ui-polish.css?v=1">
-  <link rel="stylesheet" href="ui-tools.css?v=3">
+  <link rel="stylesheet" href="ui-polish.css?v=2">
+  <link rel="stylesheet" href="ui-tools.css?v=5">
   <link rel="stylesheet" href="mechanics.css?v=1">
-  <link rel="stylesheet" href="../mobile-fixes.css?v=3">
+  <link rel="stylesheet" href="../mobile-fixes.css?v=4">
+  <link rel="stylesheet" href="intro-scenes.css?v=2">
 </head>
 
 <body class="crispr-page">
@@ -172,17 +173,15 @@
             <div class="badge">Başlangıç</div>
           </div>
 
-          <div class="crispr-intro-scene" aria-hidden="true">
-            <div class="crispr-scene-orbit orbit-one"></div>
-            <div class="crispr-scene-orbit orbit-two"></div>
-            <div class="crispr-scene-dna">
-              <span class="dna-strand strand-left"></span>
-              <span class="dna-strand strand-right"></span>
-              <i style="--r:0"></i><i style="--r:1"></i><i style="--r:2"></i><i style="--r:3"></i><i style="--r:4"></i><i style="--r:5"></i>
+          <div class="intro-scene scene-crispr" aria-hidden="true">
+            <div class="scene-chain">
+              <div class="scene-half left"><span class="nt nt-a">A</span><i class="nt-bond"></i><span class="nt nt-t">T</span></div>
+              <i class="nt-bond cut"></i>
+              <div class="scene-half right"><span class="nt nt-g">G</span><i class="nt-bond"></i><span class="nt nt-c">C</span></div>
+              <span class="scene-scissors"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><g class="bl bl-a"><line x1="15" y1="15" x2="26" y2="3"/><circle cx="9" cy="23" r="4"/><line x1="15" y1="15" x2="11" y2="20"/></g><g class="bl bl-b"><line x1="15" y1="15" x2="4" y2="3"/><circle cx="21" cy="23" r="4"/><line x1="15" y1="15" x2="19" y2="20"/></g></svg></span>
             </div>
-            <div class="crispr-scene-label label-guide">gRNA <b>●</b></div>
-            <div class="crispr-scene-label label-cas">Cas9 <b>✦</b></div>
-            <div class="crispr-scene-pulse"></div>
+            <span class="scene-tag tag-grna">gRNA ●</span>
+            <span class="scene-tag tag-cas">Cas9 ✦</span>
           </div>
 
           <div class="grid-2">
@@ -606,7 +605,7 @@
 <script src="crispr.js"></script>
 <script src="crispr-extras.js"></script>
   <script src="modules-nav.js?v=3"></script>
-  <script src="ui-polish.js?v=1"></script>
+  <script src="ui-polish.js?v=2"></script>
   <script src="ui-tools.js?v=3"></script>
 </body>
 </html>

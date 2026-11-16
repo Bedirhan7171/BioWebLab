@@ -1,0 +1,124 @@
+/* BioWebLab · 1. aşama giriş animasyonları (CRISPR + Adli Tıp)
+   Protein modülündeki yüzen amino asit zincirinin diğer iki modüle uyarlanmış hâli.
+   Yalnızca transform/opacity animasyonu kullanır; hafiftir. */
+
+.intro-scene {
+  --sc-size: clamp(34px, 9.5vw, 44px);
+  --sc-bg: rgba(8, 17, 33, .42);
+  --sc-border: rgba(103, 232, 249, .18);
+  --sc-ink: #04111d;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 420px);
+  height: 150px;
+  margin: 14px auto 18px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid var(--sc-border);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(103, 232, 249, .12), transparent 70%),
+    var(--sc-bg);
+}
+:root[data-theme="light"] .intro-scene.scene-crispr {
+  --sc-bg: rgba(255, 255, 255, .72);
+  --sc-border: rgba(15, 118, 110, .22);
+}
+
+/* ---------- CRISPR: DNA zinciri kesilir ve onarılır ---------- */
+.scene-chain { position: relative; display: flex; align-items: center; }
+.scene-half { display: flex; align-items: center; animation: halfApartL 6s ease-in-out infinite; }
+.scene-half.right { animation-name: halfApartR; }
+.nt {
+  width: var(--sc-size); height: var(--sc-size); border-radius: 50%;
+  display: grid; place-items: center;
+  font: 900 calc(var(--sc-size) * .38)/1 Inter, system-ui, Arial, sans-serif; color: var(--sc-ink);
+  box-shadow: 0 0 20px rgba(103, 232, 249, .28);
+  animation: sceneFloat 2.8s ease-in-out infinite;
+}
+.nt-a { background: #67e8f9; }
+.nt-t { background: #5eead4; animation-delay: .2s; }
+.nt-g { background: #a78bfa; animation-delay: .4s; }
+.nt-c { background: #facc15; animation-delay: .6s; }
+.nt-bond {
+  width: calc(var(--sc-size) * .42); height: 7px; border-radius: 999px;
+  background: #38bdf8; box-shadow: 0 0 14px rgba(56, 189, 248, .7);
+}
+.nt-bond.cut { transform-origin: center; animation: bondCut 6s ease-in-out infinite; }
+
+.scene-scissors {
+  position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px;
+  color: #f43f5e; opacity: 0; pointer-events: none;
+  animation: scissorsRun 6s ease-in-out infinite;
+}
+.scene-scissors svg { width: 100%; height: 100%; overflow: visible; }
+.scene-scissors .bl { transform-origin: 15px 15px; transform-box: view-box; }
+.scene-scissors .bl-a { animation: snipA 6s ease-in-out infinite; }
+.scene-scissors .bl-b { animation: snipB 6s ease-in-out infinite; }
+
+.scene-tag {
+  position: absolute; padding: 5px 10px; border-radius: 999px; font: 700 11px/1 Inter, system-ui, Arial, sans-serif;
+  letter-spacing: .05em; color: #dffaff; background: rgba(8, 17, 33, .78);
+  border: 1px solid rgba(56, 248, 255, .28); animation: sceneFloat 3.6s ease-in-out infinite;
+}
+.scene-tag.tag-grna { left: 14px; top: 14px; }
+.scene-tag.tag-cas { right: 14px; bottom: 14px; animation-delay: -1.8s; }
+:root[data-theme="light"] .scene-crispr .scene-tag { color: #0f4c5c; background: rgba(255, 255, 255, .9); border-color: rgba(15, 118, 110, .3); }
+
+@keyframes sceneFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes halfApartL { 0%, 28% { translate: 0 0; } 36%, 60% { translate: -9px 0; } 72%, 100% { translate: 0 0; } }
+@keyframes halfApartR { 0%, 28% { translate: 0 0; } 36%, 60% { translate: 9px 0; } 72%, 100% { translate: 0 0; } }
+@keyframes bondCut { 0%, 28% { opacity: 1; scale: 1; } 32%, 66% { opacity: 0; scale: .2; } 74%, 100% { opacity: 1; scale: 1; } }
+@keyframes scissorsRun {
+  0% { opacity: 0; transform: translateY(-46px); }
+  12% { opacity: 1; transform: translateY(-4px); }
+  32% { opacity: 1; transform: translateY(-4px); }
+  44% { opacity: 0; transform: translateY(-46px); }
+  100% { opacity: 0; transform: translateY(-46px); }
+}
+@keyframes snipA { 0%, 12% { rotate: -26deg; } 17% { rotate: 0deg; } 21% { rotate: -26deg; } 26% { rotate: 0deg; } 100% { rotate: 0deg; } }
+@keyframes snipB { 0%, 12% { rotate: 26deg; } 17% { rotate: 0deg; } 21% { rotate: 26deg; } 26% { rotate: 0deg; } 100% { rotate: 0deg; } }
+
+/* ---------- Adli Tıp: jel bantları ve büyüteç ---------- */
+.crime-image { min-height: 190px !important; }
+.intro-scene.scene-forensic {
+  --gap: 54px;
+  --sc-bg: rgba(255, 255, 255, .10);
+  --sc-border: rgba(255, 255, 255, .28);
+  width: min(100%, 340px);
+}
+.sc-gel { display: flex; gap: 14px; }
+.sc-lane {
+  position: relative; width: 40px; height: 108px; border-radius: 10px;
+  background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .18);
+}
+.sc-lane i {
+  position: absolute; left: 6px; right: 6px; top: var(--y); height: 6px; border-radius: 4px;
+  background: var(--c); opacity: .65; animation: bandGlow 8s ease-in-out infinite; animation-delay: var(--d);
+}
+.sc-lane:nth-child(1) { --d: -.6s; }
+.sc-lane:nth-child(2) { --d: 2s; }
+.sc-lane:nth-child(3) { --d: 3.4s; }
+.sc-lane:nth-child(4) { --d: 4.8s; }
+.scene-lens {
+  position: absolute; left: calc(50% - 38px); top: 50%; width: 76px; height: 76px; margin-top: -42px;
+  animation: lensSweep 8s ease-in-out infinite;
+}
+.scene-lens svg { width: 100%; height: 100%; overflow: visible; }
+@keyframes lensSweep {
+  0%, 8% { transform: translate(calc(var(--gap) * -1.5), 0); }
+  25% { transform: translate(calc(var(--gap) * -.5), 6px); }
+  42% { transform: translate(calc(var(--gap) * .5), -4px); }
+  58%, 70% { transform: translate(calc(var(--gap) * 1.5), 4px); }
+  100% { transform: translate(calc(var(--gap) * -1.5), 0); }
+}
+@keyframes bandGlow {
+  0%, 18%, 100% { opacity: .5; box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+  8% { opacity: 1; box-shadow: 0 0 12px var(--c); }
+}
+
+@media (max-width: 380px) { .intro-scene.scene-forensic { --gap: 50px; } .sc-lane { width: 36px; } .scene-tag { font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { .intro-scene, .intro-scene * { animation: none !important; } .scene-scissors { opacity: 1; transform: translateY(-4px); } }
+.bwl-calm .intro-scene *, .bwl-calm .intro-scene { animation: none !important; }
+.bwl-calm .scene-scissors { opacity: 1; transform: translateY(-4px); }
